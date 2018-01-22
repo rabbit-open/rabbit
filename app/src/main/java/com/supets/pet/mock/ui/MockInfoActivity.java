@@ -47,7 +47,7 @@ public class MockInfoActivity extends AppCompatActivity {
         if (datas != null && datas.size() > 0) {
             mockData = datas.get(0);
             mEditText = findViewById(R.id.list);
-            mEditText.setText(FormatLogProcess.format(mockData.getData()));
+            mEditText.setText(FormatLogProcess.format(FormatLogProcess.formatJsonText(mockData.getData())));
 
             TextView name = findViewById(R.id.name);
             name.setText(FormatLogProcess.format(mockData.getUrl()));

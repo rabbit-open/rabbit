@@ -138,7 +138,7 @@ public class MockConfigJsonActivity extends AppCompatActivity {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        content.setText(FormatLogProcess.format(temp.getData()));
+                        content.setText(FormatLogProcess.format(FormatLogProcess.formatJsonText(temp.getData())));
                     }
                 });
                 if (FormatLogProcess.isJson(temp.getData())) {
@@ -154,7 +154,7 @@ public class MockConfigJsonActivity extends AppCompatActivity {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        content.setText(FormatLogProcess.format(temp.getData()));
+                        content.setText(FormatLogProcess.format(FormatLogProcess.formatJsonText(temp.getData())));
                     }
                 });
                 if (FormatLogProcess.isJson(temp.getData())) {
