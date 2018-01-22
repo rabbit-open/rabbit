@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.supets.pet.mock.base.BaseRecycleAdapter;
 import com.supets.pet.mock.base.BaseRecycleViewHolder;
-import com.supets.pet.mock.ui.MockAboutActivity;
+import com.supets.pet.mock.ui.version.MockAboutActivity;
 import com.supets.pet.mock.ui.MockConfigActivity;
 import com.supets.pet.mock.ui.MockCrashListActivity;
 import com.supets.pet.mock.ui.MockEmailListActivity;

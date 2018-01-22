@@ -68,7 +68,7 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name="com.supets.pet.mock.ui.MockAboutActivity"
+            android:name="com.supets.pet.mock.ui.version.MockAboutActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <!--测试-->
