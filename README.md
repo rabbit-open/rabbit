@@ -13,7 +13,7 @@
     2 引用依赖工程mocklib，设置okhttp拦截器即可。
     3 APK可以自己运行源码安装，也可以点击下面地址下载安装
    
-## [APK下载](https://fir.im/testpet)
+## [测试APK下载](https://fir.im/testpet)  [依赖AAR下载](https://github.com/rabbit-open/rabbit/blob/master/database/mocklib-release.aar)
 
 
 ## mocklib拦截器介绍
