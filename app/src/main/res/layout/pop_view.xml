@@ -2,8 +2,8 @@
 <com.supets.pet.uctoast.ViewContainer xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#77000000"
-    android:paddingBottom="300dp">
+    android:background="#4f000000"
+    android:paddingBottom="200dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 android:drawablePadding="10dp"
                 android:gravity="left"
                 android:includeFontPadding="false"
-                android:text="我是桔子测试小助手"
+                android:text="兔子小助手"
                 android:textColor="#333333"
                 android:textSize="15sp" />
 
