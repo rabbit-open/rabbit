@@ -4,7 +4,12 @@ package com.supets.pet.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
+import com.supets.pet.jsonview.JSONViewHelper;
+import com.supets.pet.jsonview.JSONViewHelper2;
+import com.supets.pet.jsonview.JsonView;
 import com.supets.pet.mock.bean.MockData;
 import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.dao.MockDataDB;
@@ -35,7 +40,16 @@ public class MockDataReceiver extends BroadcastReceiver {
                     data.setTime(new Date());
                     MockDataDB.insertMockData(data);
 
-                    if (!Config.getToastSwitch() || !FormatLogProcess.isJson(data.getData())) {
+                    String json = data.getData();
+
+                    if (!Config.getToastSwitch() || !FormatLogProcess.isJson(json)) {
+
+                        if (FormatLogProcess.isJson(json)) {
+                            JsonView jsonView = JSONViewHelper2.parse(data.getData(), new LinearLayout(context));
+                            json = JSONViewHelper.parse(jsonView);
+                        }
+
+
                         String message =
                                 new StringBuffer().append("接口名称：")
                                         .append("\r\n")
@@ -47,7 +61,7 @@ public class MockDataReceiver extends BroadcastReceiver {
                                         .append("\r\n")
                                         .append("请求结果：")
                                         .append("\r\n")
-                                        .append(FormatLogProcess.format(data.getData()))
+                                        .append(FormatLogProcess.format(json))
                                         .toString();
 
                         TipViewController mTipViewController = new TipViewController(context, message);
