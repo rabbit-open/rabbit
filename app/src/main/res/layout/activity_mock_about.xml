@@ -12,10 +12,10 @@
         app:titleText="@string/app_name" />
 
     <LinearLayout
-        android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/versionNum"
@@ -27,20 +27,20 @@
             android:drawableTop="@drawable/icon_big" />
 
         <Button
-            android:layout_marginTop="60dp"
             android:id="@+id/versionupdate"
             android:layout_width="200dp"
             android:layout_height="45dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
             android:background="@color/appcolor"
             android:text="版本更新"
             android:textColor="@color/white"
             android:textSize="15sp" />
 
         <TextView
-            android:layout_marginTop="100dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
             android:autoLink="web"
             android:text="作者：李洪江"
             android:textColor="#333333"
@@ -49,7 +49,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autoLink="all"
             android:text="QQ: 254608684@qq.com"
             android:textColor="#333333"
             android:textSize="15sp" />
@@ -58,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:text="github：https://github.com/lihongjiang"
+            android:text="github：https://github.com/rabbit-open/rabbit"
             android:textColor="#333333"
             android:textSize="15sp" />
 
