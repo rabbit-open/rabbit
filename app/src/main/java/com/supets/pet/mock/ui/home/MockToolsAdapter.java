@@ -11,7 +11,6 @@ import com.supets.pet.mock.base.BaseRecycleViewHolder;
 import com.supets.pet.mock.ui.MockToolActivity;
 import com.supets.pet.mock.utils.Utils;
 import com.supets.pet.mockui.R;
-import com.supets.pet.uctoast.clipboard.ClipboardManagerCompat;
 
 public class MockToolsAdapter extends BaseRecycleAdapter<String> {
 
@@ -30,7 +29,6 @@ public class MockToolsAdapter extends BaseRecycleAdapter<String> {
             public void onClick(View view) {
                 if (position == 0) {
                     Intent intent = new Intent(view.getContext(), MockToolActivity.class);
-                    intent.putExtra("json", ClipboardManagerCompat.create(view.getContext()).getText().toString());
                     view.getContext().startActivity(intent);
                 }
                 if (position == 1) {
