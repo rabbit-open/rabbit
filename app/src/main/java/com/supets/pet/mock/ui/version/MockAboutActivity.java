@@ -17,10 +17,7 @@ import com.supets.pet.mockui.R;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import java.io.IOException;
-
 import okhttp3.Call;
-import okhttp3.OkHttpClient;
 
 public class MockAboutActivity extends AppCompatActivity {
 
