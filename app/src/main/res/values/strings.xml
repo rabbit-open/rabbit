@@ -31,4 +31,6 @@
         <item name="android:windowExitAnimation">@anim/msg_exit</item>
     </style>
 
+    <string name="m_user_version_code">兔子测试  V%1$s</string>
+
 </resources>
