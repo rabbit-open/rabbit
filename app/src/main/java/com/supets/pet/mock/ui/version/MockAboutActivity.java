@@ -53,7 +53,7 @@ public class MockAboutActivity extends AppCompatActivity {
                                     VersionDTO dto = JSonUtil.fromJson(response, VersionDTO.class);
                                     if (dto != null) {
                                         String versionBuidCode = SystemUtils.getAppVersionCode();
-                                        if (!TextUtils.isEmpty(versionBuidCode) && dto.content.version == Integer.parseInt(versionBuidCode)) {
+                                        if (!TextUtils.isEmpty(versionBuidCode) && dto.content.version != Integer.parseInt(versionBuidCode)) {
                                             updateData(dto);
                                         } else {
                                             Toast.makeText(MockAboutActivity.this, "已经是最新版本", Toast.LENGTH_SHORT).show();
@@ -73,9 +73,6 @@ public class MockAboutActivity extends AppCompatActivity {
                 SystemUtils.getAppVersionName());
         String versionBuidCode = SystemUtils.getAppVersionCode();
         mVersionNum.setText(versionCode + "（" + versionBuidCode + "）");
-
-
-
     }
 
 
