@@ -44,11 +44,6 @@ public class MockDataReceiver extends BroadcastReceiver {
 
                     if (!Config.getToastSwitch() || !FormatLogProcess.isJson(json)) {
 
-                        if (FormatLogProcess.isJson(json)) {
-                            JsonView jsonView = JSONViewHelper2.parse(data.getData(), new LinearLayout(context));
-                            json = JSONViewHelper.parse(jsonView);
-                        }
-
 
                         String message =
                                 new StringBuffer().append("接口名称：")
@@ -61,7 +56,7 @@ public class MockDataReceiver extends BroadcastReceiver {
                                         .append("\r\n")
                                         .append("请求结果：")
                                         .append("\r\n")
-                                        .append(FormatLogProcess.format(json))
+                                        .append(FormatLogProcess.format(FormatLogProcess.formatJsonText(json)))
                                         .toString();
 
                         TipViewController mTipViewController = new TipViewController(context, message);

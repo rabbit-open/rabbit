@@ -1,7 +1,15 @@
 package com.supets.pet.mock.utils;
 
+import android.content.Context;
 import android.text.TextUtils;
+import android.widget.LinearLayout;
 
+import com.supets.commons.App;
+import com.supets.pet.jsonview.JSONViewHelper;
+import com.supets.pet.jsonview.JSONViewHelper2;
+import com.supets.pet.jsonview.JsonView;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public final class FormatLogProcess {
@@ -21,7 +29,7 @@ public final class FormatLogProcess {
      */
     public static String format(String jsonStr) {
 
-        if (TextUtils.isEmpty(jsonStr)){
+        if (TextUtils.isEmpty(jsonStr)) {
             return jsonStr;
         }
 
@@ -66,4 +74,15 @@ public final class FormatLogProcess {
         return levelStr.toString();
     }
 
+    public static String formatJsonText(String json) {
+        if (FormatLogProcess.isJson(json)) {
+            try {
+                JsonView jsonView = JSONViewHelper2.parse(json, new LinearLayout(App.INSTANCE));
+                return JSONViewHelper.parse(jsonView);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return json;
+    }
 }

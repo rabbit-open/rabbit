@@ -6,10 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.supets.commons.widget.CommonHeader;
 import com.supets.lib.mail.MailUtil;
+import com.supets.pet.jsonview.JSONViewHelper;
+import com.supets.pet.jsonview.JSONViewHelper2;
+import com.supets.pet.jsonview.JsonView;
 import com.supets.pet.mock.bean.MockData;
 import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.dao.EmailDataDB;
@@ -152,12 +156,17 @@ public class MockInfoActivity extends AppCompatActivity {
                                         .append("\r\n")
                                         .append("请求结果：")
                                         .append("\r\n")
-                                        .append(FormatLogProcess.format(mockData.getData()))
+                                        .append(FormatLogProcess.format(FormatLogProcess.formatJsonText(mockData.getData())))
                                         .toString()
                         );
                     }
                 }).show();
     }
 
+
+    public String getJson(String json) {
+
+        return json;
+    }
 
 }
