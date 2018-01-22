@@ -1,21 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.thinkpad.myapplication">
+    package="com.supets.pet.mockui">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 
     <application
+        android:name="com.supets.pet.MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/CustomAppTheme">
+        <!--Android7.0新增的广播权限验证-->
+        <receiver
+            android:name="com.supets.pet.service.CrashService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="mock.crash.service" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.supets.pet.service.MockDataReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="mock.crash.network" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.supets.pet.service.MockDataProvider"
+            android:authorities="com.supets.pet.mockprovider"
+            android:exported="true" />
+
+        <activity android:name="com.supets.pet.mock.ui.home.MockFlashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="com.supets.pet.mock.ui.home.MockUiActivity" />
+        <activity android:name="com.supets.pet.mock.ui.MockCrashUiActivity" />
+        <activity android:name="com.supets.pet.mock.ui.MockInfoActivity" />
+        <activity android:name="com.supets.pet.mock.ui.MockConfigActivity" />
+        <activity
+            android:name="com.supets.pet.mock.ui.MockConfigJsonActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.supets.pet.mock.ui.MockModelActivity" />
+        <activity android:name="com.supets.pet.mock.ui.MockModelEditActivity" />
+        <activity android:name="com.supets.pet.mock.ui.MockToolActivity" />
+        <activity android:name="com.supets.pet.mock.ui.MockEmailListActivity" />
+        <activity android:name="com.supets.pet.mock.ui.MockCrashListActivity" />
+        <activity android:name="com.supets.pet.mock.ui.MockEmailEditActivity" />
+        <activity
+            android:name="com.supets.pet.mock.ui.MockUrlRuleActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="com.supets.pet.mock.ui.MockKeyActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <!--测试-->
+        <service
+            android:name="com.supets.pet.uctoast.ListenClipboardService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":process" />
+
+        <receiver
+            android:name="com.supets.pet.uctoast.BootCompletedReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

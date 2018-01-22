@@ -3,23 +3,57 @@
 buildscript {
     
     repositories {
-        google()
+        mavenLocal()
+        maven {
+            url('http://localhost:8082/nexus/content/groups/public')
+        }
+        maven { url "https://jitpack.io" }
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+
         jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-        
+        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
 
+
 allprojects {
     repositories {
-        google()
+        mavenLocal()
+        maven {
+            url('http://localhost:8082/nexus/content/groups/public')
+        }
+        maven { url "https://jitpack.io" }
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+
         jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
+}
+
+
+ext {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+
+    minSdkVersion = 14
+    targetSdkVersion = 26
+    compileSdkVersion = 26
+    buildToolsVersion = "27.0.1"
+    supportLibVersion = "26.1.0"
 }
 
 task clean(type: Delete) {

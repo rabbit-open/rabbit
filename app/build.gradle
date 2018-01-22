@@ -1,14 +1,31 @@
+//apply plugin: 'com.android.library'
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    compileOptions {
+        sourceCompatibility rootProject.ext.sourceCompatibility
+        targetCompatibility rootProject.ext.targetCompatibility
+    }
+
+    def currentVersionCode = getVersionCode()
+    def currentVersionName = getVersionName()
+
     defaultConfig {
-        applicationId "com.example.thinkpad.myapplication"
-        minSdkVersion 14
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        applicationId "com.supets.pet.mockui"
+
+        versionCode currentVersionCode
+        versionName currentVersionName
+
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -16,13 +33,146 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        abortOnError true
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            // 输出apk名称为supets_localhost_V3.5.0_build110.apk
+            def runTasks = gradle.startParameter.taskNames
+            if (('assembleDebug' in runTasks)) {
+                def fileName = "Tuzi__${variant.productFlavors[0].name}_V${defaultConfig.versionName}_build${defaultConfig.versionCode}_debug.apk"
+                output.outputFile = new File(outputFile.parent, fileName)
+            } else if (('assembleRelease' in runTasks)) {
+                def fileName = "Tuzi__${variant.productFlavors[0].name}_V${defaultConfig.versionName}_build${defaultConfig.versionCode}_release.apk"
+                output.outputFile = new File(outputFile.parent, fileName)
+            } else {
+                def fileName = "Tuzi__${variant.productFlavors[0].name}_V${defaultConfig.versionName}_build${defaultConfig.versionCode}.apk"
+                output.outputFile = new File(outputFile.parent, fileName)
+            }
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.assemble.doLast {
+            variant.outputs.each { output ->
+                File file = output.packageApplication.outputFile;
+                if (variant.buildType.zipAlignEnabled && file.getName().contains("unaligned")) {
+                    println "deleting " + file.getName()
+                    file.delete()
+                }
+            }
+
+            updateVersionCode()
+        }
+    }
+
+
+    productFlavors {
+        localhost {}
+    }
+
 }
 
+
+
+def getVersionCode() {
+    def versionFile = file('version.properties')
+
+    if (versionFile.exists()) {
+        def Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionFile))
+        def versionCode = versionProps['build.number'].toInteger()
+        println('Current version code is ' + versionCode.toString())
+        return versionCode
+    } else {
+        throw new GradleException("Could not find version.properties!")
+    }
+}
+
+def getVersionName() {
+    def versionFile = file('version.properties')
+
+    if (versionFile.exists()) {
+        def Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionFile))
+        def versionCode = versionProps['build.versionName'].toString()
+        println('Current version code is ' + versionCode.toString())
+        return versionCode
+    } else {
+        throw new GradleException("Could not find version.properties!")
+    }
+}
+
+
+
+//数据库版本以及Dao的相关设置
+greendao {
+    //数据库schema版本
+    schemaVersion 7
+    //设置DaoMaster DaoSession Dao包名，默认的是bean所在的包名
+    daoPackage "com.supets.pet.greendao"
+    targetGenDir 'src/main/java'
+    //设置DaoMaster DaoSeeeion Dao目录，默认是build/generated/source/greendao
+    //targetGenDir 'src/main/greendao'
+    //设置true,自动生成测试单元
+    //generateTests true
+    //设置生成的单元测试目录，默认是src/androidTest/java
+    targetGenDirTests 'src/androidTest/java'
+}
+
+def updateVersionCode() {
+
+    def runTasks = gradle.startParameter.taskNames
+
+    if (!('assemble' in runTasks || 'assembleRelease' in runTasks || 'aR' in runTasks)) {
+        return
+    }
+
+    def File versionFile = file('version.properties')
+
+    if (versionFile.exists()) {
+        def Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionFile))
+        def currentVersionCode = versionProps['build.number'].toInteger()
+        currentVersionCode++
+        versionProps['build.number'] = currentVersionCode.toString()
+        versionProps.store(versionFile.newWriter(), null)
+        println('Updated version code to ' + currentVersionCode.toString())
+    } else {
+        throw new GradleException("Could not find version.properties!")
+    }
+}
+
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.android.support:cardview-v7:26.1.0'
+
+
+    compile 'com.cloudpet.base:baserouter:1.0.0'
+    compile 'com.cloudpet.ui:commonui:1.1.2'
+    compile 'com.cloudpet.ui:themelib:1.2.0'
+    compile 'com.supets.lib:maillib:2.2.0'
+    compile 'com.supets.lib:jsoneditlib:1.4.0'
+
+    compile 'com.zhy:okhttputils:2.6.2'
+
+    compile 'org.greenrobot:greendao:3.2.0'
+    //数据库加密时添加
+    compile 'net.zetetic:android-database-sqlcipher:3.5.4'
+    //使用数据库升级辅助GreenDaoUpgradleHepler时添加
+    compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v1.2.0'
+
 }

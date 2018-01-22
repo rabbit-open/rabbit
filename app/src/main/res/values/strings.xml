@@ -1,3 +1,34 @@
 <resources>
-    <string name="app_name">My Application</string>
+
+    <string name="app_name">兔子测试</string>
+
+    <string name="debug_switch">打开调试(不会抓取数据)</string>
+    <string name="json_switch">抓取数据(不能打开调试)</string>
+
+    <string name="interface_filter_guice">接口过滤规则(支持空格分割,包含匹配)</string>
+    <string name="jsonedit">JSON助手</string>
+
+    <string name="email_name_config">发送邮箱配置(只支持163邮箱)</string>
+    <string name="email_name_label">邮箱名</string>
+    <string name="email_pass_label">邮箱密码</string>
+
+    <string name="toast_config">悬浮窗设置</string>
+    <string name="toast_config1">打开只抓取非JSON数据</string>
+
+    <string name="crash_title">崩溃日志</string>
+    <string name="send_mail">发邮件</string>
+    <string name="emaillist">邮件列表</string>
+    <string name="help">权限帮助</string>
+    <string name="string_help_text">权限帮助说明</string>
+    <string name="quit">退出</string>
+    <string name="settings">设置</string>
+    <string name="querysql">select * from LOCAL_MOCK_DATA  where url= ?</string>
+
+    <style name="Animation_Msg" parent="@android:style/Animation">
+        <!--窗体进入动画-->
+        <item name="android:windowEnterAnimation">@anim/msg_enter</item>
+        <!--窗体退出动画-->
+        <item name="android:windowExitAnimation">@anim/msg_exit</item>
+    </style>
+
 </resources>
