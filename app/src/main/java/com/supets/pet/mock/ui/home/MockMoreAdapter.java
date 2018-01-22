@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.supets.pet.mock.base.BaseRecycleAdapter;
 import com.supets.pet.mock.base.BaseRecycleViewHolder;
+import com.supets.pet.mock.ui.MockAboutActivity;
 import com.supets.pet.mock.ui.MockConfigActivity;
 import com.supets.pet.mock.ui.MockCrashListActivity;
 import com.supets.pet.mock.ui.MockEmailListActivity;
@@ -45,12 +46,14 @@ public class MockMoreAdapter extends BaseRecycleAdapter<String> {
                 } else if (position == 4) {
                     Intent intent = new Intent(view.getContext(), MockCrashListActivity.class);
                     view.getContext().startActivity(intent);
+                } else if (position == 5) {
+                    Intent intent = new Intent(view.getContext(), MockAboutActivity.class);
+                    view.getContext().startActivity(intent);
                 }
 
             }
         });
     }
-
 
 
 }
