@@ -38,10 +38,15 @@ public class Utils {
     }
 
     public static void pushUrl(Context context, String url) {
-        Intent intent = new Intent();
-        intent.setAction("android.intent.action.VIEW");
-        Uri content_url = Uri.parse(url);
-        intent.setData(content_url);
-        context.startActivity(intent);
+        try {
+            Intent intent = new Intent();
+            intent.setAction("android.intent.action.VIEW");
+            Uri content_url = Uri.parse(url);
+            intent.setData(content_url);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
