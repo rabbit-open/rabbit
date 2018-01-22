@@ -1,6 +1,5 @@
 package com.supets.pet.mock.ui.home;
 
-import android.content.ClipboardManager;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +8,7 @@ import android.widget.TextView;
 
 import com.supets.pet.mock.base.BaseRecycleAdapter;
 import com.supets.pet.mock.base.BaseRecycleViewHolder;
-import com.supets.pet.mock.ui.MockInfoActivity;
 import com.supets.pet.mock.ui.MockToolActivity;
-import com.supets.pet.mock.ui.version.MockAboutActivity;
 import com.supets.pet.mock.utils.Utils;
 import com.supets.pet.mockui.R;
 import com.supets.pet.uctoast.clipboard.ClipboardManagerCompat;
