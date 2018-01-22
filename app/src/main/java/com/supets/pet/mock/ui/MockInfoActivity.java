@@ -163,10 +163,4 @@ public class MockInfoActivity extends AppCompatActivity {
                 }).show();
     }
 
-
-    public String getJson(String json) {
-
-        return json;
-    }
-
 }
