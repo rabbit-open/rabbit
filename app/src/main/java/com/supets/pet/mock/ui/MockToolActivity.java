@@ -45,10 +45,9 @@ public class MockToolActivity extends AppCompatActivity {
 
         JSONEditView jsonEditView = findViewById(R.id.jsonEditView);
         String json = getIntent().getStringExtra("json");
-        jsonEditView.formatJson(json);
 
-        if (TextUtils.isEmpty(json)) {
-            return;
+        if (!TextUtils.isEmpty(json)) {
+            jsonEditView.formatJson(json);
         }
 
         mCommonHeader.getRightButton().setText("邮件分享");
