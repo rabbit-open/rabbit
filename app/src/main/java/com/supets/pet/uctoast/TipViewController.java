@@ -43,7 +43,7 @@ public final class TipViewController implements View.OnClickListener, View.OnTou
         ViewContainer view = (ViewContainer) View.inflate(mContext, R.layout.pop_view, null);
 
         // display content
-        mTextView = (TextView) view.findViewById(R.id.pop_view_text);
+        mTextView = view.findViewById(R.id.pop_view_text);
         mTextView.setText(mContent);
 
         mWholeView = view;
