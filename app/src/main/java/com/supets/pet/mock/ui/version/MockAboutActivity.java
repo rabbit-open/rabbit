@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.supets.commons.utils.SystemUtils;
 import com.supets.commons.utils.json.JSonUtil;
+import com.supets.pet.mock.utils.Utils;
 import com.supets.pet.mockui.R;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -80,21 +81,12 @@ public class MockAboutActivity extends AppCompatActivity {
                 .setPositiveButton("下载", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        pushUrl(dto.content.url);
+                        Utils.pushUrl(MockAboutActivity.this, dto.content.url);
                     }
                 })
                 .setNegativeButton("取消", null)
                 .show();
 
-    }
-
-
-    private void pushUrl(String url) {
-        Intent intent = new Intent();
-        intent.setAction("android.intent.action.VIEW");
-        Uri content_url = Uri.parse(url);
-        intent.setData(content_url);
-        startActivity(intent);
     }
 
 

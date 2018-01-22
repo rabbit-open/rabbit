@@ -1,5 +1,9 @@
 package com.supets.pet.mock.utils;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+
 import java.net.URLDecoder;
 import java.util.HashMap;
 
@@ -31,5 +35,13 @@ public class Utils {
             ex.printStackTrace();
         }
         return map;
+    }
+
+    public static void pushUrl(Context context, String url) {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        Uri content_url = Uri.parse(url);
+        intent.setData(content_url);
+        context.startActivity(intent);
     }
 }

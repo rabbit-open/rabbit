@@ -11,6 +11,8 @@ import com.supets.pet.mock.base.BaseRecycleAdapter;
 import com.supets.pet.mock.base.BaseRecycleViewHolder;
 import com.supets.pet.mock.ui.MockInfoActivity;
 import com.supets.pet.mock.ui.MockToolActivity;
+import com.supets.pet.mock.ui.version.MockAboutActivity;
+import com.supets.pet.mock.utils.Utils;
 import com.supets.pet.mockui.R;
 import com.supets.pet.uctoast.clipboard.ClipboardManagerCompat;
 
@@ -33,6 +35,14 @@ public class MockToolsAdapter extends BaseRecycleAdapter<String> {
                     Intent intent = new Intent(view.getContext(), MockToolActivity.class);
                     intent.putExtra("json", ClipboardManagerCompat.create(view.getContext()).getText().toString());
                     view.getContext().startActivity(intent);
+                }
+                if (position == 1) {
+                    Utils.pushUrl(view.getContext(), "https://www.bejson.com");
+                }
+                if (position == 2) {
+                    Utils.pushUrl(view.getContext(), "https://cli.im/");
+                } if (position == 3) {
+                    Utils.pushUrl(view.getContext(), "http://wanandroid.com/");
                 }
 
             }

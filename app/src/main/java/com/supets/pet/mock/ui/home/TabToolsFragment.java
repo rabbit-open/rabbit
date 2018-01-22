@@ -64,7 +64,9 @@ public class TabToolsFragment extends BaseFragment {
         mList.setAdapter(adapter);
         List<String> datas = new ArrayList<>();
         datas.add("JSON助手");
-        datas.add("录屏工具");
+        datas.add("在线json解析");
+        datas.add("在线二维码");
+        datas.add("玩安卓");
         adapter.setData(datas);
         adapter.notifyDataSetChanged();
     }
