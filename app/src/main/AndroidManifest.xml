@@ -77,6 +77,11 @@
             android:exported="true"
             android:process=":process" />
 
+        <service
+            android:name="com.supets.pet.alert.PullMsgService"
+            android:exported="true"
+            android:process=":supetsmsg"/>
+
         <receiver
             android:name="com.supets.pet.uctoast.BootCompletedReceiver"
             android:enabled="true"
