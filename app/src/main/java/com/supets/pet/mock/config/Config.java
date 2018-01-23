@@ -49,6 +49,7 @@ public class Config extends BasePref {
         strings.add(url);
         editor = editor.putStringSet(Url, strings);
         editor.commit();
+        editor.apply();
     }
 
     public static Set<String> getUrl() {
