@@ -67,6 +67,7 @@ public class TabToolsFragment extends BaseFragment {
         datas.add("在线json解析");
         datas.add("在线二维码");
         datas.add("玩安卓");
+        datas.add("画形状");
         adapter.setData(datas);
         adapter.notifyDataSetChanged();
     }

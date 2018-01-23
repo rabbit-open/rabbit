@@ -36,8 +36,12 @@ public class MockToolsAdapter extends BaseRecycleAdapter<String> {
                 }
                 if (position == 2) {
                     Utils.pushUrl(view.getContext(), "https://cli.im/");
-                } if (position == 3) {
+                }
+                if (position == 3) {
                     Utils.pushUrl(view.getContext(), "http://wanandroid.com/");
+                }
+                if (position == 4) {
+                    Utils.pushUrl(view.getContext(), "http://shapes.softartstudio.com/");
                 }
 
             }
