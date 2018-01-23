@@ -26,7 +26,7 @@ public final class TipViewController implements View.OnClickListener, View.OnTou
     public TipViewController(Context application, CharSequence content) {
         mContext = application;
         mContent = content;
-        mWindowManager = (WindowManager) application.getSystemService(Context.WINDOW_SERVICE);
+        mWindowManager = (WindowManager) application.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
     }
 
     public void setViewDismissHandler(ViewDismissHandler viewDismissHandler) {
@@ -63,9 +63,9 @@ public final class TipViewController implements View.OnClickListener, View.OnTou
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //解决Android 7.1.1起不能再用Toast的问题（先解决crash）
-            if(Build.VERSION.SDK_INT > 24){
+            if (Build.VERSION.SDK_INT > 24) {
                 type = WindowManager.LayoutParams.TYPE_PHONE;
-            }else{
+            } else {
                 type = WindowManager.LayoutParams.TYPE_TOAST;
             }
         } else {
