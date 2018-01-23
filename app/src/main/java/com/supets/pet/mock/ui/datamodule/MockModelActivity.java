@@ -1,4 +1,4 @@
-package com.supets.pet.mock.ui;
+package com.supets.pet.mock.ui.datamodule;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.supets.commons.widget.CommonHeader;
-import com.supets.pet.mock.bean.EmailData;
-import com.supets.pet.mock.dao.EmailDataDB;
+import com.supets.pet.mock.bean.MockExampleData;
+import com.supets.pet.mock.dao.MockExampleDataDB;
 import com.supets.pet.mockui.R;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * 测试接口选择列表
  */
-public class MockEmailListActivity extends AppCompatActivity {
+public class MockModelActivity extends AppCompatActivity {
 
     private ListView mListView;
     private MockAdapter adapter;
@@ -31,25 +31,12 @@ public class MockEmailListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mock_tab);
-        initdata();
+
         initView();
     }
 
-    private void initdata() {
-
-        String[] names = getResources().getStringArray(R.array.defaultEmail);
-        for (String name : names) {
-            EmailData emailData = new EmailData();
-            String[] emails = name.split("-");
-            emailData.setEmail(emails[1]);
-            emailData.setName(emails[0]);
-            EmailDataDB.insertEmailData(emailData);
-        }
-
-    }
-
     private void updateData() {
-        List<EmailData> datas = EmailDataDB.queryAll();
+        List<MockExampleData> datas = MockExampleDataDB.queryAll();
         if (datas != null) {
             adapter.data.clear();
             adapter.setData(datas);
@@ -64,8 +51,8 @@ public class MockEmailListActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        CommonHeader header = findViewById(R.id.header);
-        header.getTitleTextView().setText("邮件列表");
+        CommonHeader header = (CommonHeader) findViewById(R.id.header);
+        header.getTitleTextView().setText("数据模型");
         header.getLeftButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,17 +60,17 @@ public class MockEmailListActivity extends AppCompatActivity {
             }
         });
 
-        header.getRightButton().setText("添加邮件");
+        header.getRightButton().setText("添加模型");
         header.getRightButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), MockEmailEditActivity.class);
+                Intent intent = new Intent(view.getContext(), MockModelEditActivity.class);
                 startActivity(intent);
             }
 
         });
 
-        mListView = findViewById(R.id.list);
+        mListView = (ListView) findViewById(R.id.list);
         adapter = new MockAdapter();
         mListView.setAdapter(adapter);
     }
@@ -91,10 +78,10 @@ public class MockEmailListActivity extends AppCompatActivity {
     private class MockAdapter extends BaseAdapter {
 
 
-        public List<EmailData> data = new ArrayList<>();
+        public List<MockExampleData> data = new ArrayList<>();
 
 
-        public void setData(List<EmailData> data) {
+        public void setData(List<MockExampleData> data) {
             this.data.addAll(data);
         }
 
@@ -118,15 +105,15 @@ public class MockEmailListActivity extends AppCompatActivity {
 
             if (view == null) {
                 view = LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.mock_list_emaillist_item, viewGroup, false);
+                        .inflate(R.layout.mock_list_model_item, viewGroup, false);
             }
 
-            ((TextView) view.findViewById(R.id.name)).setText(data.get(position).getName() + "   " + data.get(position).getEmail());
+            ((TextView) view.findViewById(R.id.name)).setText(data.get(position).getName());
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), MockEmailEditActivity.class);
+                    Intent intent = new Intent(view.getContext(), MockModelEditActivity.class);
                     intent.putExtra("id", data.get(position).getId().toString());
                     startActivity(intent);
                 }
@@ -135,7 +122,7 @@ public class MockEmailListActivity extends AppCompatActivity {
             view.findViewById(R.id.configjson).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    EmailDataDB.deleteEmailData(data.get(position));
+                    MockExampleDataDB.deleteMockData(data.get(position));
                     updateData();
                 }
             });

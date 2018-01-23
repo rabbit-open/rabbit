@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import com.supets.lib.supetsrouter.uinav.UINav;
-import com.supets.pet.mock.ui.MockCrashUiActivity;
+import com.supets.pet.mock.ui.crash.MockCrashUiActivity;
 
 public class CrashService extends BroadcastReceiver {
 

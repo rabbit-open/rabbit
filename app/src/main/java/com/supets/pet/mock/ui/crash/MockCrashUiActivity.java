@@ -1,4 +1,4 @@
-package com.supets.pet.mock.ui;
+package com.supets.pet.mock.ui.crash;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

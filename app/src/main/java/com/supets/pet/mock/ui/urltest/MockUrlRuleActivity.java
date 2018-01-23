@@ -1,4 +1,4 @@
-package com.supets.pet.mock.ui;
+package com.supets.pet.mock.ui.urltest;
 
 import android.content.Intent;
 import android.net.Uri;

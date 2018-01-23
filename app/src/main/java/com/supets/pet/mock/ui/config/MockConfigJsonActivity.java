@@ -1,4 +1,4 @@
-package com.supets.pet.mock.ui;
+package com.supets.pet.mock.ui.config;
 
 import android.graphics.Color;
 import android.os.Bundle;

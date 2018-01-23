@@ -9,11 +9,11 @@ import android.widget.TextView;
 import com.supets.pet.mock.base.BaseRecycleAdapter;
 import com.supets.pet.mock.base.BaseRecycleViewHolder;
 import com.supets.pet.mock.ui.version.MockAboutActivity;
-import com.supets.pet.mock.ui.MockConfigActivity;
-import com.supets.pet.mock.ui.MockCrashListActivity;
-import com.supets.pet.mock.ui.MockEmailListActivity;
-import com.supets.pet.mock.ui.MockModelActivity;
-import com.supets.pet.mock.ui.MockUrlRuleActivity;
+import com.supets.pet.mock.ui.config.MockConfigActivity;
+import com.supets.pet.mock.ui.crash.MockCrashListActivity;
+import com.supets.pet.mock.ui.email.MockEmailListActivity;
+import com.supets.pet.mock.ui.datamodule.MockModelActivity;
+import com.supets.pet.mock.ui.urltest.MockUrlRuleActivity;
 import com.supets.pet.mockui.R;
 
 public class MockMoreAdapter extends BaseRecycleAdapter<String> {

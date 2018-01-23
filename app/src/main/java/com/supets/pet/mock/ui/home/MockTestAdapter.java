@@ -12,8 +12,7 @@ import com.supets.pet.mock.base.BaseRecycleAdapter;
 import com.supets.pet.mock.base.BaseRecycleViewHolder;
 import com.supets.pet.mock.bean.LocalMockData;
 import com.supets.pet.mock.dao.LocalMockDataDB;
-import com.supets.pet.mock.dao.MockDataDB;
-import com.supets.pet.mock.ui.MockConfigJsonActivity;
+import com.supets.pet.mock.ui.config.MockConfigJsonActivity;
 import com.supets.pet.mockui.R;
 
 public class MockTestAdapter extends BaseRecycleAdapter<LocalMockData> {

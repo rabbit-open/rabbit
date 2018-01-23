@@ -1,4 +1,4 @@
-package com.supets.pet.mock.ui;
+package com.supets.pet.mock.ui.detail;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -6,18 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.supets.commons.widget.CommonHeader;
 import com.supets.lib.mail.MailUtil;
-import com.supets.pet.jsonview.JSONViewHelper;
-import com.supets.pet.jsonview.JSONViewHelper2;
-import com.supets.pet.jsonview.JsonView;
 import com.supets.pet.mock.bean.MockData;
 import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.dao.EmailDataDB;
 import com.supets.pet.mock.dao.MockDataDB;
+import com.supets.pet.mock.ui.tool.MockToolActivity;
 import com.supets.pet.mock.utils.FormatLogProcess;
 import com.supets.pet.mock.utils.Utils;
 import com.supets.pet.mockui.R;

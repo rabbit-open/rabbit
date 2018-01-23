@@ -51,20 +51,20 @@
         </activity>
 
         <activity android:name="com.supets.pet.mock.ui.home.MockUiActivity" />
-        <activity android:name="com.supets.pet.mock.ui.MockCrashUiActivity" />
-        <activity android:name="com.supets.pet.mock.ui.MockInfoActivity" />
-        <activity android:name="com.supets.pet.mock.ui.MockConfigActivity" />
+        <activity android:name="com.supets.pet.mock.ui.crash.MockCrashUiActivity" />
+        <activity android:name="com.supets.pet.mock.ui.detail.MockInfoActivity" />
+        <activity android:name="com.supets.pet.mock.ui.config.MockConfigActivity" />
         <activity
-            android:name="com.supets.pet.mock.ui.MockConfigJsonActivity"
+            android:name="com.supets.pet.mock.ui.config.MockConfigJsonActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name="com.supets.pet.mock.ui.MockModelActivity" />
-        <activity android:name="com.supets.pet.mock.ui.MockModelEditActivity" />
-        <activity android:name="com.supets.pet.mock.ui.MockToolActivity" />
-        <activity android:name="com.supets.pet.mock.ui.MockEmailListActivity" />
-        <activity android:name="com.supets.pet.mock.ui.MockCrashListActivity" />
-        <activity android:name="com.supets.pet.mock.ui.MockEmailEditActivity" />
+        <activity android:name="com.supets.pet.mock.ui.datamodule.MockModelActivity" />
+        <activity android:name="com.supets.pet.mock.ui.datamodule.MockModelEditActivity" />
+        <activity android:name="com.supets.pet.mock.ui.tool.MockToolActivity" />
+        <activity android:name="com.supets.pet.mock.ui.email.MockEmailListActivity" />
+        <activity android:name="com.supets.pet.mock.ui.crash.MockCrashListActivity" />
+        <activity android:name="com.supets.pet.mock.ui.email.MockEmailEditActivity" />
         <activity
-            android:name="com.supets.pet.mock.ui.MockUrlRuleActivity"
+            android:name="com.supets.pet.mock.ui.urltest.MockUrlRuleActivity"
             android:windowSoftInputMode="stateHidden" />
 
         <activity

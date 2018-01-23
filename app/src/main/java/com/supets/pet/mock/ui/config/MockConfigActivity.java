@@ -1,4 +1,4 @@
-package com.supets.pet.mock.ui;
+package com.supets.pet.mock.ui.config;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

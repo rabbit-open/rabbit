@@ -1,4 +1,4 @@
-package com.supets.pet.mock.ui;
+package com.supets.pet.mock.ui.crash;
 
 import android.content.Intent;
 import android.os.Bundle;
