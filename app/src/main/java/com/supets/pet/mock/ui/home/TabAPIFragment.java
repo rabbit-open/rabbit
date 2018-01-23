@@ -47,7 +47,14 @@ public class TabAPIFragment extends BaseFragment {
         mList = view.findViewById(R.id.list);
         mList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mPull = view.findViewById(R.id.swipe_refresh);
-        mPull.setEnabled(false);
+        mPull.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                resetLocalMockData();
+                updateData();
+                mPull.setRefreshing(false);
+            }
+        });
         header = view.findViewById(R.id.header);
         initView();
     }
