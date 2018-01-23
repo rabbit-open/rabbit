@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="testurlconfig">
-        <item>cloudpet://main</item>
-        <item>cloudpet://message</item>
-        <item>cloudpet://userCenter</item>
-        <item>cloudpet://familyDetail?id=1001</item>
-        <item>cloudpet://familyCalendar?id=1001</item>
-        <item>cloudpet://familyPets?id=1001</item>
-        <item>cloudpet://familyCommentList?id=1001</item>
-        <item>cloudpet://familyApply</item>
-        <item>cloudpet://familyOrderList</item>
-        <item>cloudpet://familyOrderInfo?order_code=54656445</item>
-        <item>cloudpet://myOrderList</item>
-        <item>cloudpet://myOrderInfo?order_code=54656445</item>
-        <item>cloudpet://service</item>
-        <item>cloudpet://fosterCareService</item>
-        <item>cloudpet://guaranteeService</item>
-        <item>cloudpet://userVideoVerify</item>
-        <item>cloudpet://serviceFee</item>
-        <item>cloudpet://serviceRule</item>
-    </string-array>
-
     <string-array name="defaultEmail">
         <item>李洪江-254608684@qq.com</item>
-        <item>刘旭-395705449@qq.com</item>
-        <item>海鹏-728994184@qq.com</item>
-        <item>王吉-1625112201@qq.com</item>
-        <item>朱从伟-980440939@qq.com</item>
     </string-array>
 </resources>

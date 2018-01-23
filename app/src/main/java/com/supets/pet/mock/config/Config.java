@@ -3,6 +3,9 @@ package com.supets.pet.mock.config;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Config extends BasePref {
 
     private static final String Name = "mock_config";
@@ -15,6 +18,7 @@ public class Config extends BasePref {
 
     private static final String EmailName = "emailName";
     private static final String EmailPass = "emailPass";
+    private static final String Url = "urls";
 
 
     public static void setEmailName(String emailName) {
@@ -37,6 +41,19 @@ public class Config extends BasePref {
     public static String getEmailPass() {
         SharedPreferences preferences = getPref(Name);
         return preferences.getString(EmailPass, "xxxxxx");
+    }
+
+    public static void setUrl(String url) {
+        SharedPreferences.Editor editor = edit(Name);
+        Set<String>  strings=  getUrl();
+        strings.add(url);
+        editor = editor.putStringSet(Url, strings);
+        editor.commit();
+    }
+
+    public static Set<String> getUrl() {
+        SharedPreferences preferences = getPref(Name);
+        return preferences.getStringSet(Url, new HashSet<String>());
     }
 
 
@@ -83,7 +100,7 @@ public class Config extends BasePref {
 
 
         for (int i = 0; i < filters.length; i++) {
-            Log.v("filters",url+"\n"+filters[i]);
+            Log.v("filters", url + "\n" + filters[i]);
             if (url.contains(filters[i])) {
                 return true;
             }

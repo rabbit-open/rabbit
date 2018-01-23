@@ -14,17 +14,21 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.supets.commons.widget.CommonHeader;
+import com.supets.pet.mock.config.Config;
 import com.supets.pet.mockui.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class MockUrlRuleActivity extends AppCompatActivity {
 
     private ListView mListView;
     private EditText mWebView;
     private CommonHeader mHeader;
+    private UrlRuleAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,19 +53,31 @@ public class MockUrlRuleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
+
+                    Config.setUrl(mWebView.getText().toString());
+
                     Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(mWebView.getText().toString()));
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
+
+                    updateData();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
 
-        UrlRuleAdapter adapter = new UrlRuleAdapter();
-        String[] urls = getResources().getStringArray(R.array.testurlconfig);
-        adapter.setData(Arrays.asList(urls));
+        adapter = new UrlRuleAdapter();
         mListView.setAdapter(adapter);
+
+        updateData();
+    }
+
+    private void updateData() {
+        Set<String> urls = Config.getUrl();
+        adapter.setData(Arrays.asList(urls.toArray(new String[0])));
+        adapter.notifyDataSetChanged();
     }
 
 
