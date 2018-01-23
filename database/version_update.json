@@ -3,7 +3,7 @@
   "alert": "",
   "content": {
     "url": "https://fir.im/testpet",
-    "text": "1 更新了内容\n2 更新了内容",
-    "version":402
+    "text": "1 添加了启动检测更新\n2 优化代码",
+    "version":403
   }
 }
