@@ -59,7 +59,7 @@ public class PullMsgService extends Service {
                 if (isStop) {
                     return false;
                 }
-                uiHandler.sendEmptyMessageDelayed(0x1101, 3000);
+                //uiHandler.sendEmptyMessageDelayed(0x1101, 3000);
             }
 
             if (msg.what == 0x1101) {
