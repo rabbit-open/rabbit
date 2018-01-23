@@ -1,5 +1,6 @@
 package com.supets.pet.mock.ui.home;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -56,6 +57,15 @@ public class TabAPIFragment extends BaseFragment {
         header.getTitleTextView().setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         header.getWholeView().setBackgroundResource(R.color.appcolor);
         header.getLeftButton().setVisibility(View.GONE);
+        header.getRightButton().setText("清空");
+        header.getRightButton().setTextColor(Color.WHITE);
+        header.getRightButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LocalMockDataDB.deleteAll();
+                adapter.addHomeData(null);
+            }
+        });
     }
 
     @Override
