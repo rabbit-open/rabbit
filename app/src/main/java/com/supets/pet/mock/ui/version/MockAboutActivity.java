@@ -35,42 +35,46 @@ public class MockAboutActivity extends AppCompatActivity {
         versionupdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    OkHttpUtils.get().url(
-                            "https://raw.githubusercontent.com/rabbit-open/rabbit/master/database/version_update.json")
-                            .build()
-                            .execute(new StringCallback() {
-                                @Override
-                                public void onError(Call call, Exception e, int id) {
-
-                                }
-
-                                @Override
-                                public void onResponse(String response, int id) {
-
-                                    VersionDTO dto = JSonUtil.fromJson(response, VersionDTO.class);
-                                    if (dto != null) {
-                                        String versionBuidCode = SystemUtils.getAppVersionCode();
-                                        if (!TextUtils.isEmpty(versionBuidCode) && dto.content.version != Integer.parseInt(versionBuidCode)) {
-                                            updateData(dto);
-                                        } else {
-                                            Toast.makeText(MockAboutActivity.this, "已经是最新版本", Toast.LENGTH_SHORT).show();
-                                        }
-                                    } else {
-                                        Toast.makeText(MockAboutActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
+               update();
             }
         });
         String versionCode = getString(R.string.m_user_version_code,
                 SystemUtils.getAppVersionName());
         String versionBuidCode = SystemUtils.getAppVersionCode();
         mVersionNum.setText(versionCode + "（" + versionBuidCode + "）");
+    }
+
+    private void update() {
+        try {
+            OkHttpUtils.get().url(
+                    "https://raw.githubusercontent.com/rabbit-open/rabbit/master/database/version_update.json")
+                    .build()
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onError(Call call, Exception e, int id) {
+
+                        }
+
+                        @Override
+                        public void onResponse(String response, int id) {
+
+                            VersionDTO dto = JSonUtil.fromJson(response, VersionDTO.class);
+                            if (dto != null) {
+                                String versionBuidCode = SystemUtils.getAppVersionCode();
+                                if (!TextUtils.isEmpty(versionBuidCode) && dto.content.version != Integer.parseInt(versionBuidCode)) {
+                                    updateData(dto);
+                                } else {
+                                    Toast.makeText(MockAboutActivity.this, "已经是最新版本", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(MockAboutActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 
