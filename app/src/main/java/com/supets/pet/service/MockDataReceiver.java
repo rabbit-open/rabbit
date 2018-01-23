@@ -4,12 +4,7 @@ package com.supets.pet.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
-import com.supets.pet.jsonview.JSONViewHelper;
-import com.supets.pet.jsonview.JSONViewHelper2;
-import com.supets.pet.jsonview.JsonView;
 import com.supets.pet.mock.bean.MockData;
 import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.dao.MockDataDB;
@@ -40,7 +35,7 @@ public class MockDataReceiver extends BroadcastReceiver {
                     data.setTime(new Date());
                     MockDataDB.insertMockData(data);
 
-                    String json = data.getData();
+                    final String json = data.getData();
 
                     if (!Config.getToastSwitch() || !FormatLogProcess.isJson(json)) {
 
@@ -62,6 +57,7 @@ public class MockDataReceiver extends BroadcastReceiver {
                         TipViewController mTipViewController = new TipViewController(context, message);
                         mTipViewController.setViewDismissHandler(null);
                         mTipViewController.show();
+
                     }
 
                 } catch (Exception e) {
