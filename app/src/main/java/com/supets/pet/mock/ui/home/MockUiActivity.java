@@ -1,7 +1,6 @@
 package com.supets.pet.mock.ui.home;
 
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ public class MockUiActivity extends TabLayoutBottomActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         update();
-        startMsgService();
     }
 
     private void startMsgService() {

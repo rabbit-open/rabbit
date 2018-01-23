@@ -66,7 +66,8 @@ public final class TipViewController implements View.OnClickListener, View.OnTou
             if (Build.VERSION.SDK_INT > 24) {
                 type = WindowManager.LayoutParams.TYPE_PHONE;
             } else {
-                type = WindowManager.LayoutParams.TYPE_TOAST;
+               // type = WindowManager.LayoutParams.TYPE_TOAST;
+                type = WindowManager.LayoutParams.TYPE_PHONE;
             }
         } else {
             type = WindowManager.LayoutParams.TYPE_PHONE;

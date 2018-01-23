@@ -11,6 +11,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -103,7 +104,6 @@ public class PullMsgService extends Service {
         return null;
     }
 
-    @SuppressLint("InflateParams")
     private void createFloatView() {
 
         MaxTine = 5 * MinUnit;
@@ -128,8 +128,10 @@ public class PullMsgService extends Service {
 
         final LayoutInflater inflater = LayoutInflater.from(getApplication());
         mFloatLayout = inflater.inflate(R.layout.float_window_small, null);
-        mWindowManager.addView(mFloatLayout, wmParams);
 
+        mFloatLayout.findViewById(R.id.percent);
+
+        mWindowManager.addView(mFloatLayout, wmParams);
 
         mFloatLayout.measure(View.MeasureSpec.makeMeasureSpec(0,
                 View.MeasureSpec.UNSPECIFIED), View.MeasureSpec
