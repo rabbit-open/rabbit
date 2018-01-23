@@ -52,7 +52,7 @@ public class TabAPIFragment extends BaseFragment {
     }
 
     private void initView() {
-        header.getTitleTextView().setText(R.string.app_name);
+        header.getTitleTextView().setText("接口");
         header.getTitleTextView().setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         header.getWholeView().setBackgroundResource(R.color.appcolor);
         header.getLeftButton().setVisibility(View.GONE);
