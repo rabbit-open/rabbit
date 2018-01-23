@@ -32,7 +32,7 @@ public class MockToolsAdapter extends BaseRecycleAdapter<String> {
                     view.getContext().startActivity(intent);
                 }
                 if (position == 1) {
-                    Utils.pushUrl(view.getContext(), "https://www.bejson.com");
+                    Utils.pushUrl(view.getContext(), "https://www.bejson.com/jsonviewernew/");
                 }
                 if (position == 2) {
                     Utils.pushUrl(view.getContext(), "https://cli.im/");
