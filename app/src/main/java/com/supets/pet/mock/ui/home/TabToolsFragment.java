@@ -68,6 +68,8 @@ public class TabToolsFragment extends BaseFragment {
         datas.add("在线二维码");
         datas.add("玩安卓");
         datas.add("画形状");
+        datas.add("PC安装APK");
+        datas.add("PC配置测试客户端");
         adapter.setData(datas);
         adapter.notifyDataSetChanged();
     }

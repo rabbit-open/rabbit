@@ -11,6 +11,11 @@
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name="com.supets.pet.MyApplication"
@@ -80,7 +85,7 @@
         <service
             android:name="com.supets.pet.alert.PullMsgService"
             android:exported="true"
-            android:process=":supetsmsg"/>
+            android:process=":supetsmsg" />
 
         <receiver
             android:name="com.supets.pet.uctoast.BootCompletedReceiver"
@@ -90,6 +95,30 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <!--WIFI-->
+        <activity
+            android:name="com.baidusoso.wifitransfer.MainWifiApkActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <service
+            android:name="com.baidusoso.wifitransfer.WebService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/install_file" />
+        </provider>
+
+        <activity
+            android:name="com.supets.pet.mock.ui.server.MainJsonActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 

@@ -2,6 +2,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
+apply plugin: 'android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -22,7 +25,6 @@ android {
 
         versionCode currentVersionCode
         versionName currentVersionName
-
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -78,7 +80,6 @@ android {
 }
 
 
-
 def getVersionCode() {
     def versionFile = file('version.properties')
 
@@ -106,8 +107,6 @@ def getVersionName() {
         throw new GradleException("Could not find version.properties!")
     }
 }
-
-
 
 //数据库版本以及Dao的相关设置
 greendao {
@@ -174,5 +173,10 @@ dependencies {
     compile 'net.zetetic:android-database-sqlcipher:3.5.4'
     //使用数据库升级辅助GreenDaoUpgradleHepler时添加
     compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v1.2.0'
-
+    // 搭建Android上的服务器 “实现隔空取物”
+    compile "com.jakewharton:butterknife:8.4.0"
+    compile "com.jakewharton:butterknife-compiler:8.4.0"
+    compile 'com.koushikdutta.async:androidasync:2.2.1'
+    compile 'com.jakewharton.timber:timber:4.1.2'
+    compile "com.hwangjr.rxbus:rxbus:1.0.5"
 }

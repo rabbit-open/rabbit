@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.baidusoso.wifitransfer.MainWifiApkActivity;
 import com.supets.pet.mock.base.BaseRecycleAdapter;
 import com.supets.pet.mock.base.BaseRecycleViewHolder;
+import com.supets.pet.mock.ui.server.MainJsonActivity;
 import com.supets.pet.mock.ui.tool.MockToolActivity;
 import com.supets.pet.mock.utils.Utils;
 import com.supets.pet.mockui.R;
@@ -42,6 +44,14 @@ public class MockToolsAdapter extends BaseRecycleAdapter<String> {
                 }
                 if (position == 4) {
                     Utils.pushUrl(view.getContext(), "http://shapes.softartstudio.com/");
+                }
+                if (position == 5) {
+                    Intent intent = new Intent(view.getContext(), MainWifiApkActivity.class);
+                    view.getContext().startActivity(intent);
+                }
+                if (position == 6) {
+                    Intent intent = new Intent(view.getContext(), MainJsonActivity.class);
+                    view.getContext().startActivity(intent);
                 }
 
             }
