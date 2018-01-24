@@ -5,53 +5,26 @@
     <script src="jquery-1.7.2.min.js" type="text/javascript"></script>
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title>文档的标题</title>
+    <title>抓取数据查询</title>
     <script type="text/javascript">
-        $(function() {
-            var now = new Date();
-            var $video = $("#videoplayer");
-            var url = 'files' + '?format=mp4&' + now.getTime();
 
-            $.getJSON(url, function(data) {
-                for (var i = 0; i < data.length; i++) {
-                    var $li = $('<li>' + data[i].name + '</li>');
-                    $li.attr("path", data[i].path);
-                    $("#filelist").append($li);
-                    $li.click(function() {
-                        var p = "/files/" + $(this).attr("path");
-                        $video.attr("src", "/files/" + $(this).attr("path"));
-                        $video[0].play();
-                    });
-                }
-            });
-        });
+     function getapidata(api){
+         alert(api);
 
-
-     function getapidata(){
          var $firstname = $("#firstname").val();
-         <!--alert($firstname);-->
+         var url = 'getmockdata' + '?api='+$firstname;
+         alert(url);
 
-            var url = 'getmockdata' + '?api='+$firstname+'&' + now.getTime();
-
-          $.getJSON(url, function(data) {
-
-           var $li = $('<li>' + data + '</li>');
-                    $li.attr("path", data);
+         $.getJSON(url, function(data) {
+                        alert(data);
+                  for (var i = 0; i < data.length; i++) {
+                    var $li = $('<li>' + data[i].data + '</li>');
                     $("#filelist").append($li);
+                }
 
-                <!--for (var i = 0; i < data.length; i++) {-->
-                    <!--var $li = $('<li>' + data[i].name + '</li>');-->
-                    <!--$li.attr("path", data[i].path);-->
-                    <!--$("#filelist").append($li);-->
-                    <!--$li.click(function() {-->
+         });
 
-                    <!--});-->
-                <!--}-->
-            });
-     }
-
-
-
+    }
 
 
 
@@ -66,7 +39,7 @@
 接口名称:<br>
 <input type="text" id="firstname" value="">
 <br>
-<button type="button" onclick="javascript:getapidata()">Click Me!</button>
+<button type="button" onclick="javascript:getapidata('aa')">Click Me!</button>
 <ul id="filelist"></ul>
 </body>
 

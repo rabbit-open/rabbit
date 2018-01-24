@@ -4,6 +4,11 @@ import android.content.Context;
 import android.os.Environment;
 import android.text.TextUtils;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.internal.Excluder;
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
 import com.supets.commons.utils.json.JSonUtil;
@@ -19,6 +24,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Modifier;
 import java.net.URLDecoder;
 
 
@@ -111,8 +117,8 @@ public class ServerApi {
 
     private void getMockData() {
         server.get("/getmockdata", (request, response) -> {
-            String format = request.getQuery().getString("api");
-            response.send(JSonUtil.toJson(MockDataDB.queryAll()));
+            //  String format = request.getQuery().getString("api");
+            response.send(new Gson().toJson(MockDataDB.queryAll()));
         });
     }
 
