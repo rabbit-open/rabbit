@@ -21,3 +21,6 @@
     HttpLoggingInterceptor2  格式化日志显示json功能和json数据抓取功能
     MockInterceptor          简易API调用本地测试数据
     
+## 版权声明
+
+    此项目属于个人业余项目，严禁商业用途。

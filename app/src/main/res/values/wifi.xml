@@ -11,10 +11,10 @@
     <string name="set_network">设置网络</string>
     <string name="http_address">http://%1$s:%2$d</string>
 
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="colorWifiConnected">#6495ED</color>
+    <color name="colorPrimary">@color/appcolor</color>
+    <color name="colorPrimaryDark">@color/appcolor</color>
+    <color name="colorAccent">@color/appcolor</color>
+    <color name="colorWifiConnected">@color/appcolor</color>
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -24,9 +24,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/appcolor</item>
+        <item name="colorPrimaryDark">@color/appcolor</item>
+        <item name="colorAccent">@color/appcolor</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
