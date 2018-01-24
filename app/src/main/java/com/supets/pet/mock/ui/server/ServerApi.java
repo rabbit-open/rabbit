@@ -6,6 +6,8 @@ import android.text.TextUtils;
 
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
+import com.supets.commons.utils.json.JSonUtil;
+import com.supets.pet.mock.dao.MockDataDB;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,17 +32,21 @@ public class ServerApi {
         this.mContext = context;
         this.server = server;
         this.mAsyncServer = mAsyncServer;
-        addHome();
+        addhtml("/", "index.html");
+        addhtml("/index.html", "index.html");
+        addhtml("/readapidata.html*", "readapidata.html");
+        addhtml("/indexjpg.html*", "indexjpg.html");
         addLocalJSResource("/jquery-1.7.2.min.js");
         addLocalFileResource();
         addJsonApi();
+        getMockData();
         this.server.listen(this.mAsyncServer, 54321);
     }
 
-    private void addHome() {
-        server.get("/", (request, response) -> {
+    private void addhtml(String path, String name) {
+        server.get(path, (request, response) -> {
             try {
-                response.send(ServerUtils.getIndexContent(mContext, "index.html"));
+                response.send(ServerUtils.getIndexContent(mContext, name));
             } catch (IOException e) {
                 e.printStackTrace();
                 response.code(500).end();
@@ -100,6 +106,13 @@ public class ServerApi {
             File dir = new File(Environment.getExternalStorageDirectory().getPath());
             ServerUtils.getfiles(array, dir, format);
             response.send(array.toString());
+        });
+    }
+
+    private void getMockData() {
+        server.get("/getmockdata", (request, response) -> {
+            String format = request.getQuery().getString("api");
+            response.send(JSonUtil.toJson(MockDataDB.queryAll()));
         });
     }
 

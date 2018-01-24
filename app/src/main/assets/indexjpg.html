@@ -9,7 +9,7 @@
         $(function() {
             var now = new Date();
             var $video = $("#videoplayer");
-            var url = 'files' + '?' + now.getTime();
+            var url = 'files' + '?format=jpg&' + now.getTime();
 
             $.getJSON(url, function(data) {
                 for (var i = 0; i < data.length; i++) {
