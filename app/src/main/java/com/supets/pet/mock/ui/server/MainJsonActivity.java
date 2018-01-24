@@ -7,19 +7,17 @@ import android.widget.TextView;
 
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
+import com.supets.pet.mockui.R;
 
 public class MainJsonActivity extends AppCompatActivity {
     private AsyncHttpServer server = new AsyncHttpServer();
     private AsyncServer mAsyncServer = new AsyncServer();
-    private TextView webView;
 
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        webView = new TextView(this);
-        webView.setText("浏览器输入地址：http://localhost:54321");
-        setContentView(webView);
+        setContentView(R.layout.activity_pcconfig);
         new ServerApi(this, server, mAsyncServer);
     }
 
