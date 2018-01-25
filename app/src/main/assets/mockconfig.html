@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <script src="jquery-1.7.2.min.js" type="text/javascript"></script>
+
+    <title>兔子测试配置</title>
+
+    <script type="text/javascript">
+
+     function getapidata(api){
+
+         var $firstname = $("#firstname").val();
+
+         var url = 'getmockdata' + '?api='+$firstname;
+
+         $("#datalist").html('');
+
+         $("#datalist").append('<tr style="width:100%;"><td  style="width:10%;">接口名称</td><td  style="width:20%;">接口参数</td><td  style="width:60%;">接口数据</td><td  style="width:10%;">接口时间</td></tr>');
+
+         $.getJSON(url, function(data) {
+
+                  for (var i = 0; i < data.length; i++) {
+                    var $trs=$('<tr style="width:100%;"><td style="width:10%;">' + data[i].url + '</td><td  style="width:20%;">' + data[i].requestParam + '</td><td  style="width:60%;"><textarea style="width:90%;" rows="10">' + data[i].data + '</textarea></td><td  style="width:10%;">' + data[i].time + '</td></tr>');
+                    $("#datalist").append($trs);
+                  }
+
+         });
+
+    }
+
+    function saveconfig(data){
+
+    }
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+</head>
+
+<body>
+<div style="width:100%;overflow:hidden;background:#e5e5e5;height:100%;">
+
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td style="width:100%;">
+                <div>
+                    <form>
+                        <h1>兔子测试配置</h1>
+                        <h2> 1 基本配置</h2>
+                        <h4>接口过滤规则</h4>
+                        <textarea style="width:50%;height:40px;" id="firstname" rows="2"></textarea>
+                        <br/>
+                        <h4>悬浮助手打开：</h4>
+                        <input type="radio" name="alert" value="0"/>实时显示接口数据
+                        <br/>
+                        <input type="radio" name="alert" value="1"/>显示非json数据
+                        <br/>
+                        <h4>开关配置：</h4>
+                        <input type="checkbox" name="open1"/>打开调试UI，不会抓取数据，优先级高。
+                        <br/>
+                        <input type="checkbox" name="open2"/>抓取数据，不能打开调试模式。
+                        <br/>
+                        <br/>
+                        <button type="button" style="width:100px;height:45px;"
+                                onclick="javascript:saveconfig('aa')">
+                            保存配置数据
+                        </button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:100%;height:100%;" align="left" valign="top">
+                <div style="background:#dddddd;">
+                    <h2> 2 配置具体MOCK UI数据</h2>
+                    <button type="button" style="width:100px;height:45px;"
+                            onclick="javascript:getapidata('aa')">
+                        查看所有接口
+                    </button>
+                    <br/>
+                    <br/>
+                    <table id="datalist"
+                           style="width:100%;word-break:break-all;margin:none;padding:0px;border:none;"
+                           border="1">
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+
+</html>
