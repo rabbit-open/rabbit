@@ -9,26 +9,24 @@
     <script type="text/javascript">
 
      function getapidata(api){
-         alert(api);
 
          var $firstname = $("#firstname").val();
          var url = 'getmockdata' + '?api='+$firstname;
-         alert(url);
+
+         $("#datalist").html('');
+
+         $("#datalist").append('<tr><td>接口名称</td><td>接口参数</td><td>接口数据</td><td>接口时间</td></tr>');
 
          $.getJSON(url, function(data) {
                         alert(data);
                   for (var i = 0; i < data.length; i++) {
-                    var $li = $('<li>' + data[i].data + '</li>');
-                    $("#filelist").append($li);
+                    var $trs=$('<tr><td>' + data[i].url + '</td><td>' + data[i].requestParam + '</td><td>' + data[i].data + '</td><td>' + data[i].time + '</td></tr>');
+                    $("#datalist").append($trs);
                 }
 
          });
 
     }
-
-
-
-
 
     </script>
 </head>
@@ -38,9 +36,18 @@
 <h1>读取API数据</h1>
 接口名称:<br>
 <input type="text" id="firstname" value="">
-<br>
+<br><br>
 <button type="button" onclick="javascript:getapidata('aa')">Click Me!</button>
 <ul id="filelist"></ul>
+<table  id="datalist" border="1">
+    <tr>
+        <td>接口名称</td>
+        <td>接口参数</td>
+        <td>接口时间</td>
+        <td>接口数据</td>
+    </tr>
+
+</table>
 </body>
 
 </html>

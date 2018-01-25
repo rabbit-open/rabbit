@@ -2,6 +2,7 @@ package com.supets.pet.mock.ui.server;
 
 import android.content.Context;
 import android.os.Environment;
+import android.support.v4.text.TextUtilsCompat;
 import android.text.TextUtils;
 
 import com.google.gson.ExclusionStrategy;
@@ -117,8 +118,12 @@ public class ServerApi {
 
     private void getMockData() {
         server.get("/getmockdata", (request, response) -> {
-            //  String format = request.getQuery().getString("api");
-            response.send(new Gson().toJson(MockDataDB.queryAll()));
+            String format = request.getQuery().getString("api");
+            if (TextUtils.isEmpty(format)) {
+                response.send(new Gson().toJson(MockDataDB.queryAll()));
+            } else {
+                response.send(new Gson().toJson(MockDataDB.queryAllMockData(format)));
+            }
         });
     }
 
