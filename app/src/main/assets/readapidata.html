@@ -15,12 +15,11 @@
 
          $("#datalist").html('');
 
-         $("#datalist").append('<tr><td>接口名称</td><td>接口参数</td><td>接口数据</td><td>接口时间</td></tr>');
+         $("#datalist").append('<tr style="width:100%;"><td>接口名称</td><td>接口参数</td><td>接口数据</td><td>接口时间</td></tr>');
 
          $.getJSON(url, function(data) {
-                        alert(data);
                   for (var i = 0; i < data.length; i++) {
-                    var $trs=$('<tr><td>' + data[i].url + '</td><td>' + data[i].requestParam + '</td><td>' + data[i].data + '</td><td>' + data[i].time + '</td></tr>');
+                    var $trs=$('<tr style="width:100%;"><td>' + data[i].url + '</td><td>' + data[i].requestParam + '</td><td>' + data[i].data + '</td><td>' + data[i].time + '</td></tr>');
                     $("#datalist").append($trs);
                 }
 
@@ -39,8 +38,8 @@
 <br><br>
 <button type="button" onclick="javascript:getapidata('aa')">Click Me!</button>
 <ul id="filelist"></ul>
-<table  id="datalist" border="1">
-    <tr>
+<table  id="datalist" style="width:100%;" border="1">
+    <tr style="width:100%;">
         <td>接口名称</td>
         <td>接口参数</td>
         <td>接口时间</td>
