@@ -13,6 +13,8 @@ import com.google.gson.internal.Excluder;
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
 import com.supets.commons.utils.json.JSonUtil;
+import com.supets.pet.mock.bean.LocalMockData;
+import com.supets.pet.mock.dao.LocalMockDataDB;
 import com.supets.pet.mock.dao.MockDataDB;
 
 import org.json.JSONArray;
@@ -27,6 +29,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Modifier;
 import java.net.URLDecoder;
+import java.util.List;
 
 
 public class ServerApi {
@@ -48,6 +51,7 @@ public class ServerApi {
         addLocalFileResource();
         addJsonApi();
         getMockData();
+        getMockUIData();
         this.server.listen(this.mAsyncServer, 54321);
     }
 
@@ -128,5 +132,21 @@ public class ServerApi {
         });
     }
 
+    private void getMockUIData() {
+        server.get("/getmockuidata", (request, response) -> {
+
+            List<String> datas = MockDataDB.queryAllUrl();
+            if (datas != null) {
+                for (String temp : datas) {
+                    List<LocalMockData> data = LocalMockDataDB.queryAllMockData(temp);
+                    if (data == null || data.size() == 0) {
+                        LocalMockDataDB.insertMockData(new LocalMockData(null, temp, null, false));
+                    }
+                }
+            }
+
+           response.send(new Gson().toJson(LocalMockDataDB.queryAll()));
+        });
+    }
 
 }

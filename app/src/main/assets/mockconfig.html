@@ -12,18 +12,17 @@
 
      function getapidata(api){
 
-         var $firstname = $("#firstname").val();
-
-         var url = 'getmockdata' + '?api='+$firstname;
+         var url = 'getmockuidata';
 
          $("#datalist").html('');
 
-         $("#datalist").append('<tr style="width:100%;"><td  style="width:10%;">接口名称</td><td  style="width:20%;">接口参数</td><td  style="width:60%;">接口数据</td><td  style="width:10%;">接口时间</td></tr>');
+         $("#datalist").append('<tr style="width:100%;"><td  style="width:10%;">接口名称</td><td  style="width:50%;">配置数据</td><td  style="width:20%;">测试状态</td><td  style="width:20%;">操作</td></tr>');
 
          $.getJSON(url, function(data) {
 
                   for (var i = 0; i < data.length; i++) {
-                    var $trs=$('<tr style="width:100%;"><td style="width:10%;">' + data[i].url + '</td><td  style="width:20%;">' + data[i].requestParam + '</td><td  style="width:60%;"><textarea style="width:90%;" rows="10">' + data[i].data + '</textarea></td><td  style="width:10%;">' + data[i].time + '</td></tr>');
+                    var $trs=$(
+                    '<tr style="width:100%;"><td style="width:10%;">'+ data[i].url+'</td><td style="width:50%;"><textarea  id="mockdata'+ data[i].id+'" style="width:90%;" rows="10">'+data[i].data+'</textarea></td><td  style="width:20%;"><form><input type="checkbox" value="1" id="mockstatus'+ data[i].id+'"  ' + (data[i].selected?'checked="checked"':"")+'/>调试状态' + data[i].selected+'</form></td><td  style="width:20%;"><button type="button" style="width:100px;height:45px;" onclick="javascript:savemock('+ data[i].id+')">保存</button></td></tr>');
                     $("#datalist").append($trs);
                   }
 
@@ -32,15 +31,14 @@
     }
 
     function saveconfig(data){
-
+    alert(data);
     }
 
-
-
-
-
-
-
+    function savemock(data){
+    var  mock=  $("#mockdata"+data).val();
+    var  mock=  $("#mockstatus"+data).is(":checked");
+    alert(mock);
+    }
 
 
 
@@ -93,6 +91,7 @@
                     <table id="datalist"
                            style="width:100%;word-break:break-all;margin:none;padding:0px;border:none;"
                            border="1">
+
                     </table>
                 </div>
             </td>
