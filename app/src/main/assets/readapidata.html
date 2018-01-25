@@ -23,7 +23,7 @@
          $.getJSON(url, function(data) {
 
                   for (var i = 0; i < data.length; i++) {
-                    var $trs=$('<tr style="width:100%;"><td style="width:10%;">' + data[i].url + '</td><td  style="width:20%;">' + data[i].requestParam + '</td><td  style="width:60%;">' + data[i].data + '</td><td  style="width:10%;">' + data[i].time + '</td></tr>');
+                    var $trs=$('<tr style="width:100%;"><td style="width:10%;">' + data[i].url + '</td><td  style="width:20%;">' + data[i].requestParam + '</td><td  style="width:60%;"><textarea style="width:90%;" rows="10">' + data[i].data + '</textarea></td><td  style="width:10%;">' + data[i].time + '</td></tr>');
                     $("#datalist").append($trs);
                   }
 
@@ -39,12 +39,12 @@
 
     <h1>读取API数据</h1>
     <h4>接口名称:</h4>
-    <textarea style="width:100%;height:40px;" id="firstname" value=""></textarea>
+    <textarea style="width:100%;height:40px;" id="firstname" rows="2"></textarea>
     <br>
     <br>
     <button type="button" style="width:20%;height:45px;" onclick="javascript:getapidata('aa')">不输入查看全部数据</button>
     <ul id="filelist"></ul>
-    <table id="datalist" style="width:100%;" border="1">
+    <table id="datalist" style="width:100%;word-break:break-all;margin:none;padding:0px;border:none;" border="1">
 
     </table>
 </div>
