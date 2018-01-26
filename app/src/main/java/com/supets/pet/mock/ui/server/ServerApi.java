@@ -38,7 +38,7 @@ public class ServerApi {
         this.mAsyncServer = mAsyncServer;
         addhtml("/", "readapidata.html");
         //addhtml("/index.html", "index.html");
-        addhtml("/readapidata.html*", "readapidata.html");
+        //addhtml("/readapidata.html*", "readapidata.html");
         //addhtml("/indexjpg.html*", "indexjpg.html");
         addhtml("/mockconfig.html*", "mockconfig.html");
         addLocalJSResource("/jquery-1.7.2.min.js");
