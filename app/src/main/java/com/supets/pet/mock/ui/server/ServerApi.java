@@ -2,18 +2,12 @@ package com.supets.pet.mock.ui.server;
 
 import android.content.Context;
 import android.os.Environment;
-import android.support.v4.text.TextUtilsCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.internal.Excluder;
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
-import com.supets.commons.utils.json.JSonUtil;
 import com.supets.pet.mock.bean.LocalMockData;
 import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.dao.LocalMockDataDB;
@@ -24,12 +18,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Modifier;
 import java.net.URLDecoder;
 import java.util.List;
 
@@ -201,9 +193,9 @@ public class ServerApi {
             Log.v("serverapi", apikey);
 
             Config.setBaseAPI(apikey);
-            Config.setJsonSwitch(Boolean.parseBoolean(String.valueOf(Integer.parseInt(JsonSwitch)==1)));
+            Config.setJsonSwitch(Boolean.parseBoolean(JsonSwitch));
             Config.setDebugMode(Boolean.parseBoolean(DebugMode));
-            Config.setToastSwitch(Boolean.parseBoolean(ToastSwitch));
+            Config.setToastSwitch(Integer.parseInt(ToastSwitch)==1);
 
             response.send("true");
 
