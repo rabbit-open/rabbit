@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.support.v4.text.TextUtilsCompat;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
@@ -52,6 +53,7 @@ public class ServerApi {
         addJsonApi();
         getMockData();
         getMockUIData();
+        savemockuidata();
         this.server.listen(this.mAsyncServer, 54321);
     }
 
@@ -145,7 +147,39 @@ public class ServerApi {
                 }
             }
 
-           response.send(new Gson().toJson(LocalMockDataDB.queryAll()));
+            response.send(new Gson().toJson(LocalMockDataDB.queryAll()));
+        });
+    }
+
+    private void savemockuidata() {
+        server.get("/savemockuidata", (request, response) -> {
+
+            // String id = request.getQuery().getString("id");
+            String url = request.getQuery().getString("url");
+            String checked = request.getQuery().getString("checked");
+            String data = request.getQuery().getString("data");
+
+            Log.v("serverapi",url);
+            Log.v("serverapi",checked);
+            Log.v("serverapi",data);
+
+            List<LocalMockData> list = LocalMockDataDB.queryAllMockData(url);
+
+            if (list != null && !list.isEmpty()) {
+                LocalMockData mockData = list.get(0);
+                mockData.setData(data);
+                mockData.setSelected(Boolean.parseBoolean(checked));
+                LocalMockDataDB.updateMockData(mockData);
+            } else {
+                LocalMockData mockData = new LocalMockData();
+                mockData.setData(data);
+                mockData.setUrl(url);
+                mockData.setSelected(Boolean.parseBoolean(checked));
+                LocalMockDataDB.insertMockData(mockData);
+            }
+
+            response.send("true");
+
         });
     }
 

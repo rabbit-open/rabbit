@@ -16,6 +16,10 @@ public class LocalMockDataDB extends SessionFactory {
         return dao.queryRaw("where url= ?", url);
     }
 
+    public static  void deleteById(String id) {
+         dao.deleteByKey(Long.parseLong(id));
+    }
+
     public static List<LocalMockData> queryAll() {
         return dao.loadAll();
     }
