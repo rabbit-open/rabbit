@@ -1,6 +1,7 @@
 package com.supets.pet.mock.config;
 
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.HashSet;
@@ -97,6 +98,11 @@ public class Config extends BasePref {
 
     public static boolean isFilterGuice(String url) {
         String json = getBaseAPI();
+
+        if (json==null||TextUtils.isEmpty(json.trim())){
+            return false;
+        }
+
         String[] filters = json.split("\\s+");
 
 
