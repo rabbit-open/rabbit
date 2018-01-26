@@ -15,6 +15,7 @@ import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
 import com.supets.commons.utils.json.JSonUtil;
 import com.supets.pet.mock.bean.LocalMockData;
+import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.dao.LocalMockDataDB;
 import com.supets.pet.mock.dao.MockDataDB;
 
@@ -54,6 +55,8 @@ public class ServerApi {
         getMockData();
         getMockUIData();
         savemockuidata();
+        saveconfigdata();
+        getmockconfig();
         this.server.listen(this.mAsyncServer, 54321);
     }
 
@@ -159,9 +162,9 @@ public class ServerApi {
             String checked = request.getQuery().getString("checked");
             String data = request.getQuery().getString("data");
 
-            Log.v("serverapi",url);
-            Log.v("serverapi",checked);
-            Log.v("serverapi",data);
+            Log.v("serverapi", url);
+            Log.v("serverapi", checked);
+            Log.v("serverapi", data);
 
             List<LocalMockData> list = LocalMockDataDB.queryAllMockData(url);
 
@@ -179,6 +182,49 @@ public class ServerApi {
             }
 
             response.send("true");
+
+        });
+    }
+
+    private void saveconfigdata() {
+        server.get("/saveconfigdata", (request, response) -> {
+
+            // String id = request.getQuery().getString("id");
+            String apikey = request.getQuery().getString("apikey");
+            String JsonSwitch = request.getQuery().getString("JsonSwitch");
+            String DebugMode = request.getQuery().getString("DebugMode");
+            String ToastSwitch = request.getQuery().getString("ToastSwitch");
+
+            Log.v("serverapi", ToastSwitch);
+            Log.v("serverapi", DebugMode);
+            Log.v("serverapi", JsonSwitch);
+            Log.v("serverapi", apikey);
+
+            Config.setBaseAPI(apikey);
+            Config.setJsonSwitch(Boolean.parseBoolean(String.valueOf(Integer.parseInt(JsonSwitch)==1)));
+            Config.setDebugMode(Boolean.parseBoolean(DebugMode));
+            Config.setToastSwitch(Boolean.parseBoolean(ToastSwitch));
+
+            response.send("true");
+
+        });
+    }
+
+
+    private void getmockconfig() {
+        server.get("/getmockconfig", (request, response) -> {
+
+            JSONObject jsonObject = new JSONObject();
+
+            try {
+                jsonObject.put("apikey", Config.getBaseAPI());
+                jsonObject.put("JsonSwitch", Config.getJsonSwitch());
+                jsonObject.put("DebugMode", Config.getDebugMode());
+                jsonObject.put("ToastSwitch", Config.getToastSwitch());
+                response.send(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
         });
     }

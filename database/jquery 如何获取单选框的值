@@ -1,0 +1,4 @@
+获取单选框的值有三种方式：
+1、$('input:radio:checked').val()；
+2、$("input[type='radio']:checked").val();
+3、$("input[name='rd']:checked").val();

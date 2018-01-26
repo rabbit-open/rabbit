@@ -1,0 +1,49 @@
+一、设置选中方法
+
+$("input[name='名字']").get(0).checked=true;
+$("input[name='名字']").attr('checked','true');
+$("input[name='名字']:eq(0)").attr("checked",'checked');
+$("input[name='radio_name'][checked]").val();  //获取被选中Radio的Value值
+
+二、设置选中和不选中示例
+
+<input type="radio" value="0" name="jizai" id="0"/>否
+<input type="radio" value="1" name="jizai"  id="1"/>是
+
+#jquery中，radio的选中与否是这么设置的。
+
+$("#rdo1").attr("checked","checked");
+$("#rdo1").removeAttr("checked");
+
+通过name
+
+$("input:radio[name="analyfsftype"]").eq(0).attr("checked",'checked');
+$("input:radio[name="analyshowtype"]").attr("checked",false);
+
+通过id
+
+$("#tradeType0").attr("checked","checked");
+$("#tradeType1").attr("checked",false);
+
+三、另一种设置选中方法
+
+<script type="text/javascript">
+$(document).ready(function(){
+        $("input[@type=radio][name=sex][@value=1]").attr("checked",true);
+});
+</script>
+
+您的性别：
+
+<input type="radio" name="sex" value="1" <s:if test="user.sex==1">checked</s:if>/>男
+<input type="radio" name="sex" value="0" <s:if test="user.sex==0">checked</s:if>/>女
+
+四、根据值设置radio选中
+
+$("input[name='radio_name'][value='要选中Radio的Value值']").attr("checked",true);  //根据Value值设置Radio为选中状态
+
+五、使用prop方法操作示例
+
+$('input').removeAttr('checked');
+$($('#'+id+'input').eq(0)).prop('checked',false);
+$($('#'+id+' input').eq(0)).prop('checked',true);

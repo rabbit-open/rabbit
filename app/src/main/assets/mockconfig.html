@@ -30,9 +30,7 @@
 
     }
 
-    function saveconfig(data){
-        alert(data);
-    }
+
 
     function savemock(id,url){
 
@@ -53,6 +51,46 @@
          });
 
     }
+
+
+function saveconfig(data){
+
+      var  ToastSwitch=  $("input[name='alert']:checked").val();
+      var  DebugMode=  $("#open1").is(":checked");
+      var  JsonSwitch=  $("#open2").is(":checked");
+      var  apikey= $("#firstname").val();
+
+      var urlpath = 'saveconfigdata'+ '?apikey='+ apikey+'&JsonSwitch='+ JsonSwitch+'&DebugMode='+ DebugMode+'&ToastSwitch='+ ToastSwitch;
+
+      $.getJSON(urlpath, function(data) {
+
+              if(data){
+                alert('保存成功');
+              }
+
+         });
+
+    }
+
+
+
+$(function(){
+
+    $.getJSON("getmockconfig", function(data) {
+
+                $("input[name='alert']").eq(1).attr("checked",data.ToastSwitch?true:false);
+                $("input[name='alert']").eq(0).attr("checked",data.ToastSwitch?false:true);
+
+                $("#open1").prop("checked",data.DebugMode?true:false);
+                $("#open2").prop("checked",data.JsonSwitch?true:false);
+
+                $("#firstname").val(data.apikey);
+
+         });
+
+});
+
+
 
 
     </script>
@@ -78,9 +116,9 @@
                         <input type="radio" name="alert" value="1"/>显示非json数据
                         <br/>
                         <h4>开关配置：</h4>
-                        <input type="checkbox" name="open1"/>打开调试UI，不会抓取数据，优先级高。
+                        <input type="checkbox" id="open1"/>打开调试UI，不会抓取数据，优先级高。
                         <br/>
-                        <input type="checkbox" name="open2"/>抓取数据，不能打开调试模式。
+                        <input type="checkbox" id="open2"/>抓取数据，不能打开调试模式。
                         <br/>
                         <br/>
                         <button type="button" style="width:100px;height:45px;"

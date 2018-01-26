@@ -1,0 +1,27 @@
+JQuery给textarea取值和赋值
+取值
+
+var qrcodefortemcontent=$("#qrcodefortemcontent").val();
+赋值
+
+$("#qrcodefortemcontent").val(“123”);
+
+JQuery给label
+
+取值
+
+next_openid=$("#next_openid2").text();
+$("#hasnext2").text('YES');
+$("#hasnext2").text('YES');
+
+JQuery给input
+
+取值
+
+ qrcodeforeverflag=$("#qrcodeforeverflag").val();
+
+赋值
+
+$("#qrcodeforeverflag").val(“123”);
+
+在html标签中使用‘’或者“”有时候是有差异的，使用“”保险些，但是在存在转义的时候需要用''
