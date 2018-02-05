@@ -26,7 +26,7 @@
 
 #### 1 三方APP接入效果实时抓取效果
 
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone9.png" width = "240" />  
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone9.png" width = "480" />  
 
 #### 2 测试APP部分界面
     
