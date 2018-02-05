@@ -26,28 +26,12 @@
 
     APP部分界面
     
-<table>
-<tb>
-<tr>
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone1.png" width = "240" />
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone2.png" width = "240" />
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone3.png" width = "240" />  
-</tr>
-</td>
-<tb>
-<tr>
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone4.png" width = "240" />
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone5.png" width = "240" />
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone6.png" width = "240" />  
-</tr>
-</td>
-<tb>
-<tr>
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone7.png" width = "240" />
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone8.png" width = "240" />  
-</tr>
-</td>
-</table>
 
 
     输入地址：http://0.0.0.0:54321
