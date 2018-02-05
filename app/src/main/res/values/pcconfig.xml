@@ -4,9 +4,6 @@
         \t\n
         浏览器输入地址:\t\n
         http://localhost:54321 \t\n\t\n
-        查看数据：\t\n
-        http://localhost:54321/readapidata.html \t\n
-        配置页面：\t\n
-        http://localhost:54321/mockconfig.html \t\n
+        注意：在同一个局域网段内
     </string>
 </resources>
