@@ -26,22 +26,22 @@
 
     APP部分界面
     
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone1.png" width = "240" height = "320" alt="图片名称" align=center />
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone2.png" width = "240" height = "320" alt="图片名称" align=center />
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone3.png" width = "240" height = "320" alt="图片名称" align=center />  
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone4.png" width = "240" height = "320" alt="图片名称" align=center />
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone5.png" width = "240" height = "320" alt="图片名称" align=center />
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone6.png" width = "240" height = "320" alt="图片名称" align=center />  
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone7.png" width = "240" height = "320" alt="图片名称" align=center />
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone8.png" width = "240" height = "320" alt="图片名称" align=center />  
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone1.png" width = "240" />
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone2.png" width = "240" />
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone3.png" width = "240" />  
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone4.png" width = "240" />
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone5.png" width = "240" />
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone6.png" width = "240" />  
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone7.png" width = "240" />
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone8.png" width = "240" />  
 
 
     输入地址：http://0.0.0.0:54321
 
 
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web1.png" width = "200" height = "200" alt="图片名称" align=center />
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web2.png" width = "200" height = "200" alt="图片名称" align=center />
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web3.png" width = "200" height = "200" alt="图片名称" align=center />  
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web1.png" width = "200" />
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web2.png" width = "200" />
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web3.png" width = "200" />  
 
 
 ## 版权声明
