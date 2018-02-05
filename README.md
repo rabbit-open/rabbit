@@ -36,7 +36,7 @@
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone6.png" width = "240" />  
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone7.png" width = "240" />
 
-####3 网页输入地址：http://0.0.0.0:54321
+#### 3 网页输入地址：http://0.0.0.0:54321
 
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/web1.png" width = "200" />
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/web2.png" width = "200" />
