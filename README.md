@@ -25,11 +25,12 @@
 ## 浏览器使用
 
     输入地址：http://0.0.0.0:54321
-    
-![](https://github.com/rabbit-open/rabbit/blob/master/database/web1.png)
-![](https://github.com/rabbit-open/rabbit/blob/master/database/web2.png)
-![](https://github.com/rabbit-open/rabbit/blob/master/database/web3.png)
-  
+   
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web1.png" width = "100" height = "100" alt="图片名称" align=center />
+ 
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web2.png" width = "100" height = "100" alt="图片名称" align=center />
+
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web3.png" width = "100" height = "100" alt="图片名称" align=center />  
 ## 版权声明
 
     此项目属于个人业余项目，严禁商业用途。
