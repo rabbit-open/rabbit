@@ -10,9 +10,12 @@
 
     <script type="text/javascript">
 
-     function getapidata(api){
+//查看所有配置接口
+function getapidata(api){
 
-         var url = 'getmockuidata';
+         var  name= $("#firstname3").val();
+
+         var url = 'getmockuidata'+ '?apikey='+ name;
 
          $("#datalist").html('');
 
@@ -28,11 +31,11 @@
 
          });
 
-    }
+}
 
 
-
-    function savemock(id,url){
+//保存要调试的接口
+function savemock(id,url){
 
         var  mockdata=  $("#mockdata"+id).val();
         var  mockchecked=  $("#mockstatus"+id).is(":checked");
@@ -49,10 +52,9 @@
               }
 
          });
+}
 
-    }
-
-
+//保存配置信息
 function saveconfig(data){
 
       var  ToastSwitch=  $("input[name='alert']:checked").val();
@@ -67,13 +69,28 @@ function saveconfig(data){
               if(data){
                 alert('保存成功');
               }
+      });
 
-         });
+}
 
-    }
+//保存测试接口
+function saveconfig2(data){
 
+      var  name= $("#firstname1").val();
+      var  data= $("#firstname2").val();
 
+      var urlpath = 'addmockapi'+ '?apikey='+ name+'&data='+ data;
 
+      $.getJSON(urlpath, function(data) {
+
+              if(data){
+                alert('保存成功');
+              }
+      });
+
+}
+
+//初始化执行
 $(function(){
 
     $.getJSON("getmockconfig", function(data) {
@@ -91,9 +108,7 @@ $(function(){
 });
 
 
-
-
-    </script>
+</script>
 
 </head>
 
@@ -102,7 +117,7 @@ $(function(){
 
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
-            <td style="width:100%;">
+            <td style="width:50%;">
                 <div>
                     <form>
                         <h1>兔子测试配置</h1>
@@ -121,32 +136,72 @@ $(function(){
                         <input type="checkbox" id="open2"/>抓取数据，不能打开调试模式。
                         <br/>
                         <br/>
-                        <button type="button" style="width:100px;height:45px;"
+                        <button type="button" style="width:200px;height:45px;"
                                 onclick="javascript:saveconfig('aa')">
                             保存配置数据
                         </button>
                     </form>
                 </div>
             </td>
-        </tr>
-        <tr>
-            <td style="width:100%;" >
-                <div style="background:#dddddd;">
-                    <h2> 2 配置具体MOCK UI数据</h2>
-                    <button type="button" style="width:100px;height:45px;"
-                            onclick="javascript:getapidata('aa')">
-                        查看所有接口
-                    </button>
-                    <br/>
-                    <br/>
-                    <table id="datalist"
-                           style="width:100%;word-break:break-all;border:none;"
-                           border="1">
-                    </table>
+            <td style="width:50%;">
+                <div>
+                    <form>
+                        <h2>3 手动添加测试接口</h2>
+                        <h4>API名称</h4>
+                        <textarea style="width:50%;height:40px;" id="firstname1"
+                                  rows="2"></textarea>
+                        <br/>
+                        <br/>
+                        <h4>API数据</h4>
+                        <textarea style="width:50%;height:40px;" id="firstname2"
+                                  rows="2"></textarea>
+                        <br/>
+                        <br/>
+                        <button type="button" style="width:200px;height:45px;"
+                                onclick="javascript:saveconfig2('aa')">
+                            添加
+                        </button>
+                    </form>
                 </div>
             </td>
         </tr>
+        <!--<tr>-->
+        <!--<td style="width:50%;">-->
+        <!--<div style="background:#dddddd;">-->
+        <!--<h2> 2 配置具体MOCK UI数据</h2>-->
+        <!--<button type="button" style="width:100px;height:45px;"-->
+        <!--onclick="javascript:getapidata('aa')">-->
+        <!--查看所有接口-->
+        <!--</button>-->
+        <!--<br/>-->
+        <!--<br/>-->
+        <!--<table id="datalist"-->
+        <!--style="width:100%;word-break:break-all;border:none;"-->
+        <!--border="1">-->
+        <!--</table>-->
+        <!--</div>-->
+        <!--</td>-->
+        <!--</tr>-->
     </table>
+
+    <div style="background:#dddddd;">
+        <h2> 2 配置具体MOCK UI数据</h2>
+        <h4>输入配置接口名称</h4>
+        <textarea style="width:50%;height:60px;" id="firstname3"
+                  rows="2"></textarea>
+        <br>
+        <br>
+        <button type="button" style="width:200px;height:60px;"
+                onclick="javascript:getapidata('aa')">
+            查看所有接口（默认）
+        </button>
+        <br/>
+        <br/>
+        <table id="datalist"
+               style="width:100%;word-break:break-all;border:none;"
+               border="1">
+        </table>
+    </div>
 
 </div>
 

@@ -48,9 +48,11 @@ public class ServerApi {
         getMockUIData();
         savemockuidata();
         saveconfigdata();
+        addmockapi();
         getmockconfig();
         this.server.listen(this.mAsyncServer, 54321);
     }
+
 
     private void addhtml(String path, String name) {
         server.get(path, (request, response) -> {
@@ -142,7 +144,13 @@ public class ServerApi {
                 }
             }
 
-            response.send(new Gson().toJson(LocalMockDataDB.queryAll()));
+            String apikey = request.getQuery().getString("apikey");
+            if (TextUtils.isEmpty(apikey)) {
+                response.send(new Gson().toJson(LocalMockDataDB.queryAll()));
+            }else{
+                response.send(new Gson().toJson(LocalMockDataDB.queryAllMockData(apikey)));
+            }
+
         });
     }
 
@@ -202,6 +210,34 @@ public class ServerApi {
         });
     }
 
+    private void addmockapi() {
+        server.get("/addmockapi", (request, response) -> {
+
+            // String id = request.getQuery().getString("id");
+            String url = request.getQuery().getString("apikey");
+            String data = request.getQuery().getString("data");
+
+            Log.v("serverapi", data);
+            Log.v("serverapi", url);
+
+            List<LocalMockData> list = LocalMockDataDB.queryAllMockData(url);
+
+            if (list != null && !list.isEmpty()) {
+                LocalMockData mockData = list.get(0);
+                mockData.setData(data);
+                LocalMockDataDB.updateMockData(mockData);
+            } else {
+                LocalMockData mockData = new LocalMockData();
+                mockData.setData(data);
+                mockData.setUrl(url);
+                mockData.setSelected(false);
+                LocalMockDataDB.insertMockData(mockData);
+            }
+
+            response.send("true");
+
+        });
+    }
 
     private void getmockconfig() {
         server.get("/getmockconfig", (request, response) -> {
