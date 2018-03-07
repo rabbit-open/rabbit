@@ -36,10 +36,14 @@ public class ServerApi {
         this.mContext = context;
         this.server = server;
         this.mAsyncServer = mAsyncServer;
-        addhtml("/", "readapidata.html");
-        //addhtml("/index.html", "index.html");
-        //addhtml("/readapidata.html*", "readapidata.html");
-        //addhtml("/indexjpg.html*", "indexjpg.html");
+
+        addhtml("/mp4", "mp4.html");
+        addhtml("/jpg", "jpg.html");
+
+        addhtml("/", "index.html");
+        addhtml("/content.html", "content.html");
+
+        addhtml("/readapidata.html", "readapidata.html");
         addhtml("/mockconfig.html*", "mockconfig.html");
         addLocalJSResource("/jquery-1.7.2.min.js");
         addLocalFileResource();
