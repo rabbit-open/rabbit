@@ -129,9 +129,9 @@ public class ServerApi {
         server.get("/getmockdata", (request, response) -> {
             String format = request.getQuery().getString("api");
             if (TextUtils.isEmpty(format)) {
-                response.send(new Gson().toJson(MockDataDB.queryAll()));
+                response.send(new Gson().toJson(MockDataDB.queryAllPage(0)));
             } else {
-                response.send(new Gson().toJson(MockDataDB.queryAllMockData(format)));
+                response.send(new Gson().toJson(MockDataDB.queryAllMockDataPage(format,0)));
             }
         });
     }

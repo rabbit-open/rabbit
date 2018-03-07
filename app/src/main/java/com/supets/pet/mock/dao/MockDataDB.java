@@ -14,7 +14,11 @@ public class MockDataDB extends SessionFactory {
     private static final MockDataDao dao = getDbSession().getMockDataDao();
 
     public static List<MockData> queryAllMockData(String url) {
-        return dao.queryRaw("where url = ?", url);
+        return dao.queryBuilder().where(MockDataDao.Properties.Url.eq(url)).orderDesc(MockDataDao.Properties.Time).list();
+    }
+
+    public static List<MockData> queryAllMockDataPage(String url,int offset) {
+        return dao.queryBuilder().where(MockDataDao.Properties.Url.eq(url)).orderDesc(MockDataDao.Properties.Time).offset(offset * 20).limit(20).list();
     }
 
     public static List<MockData> queryAll() {
