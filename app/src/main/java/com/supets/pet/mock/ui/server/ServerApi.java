@@ -121,6 +121,20 @@ public class ServerApi {
             JSONArray array = new JSONArray();
             File dir = new File(Environment.getExternalStorageDirectory().getPath());
             ServerUtils.getfiles(array, dir, format);
+
+            if ("apk".equals(format)){
+              JSONArray  apks=  ServerUtils.getApk(mContext);
+              if (apks!=null){
+                  for (int i = 0; i < apks.length(); i++) {
+                      try {
+                          array.put(apks.get(i));
+                      } catch (JSONException e) {
+                          e.printStackTrace();
+                      }
+                  }
+              }
+            }
+
             response.send(array.toString());
         });
     }
