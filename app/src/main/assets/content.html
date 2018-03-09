@@ -9,33 +9,39 @@
     <script type="text/javascript">
     var c=false;
     var t;
-    var $trs='最新接口实时数据显示';
+    var $trs="最新接口实时数据显示";
 
     function timedCount(){
-       if(!c){
-        c=true;
-        $("#filelist").html('');
-        var $li = $('<li>' + $trs + '</li>');
-        $("#filelist").append($li);
-        getapidata();
-     }
- t=setTimeout("timedCount()",1000);
+
+           if(!c){
+                c=true;
+                $("#filelist").html('');
+                var $li = $('<li>' + $trs + '</li>');
+                $("#filelist").append($li);
+                getapidata();
+           }
+
+           t=setTimeout("timedCount()",1000);
+
   }
 
      function stopCount(){
-       clearTimeout(t);
+            clearTimeout(t);
      }
 
     function getapidata(){
 
-       $.getJSON('getmockrealdata', function(data) {
-          if(data.length>0){
-            $trs='\n请求接口：'+$trs= data[0].url+ '\n请求参数：'+ data[0].requestParam+'\n最新时间：'+ new Date(data[0].time).format("yyyy-MM-dd hh:mm:ss");
-             c=false;
-           }
-       });
+           $.getJSON('getmockrealdata', function(data) {
+              if(data.length>0){
+                $trs= "\n"+data[0].url+ "\n"+ data[0].requestParam+"\n"+ new Date(data[0].time).format("yyyy-MM-dd hh:mm:ss");
+                 c=false;
+               }
+           });
 
      }
+
+
+
 
     </script>
     <head>
