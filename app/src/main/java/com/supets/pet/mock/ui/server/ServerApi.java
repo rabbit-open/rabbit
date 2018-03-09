@@ -41,6 +41,7 @@ public class ServerApi {
         addhtml("/jpg", "jpg.html");
         addhtml("/apk", "apk.html");
         addhtml("/tools", "tools.html");
+        addhtml("/detail", "detail.html");
 
         addhtml("/", "index.html");
         addhtml("/content.html", "content.html");

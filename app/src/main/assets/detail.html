@@ -38,34 +38,18 @@
 
      }
 
-
-
-
-
-
-
     </script>
     <head>
 <body background="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1520576071&di=69251842241518b8cb1a6c4ff3a1ebd3&src=http://tupian.enterdesk.com/2012/0608/gha/7/8.jpg">
 
 <div style="width:100%;overflow:hidden;">
-    <h1>兔子测试</h1>
+    <h2 style="background-color: #4682B4;color:white;padding:10px 20px 10px 20px">实时查看JSON</h2>
     <br>
 
-    <h2><img width="24px" height="24px" style="margin:0 10 0 0"
-             src="http://pic.90sjimg.com/design/00/47/65/93/59004b05c7b88.png"><a
-            href="readapidata.html" style="text-decoration:none;" target="showframe">查看测试数据</a></h2>
-    <h2><img width="24px" height="24px" style="margin:0 10 0 0"
-             src="http://www.icosky.com/icon/png/Folder/Document%20Folders/Folder%20green.png"><a
-            href="mockconfig.html" style="text-decoration:none;" target="showframe">查看测试配置</a></h2>
-    <h2><img width="24px" height="24px" style="margin:0 10 0 0"
-             src="http://www.icosky.com/icon/png/Application/3D%20Cartoon%20Icons%20Pack%20III/Technorati.png"><a
-            href="tools" style="text-decoration:none;" target="showframe">工具箱</a></h2>
-    <h2><img width="24px" height="24px" style="margin:0 10 0 0"
-             src="http://www.icosky.com/icon/png/Application/3D%20Cartoon%20Icons%20Pack%20III/Technorati.png"><a
-            href="detail" style="text-decoration:none;" target="showframe">实时JSON</a></h2>
+    <button style="width:200px;height:60px" onclick="javascript:timedCount();">启动实时数据查看</button>
+    <button style="width:200px;height:60px" onclick="javascript:stopCount();">停止实时数据查看</button>
 
-
+    <textarea id="filelist" style="width:100%;font-size:12"  rows="12"></textarea>
 </div>
 </body>
 </html>
