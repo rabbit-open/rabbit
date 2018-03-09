@@ -3,7 +3,7 @@
   "alert": "",
   "content": {
     "url": "https://fir.im/testpet",
-    "text": "1 内嵌APK无线安装\n2 内嵌网页配置APP和实时数据查看功能",
-    "version":410
+    "text": "1 内嵌APK无线安装\n2 内嵌网页配置APP和实时数据查看功能\n3 android常用工具",
+    "version": 420
   }
 }
