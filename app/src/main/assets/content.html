@@ -9,14 +9,17 @@
     <script type="text/javascript">
     var c=false;
     var t;
-    var $trs;
+    var $trs='最新接口实时数据显示';
 
     function timedCount(){
        if(!c){
         c=true;
         getapidata();
        }
-      document.getElementById('firstname1').value=$trs;
+
+      var $li = $('<li>' + $trs + '</li>');
+      $("#filelist").append($li);
+
       t=setTimeout("timedCount()",1000);
      }
 
@@ -27,14 +30,17 @@
     function getapidata(){
 
        $.getJSON('getmockrealdata', function(data) {
-
           if(data.length>0){
-            $trs= data[0].url+ data[0].requestParam + data[0].data + data[0].time;
+            $trs= data[0].url+ "\n" + data[0].requestParam + "\n" + data[0].time;
              c=false;
            }
        });
 
      }
+
+
+
+
 
 
     </script>
@@ -52,12 +58,11 @@
 <h2><img width="24px" height="24px" style="margin:0 10 0 0"
          src="http://www.icosky.com/icon/png/Application/3D%20Cartoon%20Icons%20Pack%20III/Technorati.png"><a
         href="tools" style="text-decoration:none;" target="showframe">工具箱</a></h2>
-<form>
-    <input type="button" value="启动实时数据查看" onClick="javascript:timedCount();">
-    <input type="button" value="停止实时数据查看" onClick="javascript:stopCount();">
 
-    <textarea style="width:80%;" id="firstname1"
-              rows="10"></textarea>
-</form>
+<button onclick="javascript:timedCount();">启动实时数据查看</button>
+<button onclick="javascript:stopCount();">停止实时数据查看</button>
+
+<ul id="filelist"></ul>
+
 </body>
 </html>
