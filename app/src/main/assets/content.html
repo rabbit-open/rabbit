@@ -14,11 +14,13 @@
     function timedCount(){
        if(!c){
         c=true;
+        $("#filelist").html('');
+        var $li = $('<li>' + $trs + '</li>');
+        $("#filelist").append($li);
         getapidata();
-       }
+     }
 
-      var $li = $('<li>' + $trs + '</li>');
-      $("#filelist").append($li);
+
 
       t=setTimeout("timedCount()",1000);
      }
@@ -37,6 +39,7 @@
        });
 
      }
+
 
 
 
