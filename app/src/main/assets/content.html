@@ -31,7 +31,7 @@
 
            $.getJSON('getmockrealdata', function(data) {
               if(data.length>0){
-                $trs= "\n"+data[0].url+"\n"+ new Date(data[0].time).toLocaleString()+ "\n"+ data[0].requestParam;
+                $trs= data[0].url+"\n"+ new Date(data[0].time).toLocaleString()+ "\n"+ data[0].requestParam;
                  c=false;
                }
            });
@@ -63,7 +63,7 @@
     <button onclick="javascript:timedCount();">启动实时数据查看</button>
     <button onclick="javascript:stopCount();">停止实时数据查看</button>
 
-    <textarea id="filelist" style="width:100%" rows="10"></textarea>
+    <textarea id="filelist" style="width:100%;font-size:20"  rows="20"></textarea>
 </div>
 </body>
 </html>
