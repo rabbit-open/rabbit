@@ -1,4 +1,34 @@
 <html>
+<script type="text/javascript">
+var c=0
+var t
+
+function timedCount()
+ {
+  t=setTimeout("getapidata()",1000)
+ }
+
+ function stopCount()
+ {
+   clearTimeout(t)
+ }
+
+function getapidata(){
+
+   $.getJSON('getmockdata', function(data) {
+      if(data.length>0){
+       var $trs= data[0].url+'\n' + data[i].requestParam + data[i].data + data[i].time;
+       document.getElementById('txt').value=$trs;
+       }
+     timedCount();
+   });
+
+ }
+
+
+
+</script>
+
 <body background="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1520576071&di=69251842241518b8cb1a6c4ff3a1ebd3&src=http://tupian.enterdesk.com/2012/0608/gha/7/8.jpg">
 <h1>兔子测试</h1>
 <br>
@@ -12,6 +42,10 @@
 <h2><img width="24px" height="24px" style="margin:0 10 0 0"
          src="http://www.icosky.com/icon/png/Application/3D%20Cartoon%20Icons%20Pack%20III/Technorati.png"><a
         href="tools" style="text-decoration:none;" target="showframe">工具箱</a></h2>
-
+<form>
+    <input type="button" value="启动实时数据查看" onClick="timedCount()">
+    <input type="text" id="txt">
+    <input type="button" value="停止实时数据查看" onClick="stopCount()">
+</form>
 </body>
 </html>
