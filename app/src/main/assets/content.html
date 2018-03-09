@@ -33,7 +33,7 @@
 
            $.getJSON('getmockrealdata', function(data) {
               if(data.length>0){
-                $trs= "\n"+data[0].url+ "\n"+ data[0].requestParam+"\n"+ new Date(data[0].time).toLocaleString();
+                $trs= "\n"+data[0].url+ "---->"+ data[0].requestParam+"---->"+ new Date(data[0].time).toLocaleString();
                  c=false;
                }
            });
