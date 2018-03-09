@@ -33,21 +33,12 @@
 
        $.getJSON('getmockrealdata', function(data) {
           if(data.length>0){
-            + "\n请求接口："+$trs= data[0].url
-            + "\n请求参数：" + data[0].requestParam
-            + "\n最新时间：" + new Date(data[0].time).format("yyyy-MM-dd hh:mm:ss");
+            $trs="\n请求接口："+$trs= data[0].url+ "\n请求参数："+ data[0].requestParam+"\n最新时间："+ new Date(data[0].time).format("yyyy-MM-dd hh:mm:ss");
              c=false;
            }
        });
 
      }
-
-
-
-
-
-
-
 
     </script>
     <head>
