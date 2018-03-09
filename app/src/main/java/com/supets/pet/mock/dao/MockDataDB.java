@@ -29,6 +29,11 @@ public class MockDataDB extends SessionFactory {
         return dao.queryBuilder().orderDesc(MockDataDao.Properties.Time).offset(offset * 20).limit(20).list();
     }
 
+    public static List<MockData> queryNewAllPage(int max) {
+        return dao.queryBuilder().orderDesc(MockDataDao.Properties.Time).limit(max).list();
+    }
+
+
     public static List<MockData> queryMockDataById(String id) {
         return dao.queryRaw("where _id = ?  ", id);
     }

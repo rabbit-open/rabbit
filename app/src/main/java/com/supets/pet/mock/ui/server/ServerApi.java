@@ -51,6 +51,7 @@ public class ServerApi {
         addLocalFileResource();
         addJsonApi();
         getMockData();
+        getMockrealData();
         getMockUIData();
         savemockuidata();
         saveconfigdata();
@@ -123,17 +124,17 @@ public class ServerApi {
             File dir = new File(Environment.getExternalStorageDirectory().getPath());
             ServerUtils.getfiles(array, dir, format);
 
-            if ("apk".equals(format)){
-              JSONArray  apks=  ServerUtils.getApk(mContext);
-              if (apks!=null){
-                  for (int i = 0; i < apks.length(); i++) {
-                      try {
-                          array.put(apks.get(i));
-                      } catch (JSONException e) {
-                          e.printStackTrace();
-                      }
-                  }
-              }
+            if ("apk".equals(format)) {
+                JSONArray apks = ServerUtils.getApk(mContext);
+                if (apks != null) {
+                    for (int i = 0; i < apks.length(); i++) {
+                        try {
+                            array.put(apks.get(i));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
             }
 
             response.send(array.toString());
@@ -146,8 +147,14 @@ public class ServerApi {
             if (TextUtils.isEmpty(format)) {
                 response.send(new Gson().toJson(MockDataDB.queryAllPage(0)));
             } else {
-                response.send(new Gson().toJson(MockDataDB.queryAllMockDataPage(format,0)));
+                response.send(new Gson().toJson(MockDataDB.queryAllMockDataPage(format, 0)));
             }
+        });
+    }
+
+    private void getMockrealData() {
+        server.get("/getmockrealdata", (request, response) -> {
+            response.send(new Gson().toJson(MockDataDB.queryNewAllPage(1)));
         });
     }
 
@@ -167,7 +174,7 @@ public class ServerApi {
             String apikey = request.getQuery().getString("apikey");
             if (TextUtils.isEmpty(apikey)) {
                 response.send(new Gson().toJson(LocalMockDataDB.queryAll()));
-            }else{
+            } else {
                 response.send(new Gson().toJson(LocalMockDataDB.queryAllMockData(apikey)));
             }
 
@@ -223,7 +230,7 @@ public class ServerApi {
             Config.setBaseAPI(apikey);
             Config.setJsonSwitch(Boolean.parseBoolean(JsonSwitch));
             Config.setDebugMode(Boolean.parseBoolean(DebugMode));
-            Config.setToastSwitch(Integer.parseInt(ToastSwitch)==1);
+            Config.setToastSwitch(Integer.parseInt(ToastSwitch) == 1);
 
             response.send("true");
 
