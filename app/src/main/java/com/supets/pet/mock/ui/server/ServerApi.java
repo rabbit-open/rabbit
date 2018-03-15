@@ -52,6 +52,7 @@ public class ServerApi {
         addhtml("/mockconfig.html*", "mockconfig.html");
 
         //addhtml("/switch_mode.html*", "switch_mode.html");
+        addhtml("/apidetail.html*", "apidetail.html");
 
         addLocalJSResource("/jquery-1.7.2.min.js");
         addLocalJSResource("/dist/.*");
@@ -63,6 +64,7 @@ public class ServerApi {
         addJsonApi();
         getMockData();
         getMockrealData();
+        getMockApiData();
         getMockUIData();
         savemockuidata();
         saveconfigdata();
@@ -70,7 +72,6 @@ public class ServerApi {
         getmockconfig();
         this.server.listen(this.mAsyncServer, 54321);
     }
-
 
 
     private void addhtml(String path, String name) {
@@ -171,6 +172,16 @@ public class ServerApi {
     private void getMockrealData() {
         server.get("/getmockrealdata", (request, response) -> {
             response.send(new Gson().toJson(MockDataDB.queryNewAllPage(1)));
+        });
+    }
+
+    private void getMockApiData() {
+        server.get("/getmockapidata", (request, response) -> {
+            String id = request.getQuery().getString("id");
+            if (!TextUtils.isEmpty(id)) {
+                response.send(new Gson().toJson(MockDataDB.queryMockDataById(id)));
+            }
+
         });
     }
 
@@ -341,7 +352,6 @@ public class ServerApi {
         }
         return "";
     }
-
 
 
 }

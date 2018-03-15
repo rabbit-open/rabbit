@@ -23,13 +23,19 @@
          $.getJSON(url, function(data) {
 
                   for (var i = 0; i < data.length; i++) {
-                    var $trs=$('<tr style="width:100%;"><td style="width:20%;">' + data[i].url + '</td><td  style="width:30%;"><textarea style="width:90%;" rows="3">' + data[i].requestParam + '</textarea></td><td  style="width:40%;"><textarea style="width:90%;" rows="3">' + data[i].data + '</textarea></td><td  style="width:10%;">' + data[i].time + '</td></tr>');
+                    var $trs=$('<tr style="width:100%;"><td onclick=savemock("'+ data[i].id+'","'+data[i].url+'") style="width:20%;">' + data[i].url + '</td><td  style="width:30%;"><textarea style="width:90%;" rows="3">' + data[i].requestParam + '</textarea></td><td  style="width:40%;"><textarea style="width:90%;" rows="3">' + data[i].data + '</textarea></td><td  style="width:10%;">' + data[i].time + '</td></tr>');
                     $("#datalist").append($trs);
                   }
 
          });
 
     }
+
+    function savemock(id,url) {
+        var  $url= "apidetail.html?id="+id;
+        window.open($url,'_blank')
+    }
+
 
     </script>
 
