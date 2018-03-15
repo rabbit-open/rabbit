@@ -65,6 +65,7 @@ public class ServerApi {
         getMockData();
         getMockrealData();
         getMockApiData();
+        getMockApiData2();
         getMockUIData();
         savemockuidata();
         saveconfigdata();
@@ -180,6 +181,16 @@ public class ServerApi {
             String id = request.getQuery().getString("id");
             if (!TextUtils.isEmpty(id)) {
                 response.send(new Gson().toJson(MockDataDB.queryMockDataById(id)));
+            }
+
+        });
+    }
+
+    private void getMockApiData2() {
+        server.get("/getmockapidata2", (request, response) -> {
+            String id = request.getQuery().getString("id");
+            if (!TextUtils.isEmpty(id)) {
+                response.send(new Gson().toJson(LocalMockDataDB.queryMockDataById(id)));
             }
 
         });

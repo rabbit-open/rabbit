@@ -40,4 +40,7 @@ public class LocalMockDataDB extends SessionFactory {
         dao.deleteAll();
     }
 
+    public static List<LocalMockData> queryMockDataById(String id) {
+        return dao.queryRaw("where _id = ?  ", id);
+    }
 }
