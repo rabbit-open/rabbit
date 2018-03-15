@@ -8,6 +8,8 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
+import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
+import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
 import com.supets.pet.mock.bean.LocalMockData;
 import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.dao.LocalMockDataDB;
@@ -48,8 +50,16 @@ public class ServerApi {
 
         addhtml("/readapidata.html", "readapidata.html");
         addhtml("/mockconfig.html*", "mockconfig.html");
+
+        //addhtml("/switch_mode.html*", "switch_mode.html");
+
         addLocalJSResource("/jquery-1.7.2.min.js");
+        addLocalJSResource("/dist/.*");
+        addLocalJSResource("/dist/img/.*");
+
         addLocalFileResource();
+        addLocalFileResource();
+
         addJsonApi();
         getMockData();
         getMockrealData();
@@ -60,6 +70,7 @@ public class ServerApi {
         getmockconfig();
         this.server.listen(this.mAsyncServer, 54321);
     }
+
 
 
     private void addhtml(String path, String name) {
@@ -107,7 +118,11 @@ public class ServerApi {
                 if (resourceName.indexOf("?") > 0) {
                     resourceName = resourceName.substring(0, resourceName.indexOf("?"));
                 }
-                response.setContentType("application/javascript");
+
+                if (!TextUtils.isEmpty(getContentTypeByResourceName(resourceName))) {
+                    response.setContentType(getContentTypeByResourceName(resourceName));
+                }
+
                 BufferedInputStream bInputStream = new BufferedInputStream(mContext.getAssets().open(resourceName));
                 response.sendStream(bInputStream, bInputStream.available());
             } catch (IOException e) {
@@ -284,5 +299,49 @@ public class ServerApi {
 
         });
     }
+
+
+    private static final String TEXT_CONTENT_TYPE = "text/html;charset=utf-8";
+    private static final String CSS_CONTENT_TYPE = "text/css;charset=utf-8";
+    private static final String BINARY_CONTENT_TYPE = "application/octet-stream";
+    private static final String JS_CONTENT_TYPE = "application/javascript";
+    private static final String PNG_CONTENT_TYPE = "application/x-png";
+    private static final String JPG_CONTENT_TYPE = "application/jpeg";
+    private static final String SWF_CONTENT_TYPE = "application/x-shockwave-flash";
+    private static final String WOFF_CONTENT_TYPE = "application/x-font-woff";
+    private static final String TTF_CONTENT_TYPE = "application/x-font-truetype";
+    private static final String SVG_CONTENT_TYPE = "image/svg+xml";
+    private static final String EOT_CONTENT_TYPE = "image/vnd.ms-fontobject";
+    private static final String MP3_CONTENT_TYPE = "audio/mp3";
+    private static final String MP4_CONTENT_TYPE = "video/mpeg4";
+
+    private String getContentTypeByResourceName(String resourceName) {
+        if (resourceName.endsWith(".css")) {
+            return CSS_CONTENT_TYPE;
+        } else if (resourceName.endsWith(".js")) {
+            return JS_CONTENT_TYPE;
+        } else if (resourceName.endsWith(".swf")) {
+            return SWF_CONTENT_TYPE;
+        } else if (resourceName.endsWith(".png")) {
+            return PNG_CONTENT_TYPE;
+        } else if (resourceName.endsWith(".jpg") || resourceName.endsWith(".jpeg")) {
+            return JPG_CONTENT_TYPE;
+        } else if (resourceName.endsWith(".woff")) {
+            return WOFF_CONTENT_TYPE;
+        } else if (resourceName.endsWith(".ttf")) {
+            return TTF_CONTENT_TYPE;
+        } else if (resourceName.endsWith(".svg")) {
+            return SVG_CONTENT_TYPE;
+        } else if (resourceName.endsWith(".eot")) {
+            return EOT_CONTENT_TYPE;
+        } else if (resourceName.endsWith(".mp3")) {
+            return MP3_CONTENT_TYPE;
+        } else if (resourceName.endsWith(".mp4")) {
+            return MP4_CONTENT_TYPE;
+        }
+        return "";
+    }
+
+
 
 }
