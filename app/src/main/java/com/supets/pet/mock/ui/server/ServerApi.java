@@ -53,6 +53,7 @@ public class ServerApi {
 
         //addhtml("/switch_mode.html*", "switch_mode.html");
         addhtml("/apidetail.html*", "apidetail.html");
+        addhtml("/apidetail2.html*", "apidetail2.html");
 
         addLocalJSResource("/jquery-1.7.2.min.js");
         addLocalJSResource("/dist/.*");
