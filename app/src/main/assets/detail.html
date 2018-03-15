@@ -12,7 +12,7 @@
       font: 10.5pt arial;
       color: #4d4d4d;
       line-height: 150%;
-      width: 500px;
+      width: 100%;
     }
 
     code {
@@ -21,26 +21,56 @@
 
     #jsoneditor {
       width: 100%;
-      height: 500px;
+      height: 800px;
     }
-
-
-
 
     </style>
 
-    <script type="text/javascript">
+    <head>
+<body>
+
+<div style="width:80%;overflow:hidden;;margin:20 30 30 10">
+    <h2 style="background-color: #4682B4;color:white;padding:10px 20px 10px 20px">实时查看JSON</h2>
+    <br>
+
+    <button style="width:200px;height:60px" onclick="javascript:timedCount();">启动实时数据查看</button>
+    <button style="width:200px;height:60px" onclick="javascript:stopCount();">停止实时数据查看</button>
+    <br>
+    <br>
+
+    <textarea id="filelist" style="width:100%;font-size:16"></textarea>
+    <div id="jsoneditor" style="font-size:16"></div>
+
+</div>
+</body>
+
+<script type="text/javascript">
     var c=false;
     var t;
     var $trs="";
     var $data="";
+
+var container = document.getElementById('jsoneditor');
+var options = {
+    mode: 'text',
+    modes: ['code', 'form', 'text', 'tree', 'view'], // allowed modes
+    onError: function (err) {
+      alert(err.toString());
+    },
+    onModeChange: function (newMode, oldMode) {
+      console.log('Mode switched from', oldMode, 'to', newMode);
+    }
+  };
+var json = {};
+var editor = new JSONEditor(container, options, json);
+
 
     function timedCount(){
 
            if(!c){
                 c=true;
                 $("#filelist").val($trs);
-                $("#jsoneditor").val($data);
+                editor.setText($data);
                 getapidata();
            }
 
@@ -56,7 +86,7 @@
 
            $.getJSON('getmockrealdata', function(data) {
               if(data.length>0){
-                $trs= "接口名称："+data[0].url+"\n时间："+ new Date(data[0].time).toLocaleString()+ "\n接口参数："+ data[0].requestParam+ "\n接口数据："+ data[0].data;
+                $trs= "接口名称："+data[0].url+"\n时间："+ new Date(data[0].time).toLocaleString()+ "\n接口参数："+ data[0].requestParam;
                 $data= data[0].data;
                  c=false;
                }
@@ -65,27 +95,6 @@
      }
 
 
+</script>
 
-
-
-
-
-    </script>
-    <head>
-<body background="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1520576071&di=69251842241518b8cb1a6c4ff3a1ebd3&src=http://tupian.enterdesk.com/2012/0608/gha/7/8.jpg">
-
-<div style="width:80%;overflow:hidden;;margin:20 30 30 10">
-    <h2 style="background-color: #4682B4;color:white;padding:10px 20px 10px 20px">实时查看JSON</h2>
-    <br>
-
-    <button style="width:200px;height:60px" onclick="javascript:timedCount();">启动实时数据查看</button>
-    <button style="width:200px;height:60px" onclick="javascript:stopCount();">停止实时数据查看</button>
-    <br>
-    <br>
-
-    <textarea id="filelist" style="width:100%;height:80%;font-size:16"></textarea>
-    <div id="jsoneditor" style="width:100%;height:80%;font-size:16"></div>
-
-</div>
-</body>
 </html>
