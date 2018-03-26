@@ -53,6 +53,10 @@ public class MockToolsAdapter extends BaseRecycleAdapter<String> {
                     Intent intent = new Intent(view.getContext(), MainJsonActivity.class);
                     view.getContext().startActivity(intent);
                 }
+                if (position == 7) {
+                    Intent intent = new Intent(view.getContext(), MainJsonActivity.class);
+                    view.getContext().startActivity(intent);
+                }
 
             }
         });

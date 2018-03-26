@@ -24,6 +24,8 @@
       height: 800px;
     }
 
+
+
     </style>
 
     <head>
@@ -33,8 +35,10 @@
     <h2 style="background-color: #4682B4;color:white;padding:10px 20px 10px 20px">实时查看JSON</h2>
     <br>
 
-    <button style="width:200px;height:60px" onclick="javascript:timedCount();">启动实时数据查看</button>
-    <button style="width:200px;height:60px" onclick="javascript:stopCount();">停止实时数据查看</button>
+    <button id="start" style="width:200px;height:60px" onclick="javascript:timedCount();">启动实时数据查看
+    </button>
+    <button id="stop" style="width:200px;height:60px" onclick="javascript:stopCount();">停止实时数据查看
+    </button>
     <br>
     <br>
 
@@ -67,11 +71,21 @@ var editor = new JSONEditor(container, options, json);
 
     function timedCount(){
 
+            $("#stop").css("background-color","red");
+
+
            if(!c){
+
+              $("#start").css("background-color","green");
+
                 c=true;
                 $("#filelist").val($trs);
                 editor.setText($data);
                 getapidata();
+           }
+
+           if(c){
+             $("#start").css("background-color","white");
            }
 
            t=setTimeout("timedCount()",1000);
@@ -79,6 +93,10 @@ var editor = new JSONEditor(container, options, json);
   }
 
      function stopCount(){
+
+             $("#start").css("background-color","white");
+            $("#stop").css("background-color","white");
+
             clearTimeout(t);
      }
 
@@ -93,6 +111,8 @@ var editor = new JSONEditor(container, options, json);
            });
 
      }
+
+
 
 
 </script>
