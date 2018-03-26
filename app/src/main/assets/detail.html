@@ -75,9 +75,6 @@ var editor = new JSONEditor(container, options, json);
 
 
            if(!c){
-
-              $("#start").css("background-color","green");
-
                 c=true;
                 $("#filelist").val($trs);
                 editor.setText($data);
@@ -103,10 +100,12 @@ var editor = new JSONEditor(container, options, json);
     function getapidata(){
 
            $.getJSON('getmockrealdata', function(data) {
+               $("#start").css("background-color","green");
               if(data.length>0){
                 $trs= "接口名称："+data[0].url+"\n时间："+ new Date(data[0].time).toLocaleString()+ "\n接口参数："+ data[0].requestParam;
                 $data= data[0].data;
                  c=false;
+
                }
            });
 
