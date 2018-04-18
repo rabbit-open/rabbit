@@ -1,1 +1,1 @@
-include ':app',':mocklib'
+include ':app',':mocklib', ':words'

@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-@SuppressWarnings("serial")
 public class WeiXinCircleContent implements Serializable {
 
     private String meWeiXinId;  // 当前手机登录的账号id

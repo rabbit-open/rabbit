@@ -2,20 +2,11 @@ package com.supets.pet.mock.wechaht;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.Base64;
 import android.util.Log;
-import android.widget.Toast;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileReader;
-import java.io.ObjectInputStream;
-import java.io.Serializable;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProvinceCityDAL {
 
@@ -32,7 +23,6 @@ public class ProvinceCityDAL {
 
 
     // 根据页码获取所有记录
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void select() {
         Cursor cursor = null;
 
@@ -41,6 +31,12 @@ public class ProvinceCityDAL {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
                 byte[] contnes = cursor.getBlob(cursor.getColumnIndex("content"));
+//                System.out.print("-----------");
+//
+////                System.out.print(URLDecoder.decode(new String(contnes)));
+//
+//                System.out.print(WeiXinUtils.dealWeiXinDataOfCircle("", "", "", "", "", "", 3, 0, new String(contnes), ""));
+
                 cursor.moveToNext();
             }
         } catch (Exception e) {
@@ -53,6 +49,20 @@ public class ProvinceCityDAL {
         }
     }
 
+
+    //char转化为byte
+    public static byte[] charToByte(char c) {
+        byte[] b = new byte[2];
+        b[0] = (byte) ((c & 0xFF00) >> 8);
+        b[1] = (byte) (c & 0xFF);
+        return b;
+    }
+
+    //byte转换为char
+    public static char byteToChar(byte[] b) {
+        char c = (char) (((b[0] & 0xFF) << 8) | (b[1] & 0xFF));
+        return c;
+    }
 
     public void closeDB() {
         if (dbService != null) {
