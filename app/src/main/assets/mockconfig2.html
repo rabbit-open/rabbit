@@ -28,11 +28,45 @@
     }
 
 
-
-
-
     </style>
-    <script type="text/javascript">
+
+    <script type="text/javascript"></script>
+
+</head>
+
+<body>
+<div style="width:100%;overflow:hidden;background:#e5e5e5;height:100%;">
+
+    <table border="1" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+
+            <td style="width:100%;background-color:#FFC1C1;padding:10px 5px 15px 20px;">
+                <div>
+                    <form>
+                        <h2>2 手动添加测试接口</h2>
+                        <h4>API名称</h4>
+                        <textarea style="width:80%;" id="firstname1"
+                                  rows="2"></textarea>
+                        <br/>
+                        <h4>API数据</h4>
+                        <button type="button" style="width:200px;height:45px;"
+                                onclick="javascript:saveconfig2('aa')">
+                            添加
+                        </button>
+                        <br/>
+                        <br/>
+                        <div id="jsoneditor" style="font-size:16"></div>
+
+                    </form>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+
+</body>
 
 
 <script type="text/javascript">
@@ -55,10 +89,8 @@ var options = {
 var json = {};
 var editor = new JSONEditor(container, options, json);
 
-
-
-//保存测试接口
-function saveconfig2(data){
+    //保存测试接口
+    function saveconfig2(data){
 
       var  name= $("#firstname1").val();
       var  data= editor.getText();
@@ -72,49 +104,8 @@ function saveconfig2(data){
               }
       });
 
-}
+    }
 
-
-    </script>
-
-</head>
-
-<body>
-<div style="width:100%;overflow:hidden;background:#e5e5e5;height:100%;">
-
-    <table border="1" cellpadding="0" cellspacing="0" width="100%">
-        <tr>
-
-            <td style="width:100%;background-color:#FFC1C1;padding:10px 5px 15px 20px;">
-                <div>
-                    <form>
-                        <h2>2 手动添加测试接口</h2>
-                        <h4>API名称</h4>
-                        <textarea style="width:80%;" id="firstname1"
-                                  rows="2"></textarea>
-                        <br/>
-                        <h4>API数据</h4>
-
-                        <!--<textarea style="width:80%;" id="firstname2"-->
-                        <!--rows="5"></textarea>-->
-
-                        <div id="jsoneditor" style="font-size:16"></div>
-
-                        <br/>
-                        <br/>
-                        <button type="button" style="width:200px;height:45px;"
-                                onclick="javascript:saveconfig2('aa')">
-                            添加
-                        </button>
-                    </form>
-                </div>
-            </td>
-        </tr>
-
-    </table>
-
-</div>
-
-</body>
+</script>
 
 </html>
