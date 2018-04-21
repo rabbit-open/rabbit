@@ -50,6 +50,8 @@ public class ServerApi {
 
         addhtml("/readapidata.html", "readapidata.html");
         addhtml("/mockconfig.html*", "mockconfig.html");
+        addhtml("/mockconfig2.html", "mockconfig2.html");
+        addhtml("/mockconfig3.html", "mockconfig3.html");
 
         //addhtml("/switch_mode.html*", "switch_mode.html");
         addhtml("/apidetail.html*", "apidetail.html");
@@ -211,10 +213,11 @@ public class ServerApi {
             }
 
             String apikey = request.getQuery().getString("apikey");
+            String debug = request.getQuery().getString("debug");
             if (TextUtils.isEmpty(apikey)) {
-                response.send(new Gson().toJson(LocalMockDataDB.queryAll()));
+                response.send(new Gson().toJson(LocalMockDataDB.queryAll(debug)));
             } else {
-                response.send(new Gson().toJson(LocalMockDataDB.queryAllMockData(apikey)));
+                response.send(new Gson().toJson(LocalMockDataDB.queryAllMockData(apikey, debug)));
             }
 
         });

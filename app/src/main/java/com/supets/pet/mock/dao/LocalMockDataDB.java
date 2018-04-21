@@ -9,15 +9,15 @@ import java.util.List;
 public class LocalMockDataDB extends SessionFactory {
 
 
-    private  static final LocalMockDataDao dao=getDbSession().getLocalMockDataDao();
+    private static final LocalMockDataDao dao = getDbSession().getLocalMockDataDao();
 
 
     public static List<LocalMockData> queryAllMockData(String url) {
         return dao.queryRaw("where url= ?", url);
     }
 
-    public static  void deleteById(String id) {
-         dao.deleteByKey(Long.parseLong(id));
+    public static void deleteById(String id) {
+        dao.deleteByKey(Long.parseLong(id));
     }
 
     public static List<LocalMockData> queryAll() {
@@ -42,5 +42,13 @@ public class LocalMockDataDB extends SessionFactory {
 
     public static List<LocalMockData> queryMockDataById(String id) {
         return dao.queryRaw("where _id = ?  ", id);
+    }
+
+    public static List<LocalMockData> queryAllMockData(String url, String debug) {
+        return dao.queryRaw("where url= ? and selected = ? ", url, Boolean.valueOf(debug)?"1":"0");
+    }
+
+    public static List<LocalMockData> queryAll(String debug) {
+        return dao.queryRaw("where selected = ? ", Boolean.valueOf(debug)?"1":"0");
     }
 }

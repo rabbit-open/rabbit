@@ -94,22 +94,22 @@ function saveconfig2(data){
 
 }
 
-//初始化执行
-$(function(){
+<!--//初始化执行-->
+<!--$(function(){-->
 
-    $.getJSON("getmockconfig", function(data) {
+    <!--$.getJSON("getmockconfig", function(data) {-->
 
-                $("input[name='alert']").eq(1).attr("checked",data.ToastSwitch?true:false);
-                $("input[name='alert']").eq(0).attr("checked",data.ToastSwitch?false:true);
+                <!--$("input[name='alert']").eq(1).attr("checked",data.ToastSwitch?true:false);-->
+                <!--$("input[name='alert']").eq(0).attr("checked",data.ToastSwitch?false:true);-->
 
-                $("#open1").prop("checked",data.DebugMode?true:false);
-                $("#open2").prop("checked",data.JsonSwitch?true:false);
+                <!--$("#open1").prop("checked",data.DebugMode?true:false);-->
+                <!--$("#open2").prop("checked",data.JsonSwitch?true:false);-->
 
-                $("#firstname").val(data.apikey);
+                <!--$("#firstname").val(data.apikey);-->
 
-         });
+         <!--});-->
 
-});
+<!--});-->
 
     </script>
 
@@ -117,36 +117,34 @@ $(function(){
 
 <body>
 <div style="width:100%;overflow:hidden;background:#e5e5e5;height:100%;">
-    <!--<h1 style="width:100%;padding:10px 5px 15px 20px;">兔子测试配置</h1>-->
-    <!--<br>-->
-    <!--<hr>-->
-    <table border="1" cellpadding="0" cellspacing="0" width="100%">
-        <tr>
-            <td style="width:50%;background-color:#eeffed;padding:10px 5px 15px 20px;">
-                <div>
-                    <form>
-                        <h2> 1 基本配置</h2>
-                        <h4>接口过滤规则</h4>
-                        <textarea style="width:50%;height:40px;" id="firstname" rows="2"></textarea>
-                        <br/>
-                        <h4>悬浮助手打开：</h4>
-                        <input type="radio" name="alert" value="0"/>实时显示接口数据
-                        <br/>
-                        <input type="radio" name="alert" value="1"/>显示非json数据
-                        <br/>
-                        <h4>开关配置：</h4>
-                        <input type="checkbox" id="open1"/>打开测试模式，不会抓取数据，优先级高。
-                        <br/>
-                        <input type="checkbox" id="open2"/>抓取数据模式，不能打开调试模式。
-                        <br/>
-                        <br/>
-                        <button type="button" style="width:200px;height:45px;"
-                                onclick="javascript:saveconfig('aa')">
-                            保存配置数据
-                        </button>
-                    </form>
-                </div>
-            </td>
+
+    <!--<table border="1" cellpadding="0" cellspacing="0" width="100%">-->
+        <!--<tr>-->
+            <!--<td style="width:50%;background-color:#eeffed;padding:10px 5px 15px 20px;">-->
+                <!--<div>-->
+                    <!--<form>-->
+                        <!--<h2> 1 基本配置</h2>-->
+                        <!--<h4>接口过滤规则</h4>-->
+                        <!--<textarea style="width:50%;height:40px;" id="firstname" rows="2"></textarea>-->
+                        <!--<br/>-->
+                        <!--<h4>悬浮助手打开：</h4>-->
+                        <!--<input type="radio" name="alert" value="0"/>实时显示接口数据-->
+                        <!--<br/>-->
+                        <!--<input type="radio" name="alert" value="1"/>显示非json数据-->
+                        <!--<br/>-->
+                        <!--<h4>开关配置：</h4>-->
+                        <!--<input type="checkbox" id="open1"/>打开测试模式，不会抓取数据，优先级高。-->
+                        <!--<br/>-->
+                        <!--<input type="checkbox" id="open2"/>抓取数据模式，不能打开调试模式。-->
+                        <!--<br/>-->
+                        <!--<br/>-->
+                        <!--<button type="button" style="width:200px;height:45px;"-->
+                                <!--onclick="javascript:saveconfig('aa')">-->
+                            <!--保存配置数据-->
+                        <!--</button>-->
+                    <!--</form>-->
+                <!--</div>-->
+            <!--</td>-->
             <!--<td style="width:50%;background-color:#FFC1C1;padding:10px 5px 15px 20px;">-->
                 <!--<div>-->
                     <!--<form>-->
@@ -167,47 +165,31 @@ $(function(){
                     <!--</form>-->
                 <!--</div>-->
             <!--</td>-->
-        </tr>
-        <!--<tr>-->
-        <!--<td style="width:50%;">-->
-        <!--<div style="background:#dddddd;">-->
-        <!--<h2> 2 配置具体MOCK UI数据</h2>-->
-        <!--<button type="button" style="width:100px;height:45px;"-->
-        <!--onclick="javascript:getapidata('aa')">-->
-        <!--查看所有接口-->
-        <!--</button>-->
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--<table id="datalist"-->
-        <!--style="width:100%;word-break:break-all;border:none;"-->
-        <!--border="1">-->
-        <!--</table>-->
-        <!--</div>-->
-        <!--</td>-->
         <!--</tr>-->
-    </table>
+       <!---->
+    <!--</table>-->
 
-    <!--<div style="background-color:#cccccc;padding:10px 5px 15px 20px;">-->
-        <!--<h2> 3 配置具体 MOCK UI数据</h2>-->
-        <!--<h4>输入配置接口名称</h4>-->
-        <!--<textarea style="width:25%;" id="firstname3"-->
-                  <!--rows="2"></textarea>-->
-        <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-        <!--<input type="checkbox" id="select"/>调试状态-->
-        <!--<br>-->
-        <!--<br>-->
-        <!--<button type="button" style="width:200px;height:60px;"-->
-                <!--onclick="javascript:getapidata('aa')">-->
-            <!--查看所有接口（默认）-->
-        <!--</button>-->
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--<table id="datalist"-->
-               <!--style="width:100%;word-break:break-all;border:none;"-->
-               <!--border="1">-->
-        <!--</table>-->
+    <div style="background-color:#cccccc;padding:10px 5px 15px 20px;">
+        <h2> 3 配置具体 MOCK UI数据</h2>
+        <h4>输入配置接口名称</h4>
+        <textarea style="width:25%;" id="firstname3"
+                  rows="2"></textarea>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="checkbox" id="select"/>调试状态
+        <br>
+        <br>
+        <button type="button" style="width:200px;height:60px;"
+                onclick="javascript:getapidata('aa')">
+            查看所有接口（默认）
+        </button>
+        <br/>
+        <br/>
+        <table id="datalist"
+               style="width:100%;word-break:break-all;border:none;"
+               border="1">
+        </table>
 
-    <!--</div>-->
+    </div>
 
 </div>
 
