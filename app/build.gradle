@@ -12,10 +12,10 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
 
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support:design:26.1.0'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
-    compile 'com.android.support:cardview-v7:26.1.0'
+    compile 'com.android.support:appcompat-v7:27.1.1'
+    compile 'com.android.support:design:27.1.1'
+    compile 'com.android.support:recyclerview-v7:27.1.1'
+    compile 'com.android.support:cardview-v7:27.1.1'
 
 
     compile 'com.cloudpet.base:baserouter:1.0.0'
@@ -35,7 +35,7 @@ dependencies {
     compile "com.jakewharton:butterknife:8.4.0"
     compile "com.jakewharton:butterknife-compiler:8.4.0"
     compile 'com.koushikdutta.async:androidasync:2.2.1'
-    compile 'com.jakewharton.timber:timber:4.1.2'
+    compile 'com.jakewharton.timber:timber:4.3.0'
     compile "com.hwangjr.rxbus:rxbus:1.0.5"
 }
 
@@ -107,15 +107,16 @@ applicationVariants.all { variant ->
         def outputFile = output.outputFile
         // 输出apk名称为supets_localhost_V3.5.0_build110.apk
         def runTasks = gradle.startParameter.taskNames
+
         if (('assembleDebug' in runTasks)) {
-            def fileName = "Tuzi__${variant.productFlavors[0].name}_V${defaultConfig.versionName}_build${defaultConfig.versionCode}_debug.apk"
-            output.outputFile = new File(outputFile.parent, fileName)
+            def  outputFileName  = "Tuzi__${variant.productFlavors[0].name}_V${defaultConfig.versionName}_build${defaultConfig.versionCode}_debug.apk"
+            output.outputFile = new File(outputFile.parent, outputFileName)
         } else if (('assembleRelease' in runTasks)) {
-            def fileName = "Tuzi__${variant.productFlavors[0].name}_V${defaultConfig.versionName}_build${defaultConfig.versionCode}_release.apk"
-            output.outputFile = new File(outputFile.parent, fileName)
+            def outputFileName  = "Tuzi__${variant.productFlavors[0].name}_V${defaultConfig.versionName}_build${defaultConfig.versionCode}_release.apk"
+            output.outputFile = new File(outputFile.parent, outputFileName)
         } else {
-            def fileName = "Tuzi__${variant.productFlavors[0].name}_V${defaultConfig.versionName}_build${defaultConfig.versionCode}.apk"
-            output.outputFile = new File(outputFile.parent, fileName)
+            def outputFileName  = "Tuzi__${variant.productFlavors[0].name}_V${defaultConfig.versionName}_build${defaultConfig.versionCode}.apk"
+            output.outputFile = new File(outputFile.parent, outputFileName)
         }
     }
 }
