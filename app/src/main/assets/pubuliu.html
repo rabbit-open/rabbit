@@ -1,0 +1,220 @@
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>北京Web前端开发培训_达内web培训机构-打造web全栈式工程师的专业平台</title>
+
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+            font-style: normal;
+            font-family: arial;
+            font-family: Microsoft YaHei, arial;
+        }
+
+        .twoRankedBox {
+            margin: 6px 8px;
+            overflow: hidden;
+            padding-bottom: 25px;
+        }
+
+        .twoRankedBox ul {
+            width: 49%;
+            float: left;
+        }
+
+        .twoRankedBox ul:last-child {
+            margin-left: 2%;
+        }
+
+        .twoRankedBox ul li {
+            padding: 5px;
+            margin-bottom: 6px;
+            padding-bottom: 8px;
+            background-color: #FFFFFF;
+        }
+
+        .twoRankedBox ul li p:first-child {
+            padding-top: 0px;
+        }
+
+        .twoRankedBox ul li p {
+            padding-top: 4px;
+        }
+
+        .product_picture img {
+            display: block;
+            width: 100%;
+        }
+
+        .product_np {
+            overflow: hidden;
+            line-height: 20px;
+        }
+
+        .product_np a {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .product_np a:first-child {
+            font-size: 0.9em;
+            color: #58b7e3;
+            width: 65%;
+            float: left;
+        }
+
+        .product_np a:last-child {
+            font-size: 0.8em;
+            color: #f00;
+            float: right;
+            width: 35%;
+            text-align: right;
+        }
+
+        .product_ie {
+            font-size: 0.8em;
+            color: #777;
+        }
+    </style>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+</head>
+
+<body style="background-color: #f3f3f3;">
+<!-- 商品列表 -->
+<div class="twoRankedBox">
+    <ul class="BoxLeft">
+
+    </ul>
+
+    <ul class="BoxRight">
+
+    </ul>
+</div>
+
+<script>
+
+    $(function () {
+
+        //模拟JSON数据
+        var json = {
+            data: [
+                {
+                    name: '花瓣小小裙花瓣',
+                    price: '128',
+                    details: '质量超好特别的舒适，夏天首选。',
+                    src: 'http://img3.redocn.com/tupian/20150312/haixinghezhenzhubeikeshiliangbeijing_3937174.jpg'
+                },
+                {
+                    name: '花瓣小小裙花瓣',
+                    price: '128',
+                    details: '质量超好特别的舒适，夏天首选。',
+                    src: 'http://img3.redocn.com/tupian/20150312/haixinghezhenzhubeikeshiliangbeijing_3937174.jpg'
+                },
+                {
+                    name: '花瓣小小裙花瓣',
+                    price: '128',
+                    details: '质量超好特别的舒适，夏天首选。',
+                    src: 'http://img3.redocn.com/tupian/20150312/haixinghezhenzhubeikeshiliangbeijing_3937174.jpg'
+                },
+                {
+                    name: '花瓣小小裙花瓣',
+                    price: '128',
+                    details: '质量超好特别的舒适，夏天首选。',
+                    src: 'http://img3.redocn.com/tupian/20150312/haixinghezhenzhubeikeshiliangbeijing_3937174.jpg'
+                },
+                {
+                    name: '花瓣小小裙花瓣',
+                    price: '128',
+                    details: '质量超好特别的舒适，夏天首选。',
+                    src: 'http://img3.redocn.com/tupian/20150312/haixinghezhenzhubeikeshiliangbeijing_3937174.jpg'
+                },
+                {
+                    name: '花瓣小小裙花瓣',
+                    price: '128',
+                    details: '质量超好特别的舒适，夏天首选。',
+                    src: 'http://img3.redocn.com/tupian/20150312/haixinghezhenzhubeikeshiliangbeijing_3937174.jpg'
+                },
+                {
+                    name: '花瓣小小裙花瓣',
+                    price: '128',
+                    details: '质量超好特别的舒适，夏天首选。',
+                    src: 'http://img3.redocn.com/tupian/20150312/haixinghezhenzhubeikeshiliangbeijing_3937174.jpg'
+                },
+                {
+                    name: '花瓣小小裙花瓣',
+                    price: '128',
+                    details: '质量超好特别的舒适，夏天首选。',
+                    src: 'http://img3.redocn.com/tupian/20150312/haixinghezhenzhubeikeshiliangbeijing_3937174.jpg'
+                },
+                {
+                    name: '花瓣小小裙花瓣',
+                    price: '128',
+                    details: '质量超好特别的舒适，夏天首选。',
+                    src: 'http://img3.redocn.com/tupian/20150312/haixinghezhenzhubeikeshiliangbeijing_3937174.jpg'
+                },
+                {
+                    name: '花瓣小小裙花瓣',
+                    price: '128',
+                    details: '质量超好特别的舒适，夏天首选。',
+                    src: 'http://img3.redocn.com/tupian/20150312/haixinghezhenzhubeikeshiliangbeijing_3937174.jpg'
+                },
+                {
+                    name: '花瓣小小裙花瓣',
+                    price: '128',
+                    details: '质量超好特别的舒适，夏天首选。',
+                    src: 'http://img3.redocn.com/tupian/20150312/haixinghezhenzhubeikeshiliangbeijing_3937174.jpg'
+                },
+                {
+                    name: '花瓣小小裙花瓣',
+                    price: '128',
+                    details: '质量超好特别的舒适，夏天首选。',
+                    src: 'http://img3.redocn.com/tupian/20150312/haixinghezhenzhubeikeshiliangbeijing_3937174.jpg'
+                },
+                {
+                    name: '花瓣小小裙花瓣',
+                    price: '128',
+                    details: '质量超好特别的舒适，夏天首选。',
+                    src: 'http://img3.redocn.com/tupian/20150312/haixinghezhenzhubeikeshiliangbeijing_3937174.jpg'
+                },
+                {
+                    name: '花瓣小小裙花瓣',
+                    price: '128',
+                    details: '质量超好特别的舒适，夏天首选。',
+                    src: 'http://img3.redocn.com/tupian/20150312/haixinghezhenzhubeikeshiliangbeijing_3937174.jpg'
+                }
+            ]
+        };
+
+        //模拟数据导入
+        for (var i = 0; i < json.data.length; i++) {
+            var itemContent = ' <li> <p class = "product_picture" > <img src = "' + json.data[i].src + '"></p>' + '<p class="product_np"><a>' + json.data[i].name + '</a><a>￥' + json.data[i].price + '</a></p>' + '<p class="product_ie">' + json.data[i].details + '</p></li>';
+
+            var leftTotalHeight = $(".BoxLeft");
+            var rightTotalHeight = $(".BoxRight");
+
+            if (leftTotalHeight.height() < rightTotalHeight.height()) {
+                leftTotalHeight.append(itemContent);
+            } else {
+                rightTotalHeight.append(itemContent);
+            }
+        }
+
+    });
+
+
+</script>
+
+</body>
+
+</html>
+
+
+

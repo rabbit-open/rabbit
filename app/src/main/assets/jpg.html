@@ -1,53 +1,139 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <script src="jquery-1.7.2.min.js" type="text/javascript"></script>
 
-    <title>手机图片查看</title>
-    <script type="text/javascript">
-        $(function() {
+<head>
+
+    <meta charset="UTF-8">
+    <title>兔子测试</title>
+
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+            font-style: normal;
+            font-family: arial;
+            font-family: Microsoft YaHei, arial;
+        }
+
+        .twoRankedBox {
+            margin: 6px 8px;
+            overflow: hidden;
+            padding-bottom: 25px;
+        }
+
+        .twoRankedBox ul {
+            width: 49%;
+            float: left;
+        }
+
+        .twoRankedBox ul:last-child {
+            margin-left: 2%;
+        }
+
+        .twoRankedBox ul li {
+            padding: 5px;
+            margin-bottom: 6px;
+            padding-bottom: 8px;
+            background-color: #FFFFFF;
+        }
+
+        .twoRankedBox ul li p:first-child {
+            padding-top: 0px;
+        }
+
+        .twoRankedBox ul li p {
+            padding-top: 4px;
+        }
+
+        .product_picture img {
+            display: block;
+            width: 100%;
+        }
+
+        .product_np {
+            overflow: hidden;
+            line-height: 20px;
+        }
+
+        .product_np a {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .product_np a:first-child {
+            font-size: 0.9em;
+            color: #58b7e3;
+            width: 65%;
+            float: left;
+        }
+
+        .product_np a:last-child {
+            font-size: 0.8em;
+            color: #f00;
+            float: right;
+            width: 35%;
+            text-align: right;
+        }
+
+        .product_ie {
+            font-size: 0.8em;
+            color: #777;
+        }
+
+    </style>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+</head>
+
+<body style="background-color: #f3f3f3;">
+<!-- 商品列表 -->
+<div class="twoRankedBox">
+    <ul class="BoxLeft">
+
+    </ul>
+
+    <ul class="BoxRight">
+
+    </ul>
+</div>
+
+<script>
+
+    $(function () {
+
             var now = new Date();
-            <!--var $video = $("#videoplayer");-->
             var url = 'files' + '?format=jpg&' + now.getTime();
 
             $.getJSON(url, function(data) {
                 for (var i = 0; i < data.length; i++) {
 
-                    var p = "/files/" + data[i].path;
-                    var $li = $('<li><a href="'+p+'">' + data[i].name + '</a></li>');
 
-                    <!--var $li = $('<li>' + data[i].name + '</li>');-->
-                    <!--$li.attr("path", data[i].path);-->
-                    $("#filelist").append($li);
-                    <!--$li.click(function() {-->
-                        <!--var p = "/files/" + $(this).attr("path");-->
-                        <!--$video.attr("src", "/files/" + $(this).attr("path"));-->
-                    <!--});-->
+            var itemContent = ' <li> <p class = "product_picture" > <img src = "' + "/files/" + data[i].path + '"></p>' + '<p class="product_np"><a>' + data[i].name + '</a><a>￥' + i + '</a></p>' + '<p class="product_ie">' + data[i].path + '</p></li>';
+
+            var leftTotalHeight = $(".BoxLeft");
+            var rightTotalHeight = $(".BoxRight");
+
+            if (leftTotalHeight.height() < rightTotalHeight.height()) {
+                leftTotalHeight.append(itemContent);
+            } else {
+                rightTotalHeight.append(itemContent);
+            }
+
+
                 }
             });
-        });
 
 
 
 
+    });
 
 
-    </script>
-</head>
 
-<body>
-<!--<h1>手机图片列表</a></h1>-->
-<!--<br>-->
-<!--<hr>-->
-<table style="width:100%;">
-    <tr>
-        <td>
-            <ul id="filelist"></ul>
-        </td>
-        <!--<td style="width:50%;"><img id="videoplayer" /></td>-->
-    </tr>
-</table>
+</script>
 
 </body>
 
