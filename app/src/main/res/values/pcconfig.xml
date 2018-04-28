@@ -3,7 +3,7 @@
     <string name="pcconfig">
         \t\n
         浏览器输入地址:\t\n
-        http://localhost:54321 \t\n\t\n
+        http://%1$s:54321 \t\n\t\n
         注意：在同一个局域网段内
     </string>
 </resources>

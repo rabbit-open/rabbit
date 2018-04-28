@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.baidusoso.wifitransfer.MainWifiApkActivity;
 import com.supets.pet.mock.base.BaseRecycleAdapter;
 import com.supets.pet.mock.base.BaseRecycleViewHolder;
-import com.supets.pet.mock.ui.server.MainJsonActivity;
+import com.supets.pet.mock.ui.server.PCServerActivity;
 import com.supets.pet.mock.ui.tool.MockToolActivity;
 import com.supets.pet.mock.utils.Utils;
 import com.supets.pet.mockui.R;
@@ -50,11 +50,11 @@ public class MockToolsAdapter extends BaseRecycleAdapter<String> {
                     view.getContext().startActivity(intent);
                 }
                 if (position == 6) {
-                    Intent intent = new Intent(view.getContext(), MainJsonActivity.class);
+                    Intent intent = new Intent(view.getContext(), PCServerActivity.class);
                     view.getContext().startActivity(intent);
                 }
                 if (position == 7) {
-                    Intent intent = new Intent(view.getContext(), MainJsonActivity.class);
+                    Intent intent = new Intent(view.getContext(), PCServerActivity.class);
                     view.getContext().startActivity(intent);
                 }
 

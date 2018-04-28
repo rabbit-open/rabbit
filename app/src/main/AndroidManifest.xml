@@ -100,7 +100,7 @@
         <activity
             android:name="com.baidusoso.wifitransfer.MainWifiApkActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service
             android:name="com.baidusoso.wifitransfer.WebService"
@@ -118,8 +118,8 @@
         </provider>
 
         <activity
-            android:name="com.supets.pet.mock.ui.server.MainJsonActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:name="com.supets.pet.mock.ui.server.PCServerActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
 
