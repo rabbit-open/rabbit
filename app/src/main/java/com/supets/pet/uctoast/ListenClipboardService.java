@@ -9,7 +9,7 @@ import android.text.TextUtils;
 
 import com.supets.pet.uctoast.clipboard.ClipboardManagerCompat;
 
-public final class ListenClipboardService extends Service implements TipViewController.ViewDismissHandler {
+public final class ListenClipboardService extends Service implements ClipViewWidget.ViewDismissHandler {
 
     private static final String KEY_FOR_WEAK_LOCK = "weak-lock";
     private static final String KEY_FOR_CMD = "cmd";
@@ -18,7 +18,7 @@ public final class ListenClipboardService extends Service implements TipViewCont
 
     private static CharSequence sLastContent = null;
     private ClipboardManagerCompat mClipboardWatcher;
-    private TipViewController mTipViewController;
+    private ClipViewWidget mTipViewController;
     private ClipboardManagerCompat.OnPrimaryClipChangedListener mOnPrimaryClipChangedListener = new ClipboardManagerCompat.OnPrimaryClipChangedListener() {
         public void onPrimaryClipChanged() {
             performClipboardCheck();
@@ -114,7 +114,7 @@ public final class ListenClipboardService extends Service implements TipViewCont
         if (mTipViewController != null) {
             mTipViewController.updateContent(content);
         } else {
-            mTipViewController = new TipViewController(getApplication(), content);
+            mTipViewController = new ClipViewWidget(getApplication(), content);
             mTipViewController.setViewDismissHandler(this);
             mTipViewController.show();
         }

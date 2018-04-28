@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.supets.pet.uctoast.ViewContainer xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4f000000"
+    android:paddingBottom="250dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/icon_tab"
+                android:drawablePadding="10dp"
+                android:gravity="left"
+                android:includeFontPadding="false"
+                android:text="翻译小助手"
+                android:textColor="#333333"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/pop_view_content_view"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:background="@color/appcolor"
+                android:text="查看翻译结果"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/pop_view_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="left"
+                android:includeFontPadding="false"
+                android:textColor="#000"
+                android:textSize="12sp" />
+        </ScrollView>
+    </LinearLayout>
+
+</com.supets.pet.uctoast.ViewContainer>

@@ -70,7 +70,7 @@ public class TabToolsFragment extends BaseFragment {
         datas.add("画形状");
         datas.add("PC安装APK");
         datas.add("PC配置测试客户端");
-        datas.add("面试专题");
+        datas.add("金山翻译");
         adapter.setData(datas);
         adapter.notifyDataSetChanged();
     }

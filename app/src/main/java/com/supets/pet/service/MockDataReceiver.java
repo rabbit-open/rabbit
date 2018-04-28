@@ -10,7 +10,6 @@ import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.dao.MockDataDB;
 import com.supets.pet.mock.utils.FormatLogProcess;
 import com.supets.pet.mock.utils.Utils;
-import com.supets.pet.uctoast.TipViewController;
 
 import java.util.Date;
 
@@ -20,7 +19,6 @@ public class MockDataReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
 
         if (MOCK_SERVICE_NETWORK.equals(intent.getAction())) {
 
@@ -54,7 +52,7 @@ public class MockDataReceiver extends BroadcastReceiver {
                                         .append(FormatLogProcess.format(FormatLogProcess.formatJsonText(json)))
                                         .toString();
 
-                        TipViewController mTipViewController = new TipViewController(context, message);
+                        TuZiWidget mTipViewController = new TuZiWidget(context, message);
                         mTipViewController.setViewDismissHandler(null);
                         mTipViewController.show();
 

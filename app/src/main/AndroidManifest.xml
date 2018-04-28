@@ -120,6 +120,9 @@
         <activity
             android:name="com.supets.pet.mock.ui.server.PCServerActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.supets.pet.mock.ui.translate.TranslateActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
 

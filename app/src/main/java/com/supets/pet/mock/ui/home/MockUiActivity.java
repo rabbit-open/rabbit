@@ -8,6 +8,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 import com.supets.pet.alert.PullMsgService;
+import com.supets.pet.uctoast.ListenClipboardService;
 
 
 public class MockUiActivity extends TabLayoutBottomActivity {
@@ -16,6 +17,7 @@ public class MockUiActivity extends TabLayoutBottomActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         update();
+        ListenClipboardService.start(this);
     }
 
     private void startMsgService() {

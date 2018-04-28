@@ -1,6 +1,5 @@
 package com.supets.pet.alert;
 
-import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -11,15 +10,12 @@ import android.os.IBinder;
 import android.os.Message;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 
 import com.supets.pet.mockui.R;
-import com.supets.pet.uctoast.ClipMainActivity;
-
 
 public class PullMsgService extends Service {
 
@@ -141,7 +137,7 @@ public class PullMsgService extends Service {
 
             @Override
             public void onClick(View v) {
-                ClipMainActivity.startForContent(getApplicationContext(), null);
+                //ClipMainActivity.startForContent(getApplicationContext(), null);
                 uiHandler.removeMessages(0x1101);
                 uiHandler.sendEmptyMessage(0x1101);
             }

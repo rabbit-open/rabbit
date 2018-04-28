@@ -52,7 +52,7 @@ public class MockAboutActivity extends AppCompatActivity {
                     .execute(new StringCallback() {
                         @Override
                         public void onError(Call call, Exception e, int id) {
-
+                            Toast.makeText(MockAboutActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override

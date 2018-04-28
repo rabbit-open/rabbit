@@ -1,6 +1,7 @@
-package com.supets.pet.uctoast;
+package com.supets.pet.service;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.os.Build;
@@ -11,9 +12,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.supets.pet.mock.ui.home.MockUiActivity;
 import com.supets.pet.mockui.R;
+import com.supets.pet.uctoast.ViewContainer;
 
-public final class TipViewController implements View.OnClickListener, View.OnTouchListener, ViewContainer.KeyEventHandler {
+public final class TuZiWidget implements View.OnClickListener, View.OnTouchListener, ViewContainer.KeyEventHandler {
 
     private WindowManager mWindowManager;
     private Context mContext;
@@ -23,7 +26,7 @@ public final class TipViewController implements View.OnClickListener, View.OnTou
     private CharSequence mContent;
     private TextView mTextView;
 
-    public TipViewController(Context application, CharSequence content) {
+    public TuZiWidget(Context application, CharSequence content) {
         mContext = application;
         mContent = content;
         mWindowManager = (WindowManager) application.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
@@ -40,7 +43,7 @@ public final class TipViewController implements View.OnClickListener, View.OnTou
 
     public void show() {
 
-        ViewContainer view = (ViewContainer) View.inflate(mContext, R.layout.pop_view, null);
+        ViewContainer view = (ViewContainer) View.inflate(mContext, R.layout.tuzi_pop_view, null);
 
         // display content
         mTextView = view.findViewById(R.id.pop_view_text);
@@ -66,7 +69,7 @@ public final class TipViewController implements View.OnClickListener, View.OnTou
             if (Build.VERSION.SDK_INT > 24) {
                 type = WindowManager.LayoutParams.TYPE_PHONE;
             } else {
-               // type = WindowManager.LayoutParams.TYPE_TOAST;
+                // type = WindowManager.LayoutParams.TYPE_TOAST;
                 type = WindowManager.LayoutParams.TYPE_PHONE;
             }
         } else {
@@ -82,7 +85,15 @@ public final class TipViewController implements View.OnClickListener, View.OnTou
     @Override
     public void onClick(View v) {
         removePoppedViewAndClear();
-        ClipMainActivity.startForContent(mContext, mContent.toString());
+        startForContent(mContext, mContent.toString());
+    }
+
+
+    public static void startForContent(Context context, String content) {
+        Intent intent = new Intent(context, MockUiActivity.class);
+        intent.putExtra("content", content);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 
     private void removePoppedViewAndClear() {

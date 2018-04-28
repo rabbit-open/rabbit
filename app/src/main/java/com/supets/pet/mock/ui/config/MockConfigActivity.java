@@ -11,9 +11,9 @@ import android.widget.Toast;
 import com.supets.commons.widget.CommonHeader;
 import com.supets.pet.mock.config.Config;
 import com.supets.pet.mockui.R;
-import com.supets.pet.uctoast.TipViewController;
+import com.supets.pet.uctoast.ClipViewWidget;
 
-public class MockConfigActivity extends AppCompatActivity implements View.OnClickListener, TipViewController.ViewDismissHandler {
+public class MockConfigActivity extends AppCompatActivity implements View.OnClickListener, ClipViewWidget.ViewDismissHandler {
 
     private CheckBox mDebugSwitch;
     private CheckBox mDebugMore;
