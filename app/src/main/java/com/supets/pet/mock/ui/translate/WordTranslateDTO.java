@@ -1,17 +1,19 @@
 package com.supets.pet.mock.ui.translate;
 
+import android.text.TextUtils;
+
 import java.util.ArrayList;
 
 public class WordTranslateDTO {
 
     public String word_name;
-    public int is_CRI;
-    public exchange exchange;
+    //public int is_CRI;
+    //public exchange exchange;
     public ArrayList<symbols> symbols;
     public String[] items;
 
     public static class exchange {
-        public String[] word_pl;
+        public String word_pl;
         public String word_past;
         public String word_done;
         public String word_ing;
@@ -19,7 +21,6 @@ public class WordTranslateDTO {
         public String word_er;
         public String word_est;
     }
-
 
     public static class symbols {
         public String ph_en;
@@ -42,19 +43,20 @@ public class WordTranslateDTO {
 
         StringBuffer sb = new StringBuffer();
 
+        if (!TextUtils.isEmpty(word_name)) {
+            sb.append(word_name + "<br/><br/>");
+        }
+
+
         if (symbols != null) {
             for (int i = 0; i < symbols.size(); i++) {
 
                 symbols ss = symbols.get(i);
-                sb.append("");
-                sb.append("美式发音 [");
-                sb.append(ss.ph_am);
-                sb.append("]  ");
-                sb.append("<a href='" + ss.ph_am_mp3 + "'>播放</a> <br/><br/>");
-                sb.append("英式发音 [");
-                sb.append(ss.ph_am);
-                sb.append("]  ");
-                sb.append("<a href='" + ss.ph_am_mp3 + "'>播放</a> <br/><br/>");
+
+                if (!TextUtils.isEmpty(ss.ph_am)){
+                    sb.append("美式发音 [").append(ss.ph_am).append("] <a href='" + ss.ph_am_mp3 + "'>播放</a> <br/><br/>");
+                    sb.append("英式发音 [").append(ss.ph_am).append("] <a href='" + ss.ph_am_mp3 + "'>播放</a> <br/><br/>");
+                }
 
                 if (ss.parts != null) {
 

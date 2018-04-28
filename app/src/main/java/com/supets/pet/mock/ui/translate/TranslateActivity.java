@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -37,14 +38,16 @@ public class TranslateActivity extends FragmentActivity {
         EditText input = findViewById(R.id.input);
         findViewById(R.id.search).setOnClickListener(view -> {
             String words = input.getText().toString();
-            requestData(words);
+            if (!TextUtils.isEmpty(words)) {
+                requestData(words.toLowerCase());
+            }
         });
 
-       String  words=getIntent().getStringExtra("content");
-       if (!TextUtils.isEmpty(words)){
-           input.setText(words);
-           requestData(words);
-       }
+        String words = getIntent().getStringExtra("content");
+        if (!TextUtils.isEmpty(words)) {
+            input.setText(words.toLowerCase());
+            requestData(words.toLowerCase());
+        }
     }
 
 
@@ -57,20 +60,23 @@ public class TranslateActivity extends FragmentActivity {
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                Toast.makeText(TranslateActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TranslateActivity.this, "网络失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onResponse(String response, int id) {
+
+                Log.v("json", response);
+
                 WordTranslateDTO dto = JSonUtil.fromJson(response, WordTranslateDTO.class);
                 if (dto != null) {
                     if (!TextUtils.isEmpty(dto.word_name)) {
                         updateData(dto);
                     } else {
-                        Toast.makeText(TranslateActivity.this, "已经是最新版本", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TranslateActivity.this, "没有查到", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(TranslateActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TranslateActivity.this, "JSON解析错误", Toast.LENGTH_SHORT).show();
                 }
             }
 
