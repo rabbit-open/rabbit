@@ -45,7 +45,6 @@ public class PCServerActivity extends AppCompatActivity {
         registerWifiConnectChangedReceiver();
     }
 
-
     void registerWifiConnectChangedReceiver() {
         IntentFilter intentFilter = new IntentFilter(WifiManager.NETWORK_STATE_CHANGED_ACTION);
         registerReceiver(mWifiConnectChangedReceiver, intentFilter);
@@ -84,7 +83,7 @@ public class PCServerActivity extends AppCompatActivity {
     }
 
     void onWifiConnected(String ipAddr) {
-        hostname.setText(getString(R.string.pcconfig, "ipAddr"));
+        hostname.setText(getString(R.string.pcconfig, ipAddr));
     }
 
 
