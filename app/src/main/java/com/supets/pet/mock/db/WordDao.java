@@ -2,6 +2,7 @@ package com.supets.pet.mock.db;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.supets.pet.mock.ui.translate.CharacterParser;
 import com.supets.pet.mock.ui.translate.SortModel;
@@ -82,6 +83,9 @@ public class WordDao {
         Cursor cursor = null;
         try {
             cursor = dbService.query("select *  from android where module=? and name=?;", new String[]{module, name});
+
+            Log.v("android",cursor.getCount()>0?"已经存在":"不存在");
+
             return cursor.getCount() > 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,6 +102,7 @@ public class WordDao {
     public boolean addNewData(String module, String name) {
         try {
             dbService.execSQL("insert into android(module,name) values (?,?)", new String[]{module, name});
+            Log.v("android","插入存在");
             return true;
         } catch (Exception e) {
             e.printStackTrace();

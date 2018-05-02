@@ -85,7 +85,7 @@ public class MockAboutActivity extends AppCompatActivity {
                 for (int i = 0; i < contents.length; i++) {
 
                     String[] names2 = contents[i].split(" ");
-                    for (int j = 0; j < names2.length; i++) {
+                    for (int j = 0; j < names2.length; j++) {
                         if (!wordDao.findNameByModule(key, names2[j])) {
                             wordDao.addNewData(key, names2[j].toLowerCase());
                         }
