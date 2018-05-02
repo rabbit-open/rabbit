@@ -15,7 +15,7 @@ import java.util.Vector;
 
 
 public class DBService {
-	private final String DATABASE_FILENAME = "sns";
+	private final String DATABASE_FILENAME = "words.db";
 
     private Context mContext;
 	private SQLiteDatabase mysql;
@@ -109,7 +109,7 @@ public class DBService {
         	File dbFile = mContext.getFileStreamPath(DATABASE_FILENAME);
         	
         	if (!dbFile.exists()) {
-				InputStream is = mContext.getResources().openRawResource(R.raw.sns);
+				InputStream is = mContext.getResources().openRawResource(R.raw.words);
                 FileOutputStream fos = new FileOutputStream(dbFile);
                 
                 byte[] buffer = new byte[1024 * 10];
@@ -139,7 +139,7 @@ public class DBService {
 			}
 
         	if (!dbFile.exists()) {
-				InputStream is = mContext.getResources().openRawResource(R.raw.sns);
+				InputStream is = mContext.getResources().openRawResource(R.raw.words);
                 FileOutputStream fos = new FileOutputStream(dbFile);
                 
                 byte[] buffer = new byte[1024 * 10];

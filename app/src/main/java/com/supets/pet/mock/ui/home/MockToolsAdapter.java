@@ -10,6 +10,7 @@ import com.supets.pet.mock.base.BaseRecycleAdapter;
 import com.supets.pet.mock.base.BaseRecycleViewHolder;
 import com.supets.pet.mock.ui.server.PCServerActivity;
 import com.supets.pet.mock.ui.tool.MockToolActivity;
+import com.supets.pet.mock.ui.translate.MYPetSortActivity;
 import com.supets.pet.mock.ui.translate.TranslateActivity;
 import com.supets.pet.mock.utils.Utils;
 import com.supets.pet.mockui.R;
@@ -52,7 +53,7 @@ public class MockToolsAdapter extends BaseRecycleAdapter<String> {
                 view.getContext().startActivity(intent);
             }
             if (position == 7) {
-                Intent intent = new Intent(view.getContext(), TranslateActivity.class);
+                Intent intent = new Intent(view.getContext(), MYPetSortActivity.class);
                 view.getContext().startActivity(intent);
             }
 

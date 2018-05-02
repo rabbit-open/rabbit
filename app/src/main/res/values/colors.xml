@@ -6,6 +6,7 @@
     <color name="enable_gray">#828281</color>
     <color name="staus_gray">#D2D3D3</color>
     <color name="click_gray_text">#B7A59B</color>
+    <color name="transparent">#0000</color>
 
     <drawable name="statusbarcolor">@color/appcolor</drawable>
     <!--固定设置了bar颜色，用于Activity-->
