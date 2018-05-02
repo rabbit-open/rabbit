@@ -74,6 +74,12 @@
       "gesture overlay surface texture stack stub animator flipper adapter layout frame linear table row",
       "relative ABS absolute action menu alphabet array base cursor tree edge effect header heterogeneous",
       "window multi over remote service resource share provider simple widget toast tool wrapper info"
+    ],
+    "hardware": [
+      "hardware camera black level pattern color space transform face lens shading map meter rectangle channel",
+      "vector stream config configuration curve access capture session device manager metadata failure request",
+      "result creator total display virtual USB connection endpoint interface consumer geomagnetic field sensor",
+      "event listener trigger"
     ]
   }
 }
