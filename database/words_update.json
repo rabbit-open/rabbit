@@ -51,6 +51,29 @@
       "listener session request config device result scan supplicant configuration",
       "enterprise connectivity dhcp prefix address link local server socket mail network",
       "parse proxy route factory traffic stats vpn service URL uri query sanitize"
+    ],
+    "resource": [
+      "resource manifest permission group animator array color drawable fraction ID integer",
+      "layout menu mipmap plural raw string style transition XML"
+    ],
+    "Fragment": [
+      "fragment attach create view detach"
+    ],
+    "Service": [
+      "bind unbind"
+    ],
+    "transition": [
+      "transition arc motion auto bound clip image transform circular propagation fade explode path pattern",
+      "scene side slide visibility value manager"
+    ],
+    "widget": [
+      "widget plain text view large medium small button radio check box switch toggle image progress",
+      "bar seek rating spinner web group list grid expandable scroll horizontal search host sliding",
+      "drawer gallery video line filter clock analog digital chronometer date picker time calendar",
+      "space checked quick contact badge extract edit auto complete number zoom control media controller",
+      "gesture overlay surface texture stack stub animator flipper adapter layout frame linear table row",
+      "relative ABS absolute action menu alphabet array base cursor tree edge effect header heterogeneous",
+      "window multi over remote service resource share provider simple widget toast tool wrapper info"
     ]
   }
 }
