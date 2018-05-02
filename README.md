@@ -2,22 +2,28 @@
 
 ## 特性
 
-    1 抓取APP接口数据
-    2 使用本地数据测试API
-    3 JSON数据格式化
-    4 实时查看APP页面请求结果
-    5 支持局域网浏览器配置
+* 1 抓取APP接口数据
+* 2 使用本地数据测试API
+* 3 JSON数据格式化
+* 4 实时查看APP页面请求结果
+* 5 支持局域网浏览器配置
     
+## 实现原理
+  
+* APP对外公开了一个内容提供者查询要mock数据接口。
+* APP对外公开了保存抓取网络数据保存广播协议。
+   
+* mocklib是一个对外接口的一个实现库。大家也可以自行实现。
+ 
 ## 使用方法
 
-    1 需要app支持okhttp拦截器功能。
-    2 引用依赖工程mocklib，设置okhttp拦截器即可。
-    3 APK可以自己运行源码安装，也可以点击下面地址下载安装
+> 方式1: 引用依赖工程mocklib，设置okhttp拦截器即可.
+> 
+> 方式2: APK可以自己运行源码安装，也可以点击下面地址下载安装
    
-## [测试APK下载](https://fir.im/testpet)  [依赖AAR下载](https://github.com/rabbit-open/rabbit/blob/master/database/mocklib-release.aar)
+## [Demo APK下载](https://fir.im/testpet)
 
-
-## mocklib拦截器介绍
+## mocklib拦截器介绍（使用Okhhtp3实现）
 
     HttpLoggingInterceptor2  格式化日志显示json功能和json数据抓取功能
     MockInterceptor          简易API调用本地测试数据
