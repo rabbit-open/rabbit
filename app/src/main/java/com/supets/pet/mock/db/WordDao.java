@@ -1,4 +1,4 @@
-package com.supets.pet.mock.wechaht;
+package com.supets.pet.mock.db;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -19,7 +19,7 @@ public class WordDao {
 
         context = context;
         all = "select distinct name  from  android";// 获取所有记录
-        findName = "select distinct name  from  android where name like ？";// 获取所有记录
+        findName = "select distinct name  from  android where name like ? ";// 获取所有记录
         dbService = DBService.getInstance(context);
     }
 

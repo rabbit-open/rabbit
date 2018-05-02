@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.supets.pet.mock.wechaht.WordDao;
+import com.supets.pet.mock.db.WordDao;
 import com.supets.pet.mockui.R;
 
 import java.util.ArrayList;

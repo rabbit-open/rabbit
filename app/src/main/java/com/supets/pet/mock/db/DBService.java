@@ -1,4 +1,4 @@
-package com.supets.pet.mock.wechaht;
+package com.supets.pet.mock.db;
 
 import android.content.Context;
 import android.database.Cursor;
