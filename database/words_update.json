@@ -7,6 +7,23 @@
       "animation animator listener pause transition time interpolator",
       "evaluator value update adapter builder frame object",
       "point property holder state type converter"
+    ],
+    "app": [
+      "app action bar menu visibility navigation tab",
+      "callback application provide assist data ops manager",
+      "changed picker set bread crumb click",
+      "stack back exit result loader notification extender finished",
+      "pending intent cancel dismiss search element ready automation accessibility",
+      "event filter task memory info process error state recent running description",
+      "option alarm clock alias report battery crash service download query expandable",
+      "list save container controller host transaction instrumentation",
+      "monitor server lock launcher icon resize item media route button",
+      "native wearable big style builder car unread conversation inbox",
+      "policy presentation progress remote input mode voice abort request",
+      "command complete pick prompt wallpaper instantiation admin",
+      "device receiver backup agent helper stream output base restore observer",
+      "preference job parameter scheduler usage configuration stats activity",
+      "group alert fragment local wall paper"
     ]
   }
 }
