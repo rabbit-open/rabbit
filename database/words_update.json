@@ -24,6 +24,33 @@
       "device receiver backup agent helper stream output base restore observer",
       "preference job parameter scheduler usage configuration stats activity",
       "group alert fragment local wall paper"
+    ],
+    "content": [
+      "content activity info application component configuration feature group instrumentation label",
+      "intent package install item manager stats permission path provider resolve service signature",
+      "asset file descriptor color scanner type resource parser abstract XML thread adapter",
+      "not found query handler loader task asynchronous broadcast receiver clipboard clip data",
+      "description call callback client operation result value wrapper dialog interface entity filter",
+      "sender mutable exception periodic restriction entry connection share preference context request observer uri"
+    ],
+    "四大组件": [
+      "activity service content provider broadcast receiver"
+    ],
+    "Layout": [
+      "layout frame linear table row grid relative"
+    ],
+    "location": [
+      "location address criteria geo satellite status listener provider setting injector service"
+    ],
+    "gesture": [
+      "gesture library overlay point stroke store bound box prediction"
+    ],
+    "net": [
+      "net response cache client ssl certificate error trust manager",
+      "audio codec group stream call code exception profile registration",
+      "listener session request config device result scan supplicant configuration",
+      "enterprise connectivity dhcp prefix address link local server socket mail network",
+      "parse proxy route factory traffic stats vpn service URL uri query sanitize"
     ]
   }
 }
