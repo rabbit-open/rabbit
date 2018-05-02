@@ -25,32 +25,43 @@
     }
 
 
+
+
+
     </style>
 
 </head>
 <body>
 
-<div style="width:80%;overflow:hidden;;margin:20 30 30 10">
+<div style="width:90%;overflow:hidden;;margin:20 30 30 10">
     <h2 style="background-color: #4682B4;color:white;padding:10px 20px 10px 20px">接口调试详情</h2>
     <br>
-    <form>
-        <h4>接口名称</h4>
-        <textarea style="width:50%;height:40px;" id="url_id" rows="2"></textarea>
-        <br/>
-        <h4>接口参数</h4>
-        <textarea style="width:50%;height:40px;" id="params_id" rows="2"></textarea>
-        <br/>
-        <h4>调试状态：</h4>
-        <input type="checkbox" id="debug_id"/>是否调试
-        <br/>
-        <br/>
-        <button type="button" style="width:200px;height:45px;"
-                onclick="savemock('a')">
-            保存
-        </button>
-    </form>
+    <table border="1" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td style="width:40%;background-color:#eeffed;padding:10px 5px 15px 20px;">
+                <form>
+                    <h4>接口名称</h4>
+                    <textarea style="width:100%;height:40px;" id="url_id" rows="2"></textarea>
+                    <br/>
+                    <h4>接口参数</h4>
+                    <textarea style="width:100%;height:40px;" id="params_id" rows="2"></textarea>
+                    <br/>
+                    <h4>调试状态：</h4>
+                    <input type="checkbox" id="debug_id"/>是否调试
+                    <br/>
+                    <br/>
+                    <button type="button" style="width:200px;height:45px;"
+                            onclick="savemock('a')">
+                        保存
+                    </button>
+                </form>
+            </td>
+            <td style="width:60%;background-color:#eeffed;">
+                <div id="jsoneditor" style="font-size:16;width:100%;height:600px"></div>
+            </td>
+        </tr>
+    </table>
 
-    <div id="jsoneditor" style="font-size:16"></div>
 
 </div>
 </body>
@@ -125,6 +136,9 @@ function savemock(a){
 
 
 }
+
+
+
 
 
 </script>
