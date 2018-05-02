@@ -14,6 +14,9 @@ import com.supets.pet.mock.db.WordDao;
 import com.supets.pet.mockui.R;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 public class MYPetSortActivity extends FragmentActivity implements SideBar.OnTouchingLetterChangedListener, AdapterView.OnItemClickListener {
@@ -22,7 +25,6 @@ public class MYPetSortActivity extends FragmentActivity implements SideBar.OnTou
     private ListView sortListView;
     private SortAdapter adapter;
 
-    public ArrayList<SortModel> map;
     private WordDao wordDao;
 
     @Override
@@ -31,7 +33,6 @@ public class MYPetSortActivity extends FragmentActivity implements SideBar.OnTou
         setContentView(R.layout.activity_word_android);
 
         wordDao = new WordDao(this);
-        map = wordDao.select();
 
         sortListView = findViewById(R.id.country_lvcountry);
         sideBar = findViewById(R.id.sidrbar);
@@ -43,7 +44,7 @@ public class MYPetSortActivity extends FragmentActivity implements SideBar.OnTou
         adapter = new SortAdapter(this);
         sortListView.setAdapter(adapter);
 
-        adapter.updateListView(map);
+        findall();
 
         EditText input = findViewById(R.id.input);
         findViewById(R.id.search).setOnClickListener(view -> {
@@ -51,14 +52,22 @@ public class MYPetSortActivity extends FragmentActivity implements SideBar.OnTou
             if (!TextUtils.isEmpty(words)) {
                 requestData(words.toLowerCase());
             } else {
-                adapter.updateListView(wordDao.select());
+                findall();
             }
         });
 
     }
 
+    private void findall() {
+        ArrayList<SortModel> datas=wordDao.select();
+        Collections.sort(datas, new PinyinComparator());
+        adapter.updateListView(datas);
+    }
+
     private void requestData(String s) {
-        adapter.updateListView(wordDao.selectName(s));
+        ArrayList<SortModel>  datas=wordDao.selectName(s);
+        Collections.sort(datas, new PinyinComparator());
+        adapter.updateListView(datas);
     }
 
     @Override

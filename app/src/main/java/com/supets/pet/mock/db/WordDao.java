@@ -78,10 +78,41 @@ public class WordDao {
         return datas;
     }
 
+    public boolean findNameByModule(String module, String name) {
+        Cursor cursor = null;
+        try {
+            cursor = dbService.query("select *  from android where module=? and name=?;", new String[]{module, name});
+            return cursor.getCount() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+                closeDB();
+            }
+        }
+
+        return false;
+    }
+
+    public boolean addNewData(String module, String name) {
+        try {
+            dbService.execSQL("insert into android(module,name) values (?,?)", new String[]{module, name});
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeDB();
+        }
+
+        return false;
+    }
+
     public void closeDB() {
         if (dbService != null) {
             dbService.close();
         }
     }
+
 
 }

@@ -8,8 +8,6 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
-import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
-import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
 import com.supets.pet.mock.bean.LocalMockData;
 import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.dao.LocalMockDataDB;
