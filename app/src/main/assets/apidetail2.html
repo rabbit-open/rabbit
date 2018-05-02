@@ -29,9 +29,25 @@
 </head>
 <body>
 
-<div style="width:800px;overflow:hidden;;margin:20 30 30 10">
-    <h2 style="background-color: #4682B4;color:white;padding:10px 20px 10px 20px">JSON格式化</h2>
-    <br>
+<div style="width:80%;overflow:hidden;;margin:20 30 30 10">
+    <h2 style="background-color: #4682B4;color:white;padding:10px 20px 10px 20px">接口调试详情</h2>
+    <form>
+        <h4>接口名称</h4>
+        <textarea style="width:50%;height:40px;" id="url_id" rows="2"></textarea>
+        <br/>
+        <!--<h4>接口参数</h4>-->
+        <!--<textarea style="width:50%;height:40px;" id="params_id" rows="2"></textarea>-->
+        <!--<br/>-->
+        <h4>调试状态：</h4>
+        <input type="checkbox" id="debug_id"/>是否调试
+        <br/>
+        <br/>
+        <button type="button" style="width:200px;height:45px;"
+                onclick="javascript:savemock()">
+            保存
+        </button>
+    </form>
+
     <div id="jsoneditor" style="font-size:16"></div>
 
 </div>
@@ -52,12 +68,11 @@ function GetRequest() {
     return theRequest;
 }
 
+    var container = document.getElementById('jsoneditor');
+
 
 $(function(){
 
-
-
-    var container = document.getElementById('jsoneditor');
     var options = {
         mode: 'form',
         modes: ['code', 'form', 'text', 'tree', 'view'], // allowed modes
@@ -79,11 +94,31 @@ $(function(){
     $.getJSON("getmockapidata2?id="+id, function(data) {
              if(data.length>0){
                editor.setText(data[0].data);
+               $("#url_id").val(data[0].url);
+               $("#debug_id").prop("checked",data[0].selected?true:false);
              }
          });
 
 });
 
+
+//保存要调试的接口
+function savemock(){
+
+        var  url=  $("#url_id").val();
+        var  params=  $("#params_id").val();
+        var  status=  $("#debug_id").is(":checked");
+
+        var urlpath = 'savemockuidata'+ '?checked='+ status+'&data='+ container.getText()+'&url='+ url;
+
+        $.getJSON(urlpath, function(data) {
+
+              if(data){
+                alert('保存成功');
+              }
+
+         });
+}
 
 </script>
 
