@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ public class MockAboutActivity extends AppCompatActivity {
 
 
     private TextView mVersionNum;
+    private Button versionupdate2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class MockAboutActivity extends AppCompatActivity {
 
         mVersionNum = findViewById(R.id.versionNum);
         View versionupdate = findViewById(R.id.versionupdate);
-        View versionupdate2 = findViewById(R.id.versionupdate2);
+        versionupdate2 = findViewById(R.id.versionupdate2);
         versionupdate2.setOnClickListener(view -> updateWord());
 
         versionupdate.setOnClickListener(v -> update());
@@ -72,8 +74,11 @@ public class MockAboutActivity extends AppCompatActivity {
     }
 
     private void updateWords(WordsDTO dto) {
-
+        versionupdate2.setEnabled(false);
+        versionupdate2.setText("正在更新");
         if (dto.content != null) {
+
+
             WordDao wordDao = new WordDao(this);
 
             Set<String> sets = dto.content.keySet();
@@ -97,8 +102,8 @@ public class MockAboutActivity extends AppCompatActivity {
 
             }
         }
-
-
+        versionupdate2.setEnabled(true);
+        versionupdate2.setText("单词更新");
     }
 
     private void update() {
