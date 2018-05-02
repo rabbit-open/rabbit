@@ -1,8 +1,6 @@
 package com.supets.pet.mock.ui.version;
 
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -13,10 +11,13 @@ import android.widget.Toast;
 
 import com.supets.commons.utils.SystemUtils;
 import com.supets.commons.utils.json.JSonUtil;
+import com.supets.pet.mock.db.WordDao;
 import com.supets.pet.mock.utils.Utils;
 import com.supets.pet.mockui.R;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.Set;
 
 import okhttp3.Call;
 
@@ -32,16 +33,72 @@ public class MockAboutActivity extends AppCompatActivity {
 
         mVersionNum = findViewById(R.id.versionNum);
         View versionupdate = findViewById(R.id.versionupdate);
-        versionupdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               update();
-            }
-        });
+        View versionupdate2 = findViewById(R.id.versionupdate2);
+        versionupdate2.setOnClickListener(view -> updateWord());
+
+        versionupdate.setOnClickListener(v -> update());
         String versionCode = getString(R.string.m_user_version_code,
                 SystemUtils.getAppVersionName());
         String versionBuidCode = SystemUtils.getAppVersionCode();
         mVersionNum.setText(versionCode + "（" + versionBuidCode + "）");
+    }
+
+
+    private void updateWord() {
+        try {
+            OkHttpUtils.get().url(
+                    "https://raw.githubusercontent.com/rabbit-open/rabbit/master/database/words_update.json")
+                    .build()
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onError(Call call, Exception e, int id) {
+                            Toast.makeText(MockAboutActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onResponse(String response, int id) {
+                            WordsDTO dto = JSonUtil.fromJson(response, WordsDTO.class);
+                            if (dto != null) {
+                                updateWords(dto);
+                            } else {
+                                Toast.makeText(MockAboutActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void updateWords(WordsDTO dto) {
+
+        if (dto.content != null) {
+            WordDao wordDao = new WordDao(this);
+
+            Set<String> sets = dto.content.keySet();
+
+            for (String key : sets) {
+
+                String[] contents = dto.content.get(key);
+
+                for (int i = 0; i < contents.length; i++) {
+
+                    String[] names2 = contents[i].split(" ");
+                    for (int j = 0; j < names2.length; i++) {
+                        if (!wordDao.findNameByModule(key, names2[j])) {
+                            wordDao.addNewData(key, names2[j].toLowerCase());
+                        }
+                    }
+
+
+                }
+
+
+            }
+        }
+
+
     }
 
     private void update() {

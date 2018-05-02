@@ -36,6 +36,16 @@
             android:text="版本更新"
             android:textColor="@color/white"
             android:textSize="15sp" />
+        <Button
+            android:id="@+id/versionupdate2"
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@color/appcolor"
+            android:text="单词更新"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
 
         <TextView
             android:layout_width="match_parent"

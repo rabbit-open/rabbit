@@ -1,0 +1,12 @@
+{
+  "content": {
+    "Activity": [
+      "activity on create start resume pause stop destroy restart"
+    ],
+    "animation": [
+      "animation animator listener pause transition time interpolator",
+      "evaluator value update adapter builder frame object",
+      "point property holder state type converter"
+    ]
+  }
+}
