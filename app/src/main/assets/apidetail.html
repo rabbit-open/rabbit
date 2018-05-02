@@ -45,7 +45,7 @@
         <br/>
         <br/>
         <button type="button" style="width:200px;height:45px;"
-                onclick="javascript:savemock()">
+                onclick="savemock('a')">
             保存
         </button>
     </form>
@@ -70,15 +70,15 @@ function GetRequest() {
     return theRequest;
 }
 
-    var container = document.getElementById('jsoneditor');
-
+var editor;
 
 $(function(){
 
 
+    var container = document.getElementById('jsoneditor');
 
     var options = {
-        mode: 'form',
+        mode: 'text',
         modes: ['code', 'form', 'text', 'tree', 'view'], // allowed modes
         onError: function (err) {
           alert(err.toString());
@@ -88,7 +88,7 @@ $(function(){
         }
       };
     var json = {};
-    var editor = new JSONEditor(container, options, json);
+    editor = new JSONEditor(container, options, json);
 
 
     var Request = new Object();
@@ -107,12 +107,12 @@ $(function(){
 });
 
 //保存要调试的接口
-function savemock(){
+function savemock(a){
 
+   if(editor!==null){
         var  url=  $("#url_id").val();
         var  status=  $("#debug_id").is(":checked");
-
-        var urlpath = 'savemockuidata'+ '?checked='+ status+'&data='+ container.getText()+'&url='+ url;
+        var urlpath = 'savemockuidata'+ '?checked='+ status+'&data='+ editor.getText()+'&url='+ url;
 
         $.getJSON(urlpath, function(data) {
 
@@ -121,6 +121,9 @@ function savemock(){
               }
 
          });
+   }
+
+
 }
 
 
