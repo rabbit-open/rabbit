@@ -1,6 +1,5 @@
 package com.supets.pet.mock.ui.version;
 
-import android.content.AsyncTaskLoader;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -97,8 +96,8 @@ public class MockAboutActivity extends AppCompatActivity {
                             String[] names2 = contents[i].split(" ");
                             for (int j = 0; j < names2.length; j++) {
                                 if (!wordDao.findNameByModule(key, names2[j])) {
-                                    Log.v("android",key+"---"+names2[j]);
-                                    wordDao.addNewData(key, names2[j].toLowerCase());
+                                    Log.v("android", key + "---" + names2[j]);
+                                    wordDao.addNewData(key, names2[j]);
                                 }
                             }
 
