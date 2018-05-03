@@ -1,6 +1,6 @@
 {
   "content": {
-    "Activity": [
+    "activity": [
       "activity on create start resume pause stop destroy restart"
     ],
     "animation": [
@@ -28,7 +28,7 @@
     "content": [
       "content activity info application component configuration feature group instrumentation label",
       "intent package install item manager stats permission path provider resolve service signature",
-      "asset file descriptor color scanner type resource parser abstract XML thread adapter",
+      "asset file descriptor color scanner type resource parser abstract xml thread adapter",
       "not found query handler loader task asynchronous broadcast receiver clipboard clip data",
       "description call callback client operation result value wrapper dialog interface entity filter",
       "sender mutable exception periodic restriction entry connection share preference context request observer uri"
@@ -36,7 +36,7 @@
     "四大组件": [
       "activity service content provider broadcast receiver"
     ],
-    "Layout": [
+    "layout": [
       "layout frame linear table row grid relative"
     ],
     "location": [
@@ -50,16 +50,16 @@
       "audio codec group stream call code exception profile registration",
       "listener session request config device result scan supplicant configuration",
       "enterprise connectivity dhcp prefix address link local server socket mail network",
-      "parse proxy route factory traffic stats vpn service URL uri query sanitize"
+      "parse proxy route factory traffic stats vpn service url uri query sanitize"
     ],
     "resource": [
-      "resource manifest permission group animator array color drawable fraction ID integer",
-      "layout menu mipmap plural raw string style transition XML"
+      "resource manifest permission group animator array color drawable fraction id integer",
+      "layout menu mipmap plural raw string style transition xml"
     ],
-    "Fragment": [
+    "fragment": [
       "fragment attach create view detach"
     ],
-    "Service": [
+    "service": [
       "bind unbind"
     ],
     "transition": [
@@ -72,13 +72,13 @@
       "drawer gallery video line filter clock analog digital chronometer date picker time calendar",
       "space checked quick contact badge extract edit auto complete number zoom control media controller",
       "gesture overlay surface texture stack stub animator flipper adapter layout frame linear table row",
-      "relative ABS absolute action menu alphabet array base cursor tree edge effect header heterogeneous",
+      "relative abs absolute action menu alphabet array base cursor tree edge effect header heterogeneous",
       "window multi over remote service resource share provider simple widget toast tool wrapper info"
     ],
     "hardware": [
       "hardware camera black level pattern color space transform face lens shading map meter rectangle channel",
       "vector stream config configuration curve access capture session device manager metadata failure request",
-      "result creator total display virtual USB connection endpoint interface consumer geomagnetic field sensor",
+      "result creator total display virtual usb connection endpoint interface consumer geomagnetic field sensor",
       "event listener trigger"
     ],
     "database": [
@@ -91,21 +91,21 @@
     "graphics": [
       "graphics drawable shape arc oval path rectangular round animated state vector bitmap clip",
       "color gradient inset layer level nine patch paint picture ripple rotate scale transition document",
-      "render PDF avoid factory region decoder shad blur mask camera filter canvas matrix compose effect",
+      "render pdf avoid factory region decoder shad blur mask camera filter canvas matrix compose effect",
       "dash discrete draw emboss interpolator lighting linear movie outline flag measure point porter duff",
       "radial sum surface texture typeface"
     ],
     "media": [
       "media audio acoustic echo cancel automatic gain control bass boost environmental reverb equalizer",
       "loudness enhancer noise suppressor preset visualizer browse effect context factory update listener",
-      "projection session controller play playback state TV content rating contract track player attribute",
+      "projection session controller play playback state tv content rating contract track player attribute",
       "format record camcorder profile camera interface face detector image reader jet action sound codec crypto",
       "description extractor metadata editor recorder router scanner connection event not provision remote",
       "client resource busy ringtone pool thumbnail timed tone generator unsupported scheme volume provider"
     ],
     "webkit": [
       "client cert request console message cookie manager webkit date sorter download listener permission",
-      "HTTP handler javascript interface prompt result mime type map stub util value callback back",
+      "http handler javascript interface prompt result mime type map stub util value callback back",
       "forward chrome history web icon database resource setting storage fragment"
     ],
     "os": [
@@ -119,7 +119,7 @@
       "exception util runtime array atomic file attribute set base stream output input config debug display metric",
       "event log tag math float reader token writer direction printer long sparse lru cache malformed",
       "helper month byte mutable char double int short no such property pattern pair",
-      "print rational range size string builder time format type logger value XML timing"
+      "print rational range size string builder time format type logger value xml timing"
     ],
     "view": [
       "view accessibility event source manager node info provider record caption animation accelerate",
@@ -176,7 +176,7 @@
       "semaphore factory timeout transfer synchronous"
     ],
     "java线程": [
-      "Thread start run Daemon Priority millisec interrupt join Alive yield sleep dump Callable Future"
+      "thread start run daemon priority millisec interrupt join alive yield sleep dump callable future"
     ],
     "java关键字": [
       "private protected public abstract class extends final implements",
@@ -187,18 +187,18 @@
     ],
     "java基础类型": [
       "byte short int long float double boolean char",
-      "String Object"
+      "string object"
     ],
     "java修饰符": [
       "default private public protected",
       "static final abstract synchronized transient volatile"
     ],
     "java其他": [
-      "parse cell floor Character String Buffer Builder append reverse offset capacity ensure",
-      "Date after before regex Matcher Method Stream File System Scanner",
-      "Arithmetic Bounds Store Cast Illegal Argument Monitor State Negative Security Operation",
-      "Instantiation Field Cause Trace Element Throwable",
-      "Override Overload package annotation"
+      "parse cell floor character string buffer builder append reverse offset capacity ensure",
+      "date after before regex matcher method stream file system scanner",
+      "arithmetic bounds store cast illegal argument monitor state negative security operation",
+      "instantiation field cause trace element throwable",
+      "override overload package annotation"
     ]
   }
 }
