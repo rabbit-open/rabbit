@@ -39,14 +39,14 @@ public class TranslateActivity extends FragmentActivity {
         findViewById(R.id.search).setOnClickListener(view -> {
             String words = input.getText().toString();
             if (!TextUtils.isEmpty(words)) {
-                requestData(words.toLowerCase());
+                requestData(words);
             }
         });
 
         String words = getIntent().getStringExtra("content");
         if (!TextUtils.isEmpty(words)) {
-            input.setText(words.toLowerCase());
-            requestData(words.toLowerCase());
+            input.setText(words);
+            requestData(words);
         }
     }
 
