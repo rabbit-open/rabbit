@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -61,6 +62,7 @@ public class MYPetSortActivity extends FragmentActivity implements SideBar.OnTou
     private void findall() {
         ArrayList<SortModel> datas=wordDao.select();
         Collections.sort(datas, new PinyinComparator());
+        Log.v("words total:","=="+datas.size());
         adapter.updateListView(datas);
     }
 
