@@ -80,6 +80,57 @@
       "vector stream config configuration curve access capture session device manager metadata failure request",
       "result creator total display virtual USB connection endpoint interface consumer geomagnetic field sensor",
       "event listener trigger"
+    ],
+    "database": [
+      "database abort access perm bind column index blob too big cant open constraint",
+      "cursor driver corrupt locked mismatch disk done full misuse helper memory program",
+      "query builder only read statement table transaction listener abstract char buffer",
+      "content observable observer process wrapper bound of joiner error handler set default",
+      "matrix merge stale"
+    ],
+    "graphics": [
+      "graphics drawable shape arc oval path rectangular round animated state vector bitmap clip",
+      "color gradient inset layer level nine patch paint picture ripple rotate scale transition document",
+      "render PDF avoid factory region decoder shad blur mask camera filter canvas matrix compose effect",
+      "dash discrete draw emboss interpolator lighting linear movie outline flag measure point porter duff",
+      "radial sum surface texture typeface"
+    ],
+    "media": [
+      "media audio acoustic echo cancel automatic gain control bass boost environmental reverb equalizer",
+      "loudness enhancer noise suppressor preset visualizer browse effect context factory update listener",
+      "projection session controller play playback state TV content rating contract track player attribute",
+      "format record camcorder profile camera interface face detector image reader jet action sound codec crypto",
+      "description extractor metadata editor recorder router scanner connection event not provision remote",
+      "client resource busy ringtone pool thumbnail timed tone generator unsupported scheme volume provider"
+    ],
+    "webkit": [
+      "client cert request console message cookie manager webkit date sorter download listener permission",
+      "HTTP handler javascript interface prompt result mime type map stub util value callback back",
+      "forward chrome history web icon database resource setting storage fragment"
+    ],
+    "os": [
+      "asynchronous task storage bad exception bundle battery binder build cancellation signal condition",
+      "variable count down timer dead object drop box environment observer file handler thread interface",
+      "looper memory message queue network main operation parcel descriptor format pattern power recovery",
+      "system remote callback result receiver clock token watcher trace large transaction user handle vibrator",
+      "work source"
+    ],
+    "util": [
+      "exception util runtime array atomic file attribute set base stream output input config debug display metric",
+      "event log tag math float reader token writer direction printer long sparse lru cache malformed",
+      "helper month byte mutable char double int short no such property pattern pair",
+      "print rational range size string builder time format type logger value XML timing"
+    ],
+    "view": [
+      "view accessibility event source manager node info provider record caption animation accelerate",
+      "decelerate interpolator alpha set util anticipate overshoot base cycle grid layout controller",
+      "linear path rotate scale transformation translate input method connection completion correction",
+      "anchor editor extract binding wrapper request session subtype sentence spell checker suggestion",
+      "service save state action collapsible choreographer context mode menu theme display drag focus",
+      "finder frame gesture detector gravity haptic feedback constant inflate exception device queue",
+      "key character map item motion orientation listener sound effect surface holder texture touch",
+      "delegate velocity tracker configuration debug group overlay outline parent property animator stub",
+      "tree observer window stats content inset mode"
     ]
   }
 }
