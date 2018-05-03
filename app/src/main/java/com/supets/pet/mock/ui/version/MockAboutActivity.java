@@ -1,10 +1,12 @@
 package com.supets.pet.mock.ui.version;
 
+import android.content.AsyncTaskLoader;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -75,35 +77,51 @@ public class MockAboutActivity extends AppCompatActivity {
 
     private void updateWords(WordsDTO dto) {
         versionupdate2.setEnabled(false);
-        versionupdate2.setText("正在更新");
-        if (dto.content != null) {
+        versionupdate2.setText("正在更新。。。");
+        WordDao wordDao = new WordDao(this);
 
 
-            WordDao wordDao = new WordDao(this);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (dto.content != null) {
 
-            Set<String> sets = dto.content.keySet();
+                    Set<String> sets = dto.content.keySet();
 
-            for (String key : sets) {
+                    for (String key : sets) {
 
-                String[] contents = dto.content.get(key);
+                        String[] contents = dto.content.get(key);
 
-                for (int i = 0; i < contents.length; i++) {
+                        for (int i = 0; i < contents.length; i++) {
 
-                    String[] names2 = contents[i].split(" ");
-                    for (int j = 0; j < names2.length; j++) {
-                        if (!wordDao.findNameByModule(key, names2[j])) {
-                            wordDao.addNewData(key, names2[j].toLowerCase());
+                            String[] names2 = contents[i].split(" ");
+                            for (int j = 0; j < names2.length; j++) {
+                                if (!wordDao.findNameByModule(key, names2[j])) {
+                                    Log.v("android",key+"---"+names2[j]);
+                                    wordDao.addNewData(key, names2[j].toLowerCase());
+                                }
+                            }
+
+
                         }
+
+
                     }
-
-
                 }
 
+                mVersionNum.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        versionupdate2.setEnabled(true);
+                        versionupdate2.setText("单词更新");
+                    }
+                });
 
             }
-        }
-        versionupdate2.setEnabled(true);
-        versionupdate2.setText("单词更新");
+        }).start();
+
+
     }
 
     private void update() {

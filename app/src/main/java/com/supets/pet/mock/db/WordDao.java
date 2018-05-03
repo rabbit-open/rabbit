@@ -102,7 +102,7 @@ public class WordDao {
     public boolean addNewData(String module, String name) {
         try {
             dbService.execSQL("insert into android(module,name) values (?,?)", new String[]{module, name});
-            Log.v("android","插入存在");
+            Log.v("android","插入新数据");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
