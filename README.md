@@ -45,9 +45,11 @@
 
 #### 3 网页输入地址：http://127.0.0.1:54321
 
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web1.png" width = "720" />
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web2.png" width = "720" />
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web3.png" width = "720" />  
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web1.png" width = "480" />
+
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web2.png" width = "480" />
+
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web3.png" width = "480" />  
 
 
 ## 版权声明
