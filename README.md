@@ -32,21 +32,21 @@
 
 #### 1 三方APP接入效果实时抓取效果
 
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone9.png" width = "480" />  
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone9.png" width = "360" />  
 
 #### 2 测试APP部分界面
     
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone2.png" width = "240" />
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone3.png" width = "240" />  
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone5.png" width = "240" />
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone6.png" width = "240" />  
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone7.png" width = "240" />
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone2.png" width = "360" />
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone3.png" width = "360" />  
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone5.png" width = "360" />
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone6.png" width = "360" />  
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone7.png" width = "360" />
 
 #### 3 网页输入地址：http://0.0.0.0:54321
 
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web1.png" width = "200" />
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web2.png" width = "200" />
-<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web3.png" width = "200" />  
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web1.png" width = "360" />
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web2.png" width = "360" />
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/web3.png" width = "360" />  
 
 
 ## 版权声明
