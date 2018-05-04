@@ -36,13 +36,16 @@
 
 #### 2 测试APP部分界面
     
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone1.png" width = "720" />
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone2.png" width = "720" />
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone3.png" width = "720" />  
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone4.png" width = "720" />  
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone5.png" width = "720" />
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone6.png" width = "720" />  
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone7.png" width = "720" />
+<img src="https://github.com/rabbit-open/rabbit/blob/master/database/phone8.png" width = "720" />
 
-#### 3 网页输入地址：http://0.0.0.0:54321
+#### 3 网页输入地址：http://127.0.0.1:54321
 
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/web1.png" width = "720" />
 <img src="https://github.com/rabbit-open/rabbit/blob/master/database/web2.png" width = "720" />
