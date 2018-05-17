@@ -47,30 +47,6 @@
             android:textColor="@color/white"
             android:textSize="15sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:autoLink="web"
-            android:text="作者：李洪江"
-            android:textColor="#333333"
-            android:textSize="15sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="QQ: 254608684@qq.com"
-            android:textColor="#333333"
-            android:textSize="15sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:text="github：https://github.com/rabbit-open/rabbit"
-            android:textColor="#333333"
-            android:textSize="15sp" />
-
     </LinearLayout>
 
 </LinearLayout>

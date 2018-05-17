@@ -26,7 +26,7 @@ dependencies {
 
     compile 'com.zhy:okhttputils:2.6.2'
 
-    compile 'org.greenrobot:greendao:3.2.0'
+    compile 'org.greenrobot:greendao:3.2.2'
     //数据库加密时添加
     compile 'net.zetetic:android-database-sqlcipher:3.5.4'
     //使用数据库升级辅助GreenDaoUpgradleHepler时添加
