@@ -1,6 +1,5 @@
 package com.supets.pet.mock.utils;
 
-import android.content.Context;
 import android.text.TextUtils;
 import android.widget.LinearLayout;
 

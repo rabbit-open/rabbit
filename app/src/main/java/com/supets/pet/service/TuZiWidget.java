@@ -1,10 +1,14 @@
 package com.supets.pet.service;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.os.Build;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -23,10 +27,13 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
     private ViewContainer mWholeView;
     private View mContentView;
     private ViewDismissHandler mViewDismissHandler;
-    private CharSequence mContent;
+    private String mContent;
     private TextView mTextView;
+    private RecyclerView mList;
+    public static boolean isShow;
+    private GridAdapter adapter;
 
-    public TuZiWidget(Context application, CharSequence content) {
+    public TuZiWidget(Context application, String content) {
         mContext = application;
         mContent = content;
         mWindowManager = (WindowManager) application.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
@@ -36,7 +43,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         mViewDismissHandler = viewDismissHandler;
     }
 
-    public void updateContent(CharSequence content) {
+    public void updateContent(String content) {
         mContent = content;
         mTextView.setText(mContent);
     }
@@ -45,10 +52,20 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
 
         ViewContainer view = (ViewContainer) View.inflate(mContext, R.layout.tuzi_pop_view, null);
 
+        isShow = true;
+        mContext.registerReceiver(update, new IntentFilter("update_data"));
+
         // display content
         mTextView = view.findViewById(R.id.pop_view_text);
         mTextView.setText(mContent);
 
+        mList = view.findViewById(R.id.list);
+        mList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+
+        adapter = new GridAdapter();
+        adapter.putData(mContent);
+
+        mList.setAdapter(adapter);
         mWholeView = view;
         mContentView = view.findViewById(R.id.pop_view_content_view);
 
@@ -104,7 +121,9 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         }
 
         if (mViewDismissHandler != null) {
+            isShow = false;
             mViewDismissHandler.onViewDismiss();
+            mContext.unregisterReceiver(update);
         }
 
         // remove listeners
@@ -139,4 +158,17 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
     public interface ViewDismissHandler {
         void onViewDismiss();
     }
+
+    public BroadcastReceiver update = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if ("update_data".equals(intent.getAction())) {
+                if (adapter != null) {
+                    adapter.putData(intent.getStringExtra("vaule"));
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        }
+    };
+
 }

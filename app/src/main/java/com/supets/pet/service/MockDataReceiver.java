@@ -52,9 +52,19 @@ public class MockDataReceiver extends BroadcastReceiver {
                                         .append(FormatLogProcess.format(FormatLogProcess.formatJsonText(json)))
                                         .toString();
 
-                        TuZiWidget mTipViewController = new TuZiWidget(context, message);
-                        mTipViewController.setViewDismissHandler(null);
-                        mTipViewController.show();
+
+                        if (TuZiWidget.isShow) {
+                            Intent update_data
+                                    = new Intent("update_data");
+                            update_data.putExtra("vaule",message);
+                            context.sendBroadcast(update_data);
+
+                        } else {
+                            TuZiWidget mTipViewController = new TuZiWidget(context, message);
+                            mTipViewController.setViewDismissHandler(null);
+                            mTipViewController.show();
+                        }
+
 
                     }
 
