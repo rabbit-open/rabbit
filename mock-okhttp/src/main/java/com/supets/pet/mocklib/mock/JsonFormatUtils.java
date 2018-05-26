@@ -3,11 +3,11 @@ package com.supets.pet.mocklib.mock;
 import android.content.Intent;
 import android.util.Log;
 
-import com.supets.pet.mocklib.App;
+import com.supets.pet.mocklib.AppContext;
 
 import org.json.JSONObject;
 
-public final class FormatLogProcess {
+public final class JsonFormatUtils {
 
     public static final String MOCK_SERVICE_NETWORK = "mock.crash.network";
 
@@ -32,10 +32,10 @@ public final class FormatLogProcess {
             intent.putExtra("url", url);
             intent.putExtra("requestParam", requestParam);
             intent.putExtra("message", !isJpg(url) ? message : "");
-            App.INSTANCE.sendBroadcast(intent);
+            AppContext.INSTANCE.sendBroadcast(intent);
 
             if (isJson(message)) {
-                String jsonStr = FormatLogProcess.format(message);
+                String jsonStr = JsonFormatUtils.format(message);
                 long totalpage = jsonStr.length() % 2048 == 0 ? 0 : 1 + jsonStr.length() / 2048;
                 int start = 0;
                 for (int i = 0; i < totalpage; i++) {
@@ -67,7 +67,7 @@ public final class FormatLogProcess {
 
                 StringBuilder sb = new StringBuilder();
 
-                String jsonStr = FormatLogProcess.format(message);
+                String jsonStr = JsonFormatUtils.format(message);
                 long totalpage = jsonStr.length() % 2048 == 0 ? 0 : 1 + jsonStr.length() / 2048;
                 int start = 0;
                 for (int i = 0; i < totalpage; i++) {

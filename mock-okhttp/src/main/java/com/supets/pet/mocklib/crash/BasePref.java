@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
-import com.supets.pet.mocklib.App;
+import com.supets.pet.mocklib.AppContext;
 
 
 public class BasePref {
@@ -13,7 +13,7 @@ public class BasePref {
         if (TextUtils.isEmpty(name)) {
             throw new NullPointerException("Shared preferences name is null or empty");
         }
-        return App.INSTANCE.getSharedPreferences(name, Context.MODE_PRIVATE);
+        return AppContext.INSTANCE.getSharedPreferences(name, Context.MODE_PRIVATE);
     }
 
     protected static SharedPreferences.Editor edit(String name) {

@@ -8,19 +8,15 @@ import java.util.List;
 
 public class IMockServiceImpl implements IMockService {
 
-    private    List<IMockDataMapper> maps=new ArrayList<>();
-
-    public IMockServiceImpl() {
-
-    }
+    private List<IMockDataMapper> maps = new ArrayList<>();
 
     @Override
     public boolean getMapper(String url) {
-        if (!MockConfig.getDebugMode()){
+        if (!MockConfig.getDebugSwitch()) {
             return false;
         }
-        for (IMockDataMapper mapper:maps){
-            if (mapper.getMapper(url)){
+        for (IMockDataMapper mapper : maps) {
+            if (mapper.getMapper(url)) {
                 return true;
             }
         }
@@ -29,15 +25,15 @@ public class IMockServiceImpl implements IMockService {
 
     @Override
     public String getData(String url) {
-        for (IMockDataMapper mapper:maps){
-            if (mapper.getMapper(url)){
+        for (IMockDataMapper mapper : maps) {
+            if (mapper.getMapper(url)) {
                 return mapper.getData(url);
             }
         }
-        return  null;
+        return null;
     }
 
-    public IMockServiceImpl addDataMapper(IMockDataMapper mapper){
+    public IMockServiceImpl addDataMapper(IMockDataMapper mapper) {
         maps.add(mapper);
         return this;
     }

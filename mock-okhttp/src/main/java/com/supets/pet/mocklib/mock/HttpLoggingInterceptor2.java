@@ -106,9 +106,10 @@ public final class HttpLoggingInterceptor2 implements Interceptor {
     public interface Logger {
         void log(String url, String message);
 
-        void log2(String url, String content,String requestParam);
+        void log2(String url, String content, String requestParam);
 
         void log3(String url, String messgae);
+
         /**
          * A {@link Logger} defaults output appropriate for the current platform.
          */
@@ -117,18 +118,17 @@ public final class HttpLoggingInterceptor2 implements Interceptor {
 
             @Override
             public void log(String url, String message) {
-                // Platform.get().log(INFO, message, null);
-                FormatLogProcess.log(url, message);
+                JsonFormatUtils.log(url, message);
             }
 
             @Override
-            public void log2(String url, String message,String requestParam) {
-                FormatLogProcess.logSave(url, message,requestParam);
+            public void log2(String url, String message, String requestParam) {
+                JsonFormatUtils.logSave(url, message, requestParam);
             }
 
             @Override
             public void log3(String url, String messgae) {
-                FormatLogProcess.logFile(url, messgae);
+                JsonFormatUtils.logFile(url, messgae);
             }
         };
 
@@ -166,7 +166,7 @@ public final class HttpLoggingInterceptor2 implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Level level = this.level;
-        String   postParam="";
+        String postParam = "";
         sb.setLength(0);
 
         Request request = chain.request();
@@ -234,7 +234,7 @@ public final class HttpLoggingInterceptor2 implements Interceptor {
                 sb.append("").append("\n");
                 if (isPlaintext(buffer)) {
 
-                    postParam=buffer.readString(charset);
+                    postParam = buffer.readString(charset);
 
                     logger.log(request.url().toString(), postParam);
                     sb.append(postParam).append("\n");
@@ -265,10 +265,10 @@ public final class HttpLoggingInterceptor2 implements Interceptor {
         ResponseBody responseBody = response.body();
         long contentLength = responseBody.contentLength();
         String bodySize = contentLength != -1 ? contentLength + "-byte" : "unknown-length";
-        String log="<-- " + response.code() + ' ' + response.message() + ' '
+        String log = "<-- " + response.code() + ' ' + response.message() + ' '
                 + response.request().url() + " (" + tookMs + "ms" + (!logHeaders ? ", "
                 + bodySize + " body" : "") + ')';
-        logger.log(request.url().toString(),log);
+        logger.log(request.url().toString(), log);
         sb.append(log).append("\n");
 
         if (logHeaders) {
@@ -326,7 +326,7 @@ public final class HttpLoggingInterceptor2 implements Interceptor {
                     sb.append(request.url().toString()).append("\n");
                     sb.append(buffer.clone().readString(charset)).append("\n");
 
-                    logger.log2(request.url().toString(), buffer.clone().readString(charset),postParam);
+                    logger.log2(request.url().toString(), buffer.clone().readString(charset), postParam);
                 }
 
                 logger.log(request.url().toString(), "<-- END HTTP (" + buffer.size() + "-byte body)");

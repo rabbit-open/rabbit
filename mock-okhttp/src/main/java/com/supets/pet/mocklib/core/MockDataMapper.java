@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.v4.content.ContentResolverCompat;
 
-import com.supets.pet.mocklib.App;
+import com.supets.pet.mocklib.AppContext;
 
 public class MockDataMapper implements IMockDataMapper {
 
@@ -15,7 +15,7 @@ public class MockDataMapper implements IMockDataMapper {
     public boolean getMapper(String url) {
 
         Uri uri = Uri.parse("content://" + AUTHORITY + "/mockdata");
-        Cursor cursor = ContentResolverCompat.query(App.INSTANCE.getContentResolver(),
+        Cursor cursor = ContentResolverCompat.query(AppContext.INSTANCE.getContentResolver(),
                 uri, null, null, new String[]{url}, null, null);
         try {
             if (cursor != null) {
@@ -35,7 +35,7 @@ public class MockDataMapper implements IMockDataMapper {
     public String getData(String url) {
 
         Uri uri = Uri.parse("content://" + AUTHORITY + "/mockdata");
-        Cursor cursor = ContentResolverCompat.query(App.INSTANCE.getContentResolver(),
+        Cursor cursor = ContentResolverCompat.query(AppContext.INSTANCE.getContentResolver(),
                 uri, null, null, new String[]{url}, null, null);
 
         try {

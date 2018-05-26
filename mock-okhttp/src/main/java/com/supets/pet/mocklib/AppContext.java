@@ -4,10 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 
 @SuppressLint("PrivateApi")
-public class App {
+public class AppContext {
     public static final Application INSTANCE;
 
-    public App() {
+    public AppContext() {
     }
 
     static {

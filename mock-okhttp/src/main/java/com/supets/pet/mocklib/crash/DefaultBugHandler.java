@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 
-import com.supets.pet.mocklib.App;
+import com.supets.pet.mocklib.AppContext;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -54,7 +54,7 @@ public class DefaultBugHandler implements UncaughtExceptionHandler {
     private void sendBroadCast(String file) {
         Intent intent = new Intent(MOCK_SERVICE_CRASH);
         intent.putExtra("crashlog", file);
-        App.INSTANCE.sendBroadcast(intent);
+        AppContext.INSTANCE.sendBroadcast(intent);
     }
 
     private String saveBugFileInfo(Throwable ex) {
