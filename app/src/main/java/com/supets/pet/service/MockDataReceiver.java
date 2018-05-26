@@ -16,6 +16,7 @@ import java.util.Date;
 public class MockDataReceiver extends BroadcastReceiver {
 
     public static final String MOCK_SERVICE_NETWORK = "mock.crash.network";
+    private static TuZiWidget mTipViewController;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -49,27 +50,30 @@ public class MockDataReceiver extends BroadcastReceiver {
                                         .append("\r\n")
                                         .append("请求结果：")
                                         .append("\r\n")
-                                        .append(FormatLogProcess.format(FormatLogProcess.formatJsonText(json)))
+                                        //.append(FormatLogProcess.format(FormatLogProcess.formatJsonText(json)))
+                                        .append(FormatLogProcess.format(json))
                                         .toString();
 
-
-                        if (TuZiWidget.isShow) {
-                            Intent update_data
-                                    = new Intent("update_data");
-                            update_data.putExtra("vaule",message);
-                            context.sendBroadcast(update_data);
-
-                        } else {
-                            TuZiWidget mTipViewController = new TuZiWidget(context, message);
-                            mTipViewController.setViewDismissHandler(null);
-                            mTipViewController.show();
+                        if (Config.getToastinstance()) {
+                            new TuZiWidget(context, message).setViewDismissHandler(() -> {
+                            }).show();
+                            return;
                         }
 
+                        if (!TuZiWidget.isShow) {
+                            mTipViewController = new TuZiWidget(context, message);
+                            mTipViewController.setViewDismissHandler(() -> {
 
+                            });
+                            mTipViewController.show();
+                        } else {
+                            mTipViewController.updateContent(message);
+                        }
                     }
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                    mTipViewController = null;
                 }
             }
 

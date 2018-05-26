@@ -39,22 +39,6 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/pop_view_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="left"
-                android:includeFontPadding="false"
-                android:textColor="#000"
-                android:textSize="12sp" />
-        </ScrollView>
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/list"
             android:layout_width="match_parent"

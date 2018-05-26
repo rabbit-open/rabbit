@@ -1,12 +1,9 @@
 package com.supets.pet.service;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
-import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Gravity;
@@ -14,8 +11,8 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.TextView;
 
+import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.ui.home.MockUiActivity;
 import com.supets.pet.mockui.R;
 import com.supets.pet.uctoast.ViewContainer;
@@ -28,9 +25,8 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
     private View mContentView;
     private ViewDismissHandler mViewDismissHandler;
     private String mContent;
-    private TextView mTextView;
     private RecyclerView mList;
-    public static boolean isShow;
+    public static boolean isShow = false;
     private GridAdapter adapter;
 
     public TuZiWidget(Context application, String content) {
@@ -39,13 +35,14 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         mWindowManager = (WindowManager) application.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
     }
 
-    public void setViewDismissHandler(ViewDismissHandler viewDismissHandler) {
+    public TuZiWidget setViewDismissHandler(ViewDismissHandler viewDismissHandler) {
         mViewDismissHandler = viewDismissHandler;
+        return this;
     }
 
     public void updateContent(String content) {
         mContent = content;
-        mTextView.setText(mContent);
+        adapter.putData(mContent);
     }
 
     public void show() {
@@ -53,14 +50,11 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         ViewContainer view = (ViewContainer) View.inflate(mContext, R.layout.tuzi_pop_view, null);
 
         isShow = true;
-        mContext.registerReceiver(update, new IntentFilter("update_data"));
+        // mContext.registerReceiver(update, new IntentFilter("update_data"));
 
         // display content
-        mTextView = view.findViewById(R.id.pop_view_text);
-        mTextView.setText(mContent);
-
         mList = view.findViewById(R.id.list);
-        mList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        mList.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
 
         adapter = new GridAdapter();
         adapter.putData(mContent);
@@ -80,21 +74,26 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         int flags = 0;
         int type = 0;
 
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            //解决Android 7.1.1起不能再用Toast的问题（先解决crash）
-            if (Build.VERSION.SDK_INT > 24) {
-                type = WindowManager.LayoutParams.TYPE_PHONE;
-            } else {
-                // type = WindowManager.LayoutParams.TYPE_TOAST;
-                type = WindowManager.LayoutParams.TYPE_PHONE;
-            }
-        } else {
+        if (Config.getToast()) {
             type = WindowManager.LayoutParams.TYPE_PHONE;
+        } else {
+            type = WindowManager.LayoutParams.TYPE_TOAST;
         }
 
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(w, h, type, flags, PixelFormat.TRANSLUCENT);
         layoutParams.gravity = Gravity.TOP;
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            //解决Android 7.1.1起不能再用Toast的问题（先解决crash）
+//            if (Build.VERSION.SDK_INT > 24) {
+//                type = WindowManager.LayoutParams.TYPE_PHONE;
+//            } else {
+//                type = WindowManager.LayoutParams.TYPE_TOAST;
+//                //type = WindowManager.LayoutParams.TYPE_PHONE;
+//            }
+//        } else {
+//            type = WindowManager.LayoutParams.TYPE_PHONE;
+//        }
 
         mWindowManager.addView(mWholeView, layoutParams);
     }
@@ -123,7 +122,6 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         if (mViewDismissHandler != null) {
             isShow = false;
             mViewDismissHandler.onViewDismiss();
-            mContext.unregisterReceiver(update);
         }
 
         // remove listeners
@@ -158,17 +156,5 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
     public interface ViewDismissHandler {
         void onViewDismiss();
     }
-
-    public BroadcastReceiver update = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if ("update_data".equals(intent.getAction())) {
-                if (adapter != null) {
-                    adapter.putData(intent.getStringExtra("vaule"));
-                    adapter.notifyDataSetChanged();
-                }
-            }
-        }
-    };
 
 }

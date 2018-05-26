@@ -14,6 +14,8 @@ public class Config extends BasePref {
     private static final String DebugMode = "DebugMode";
     private static final String JsonSwitch = "JsonSwitch";
     private static final String ToastSwitch = "ToastSwitch";
+    private static final String Toastinstance = "Toastinstance";
+    private static final String Toast = "Toast";
     private static final String BaseAPI = "api_key";
 
 
@@ -46,7 +48,7 @@ public class Config extends BasePref {
 
     public static void setUrl(String url) {
         SharedPreferences.Editor editor = edit(Name);
-        Set<String>  strings=  getUrl();
+        Set<String> strings = getUrl();
         strings.add(url);
         editor = editor.putStringSet(Url, strings);
         editor.commit();
@@ -99,7 +101,7 @@ public class Config extends BasePref {
     public static boolean isFilterGuice(String url) {
         String json = getBaseAPI();
 
-        if (json==null||TextUtils.isEmpty(json.trim())){
+        if (json == null || TextUtils.isEmpty(json.trim())) {
             return false;
         }
 
@@ -123,6 +125,28 @@ public class Config extends BasePref {
     public static void setToastSwitch(boolean toastSwitch) {
         SharedPreferences.Editor editor = edit(Name);
         editor = editor.putBoolean(ToastSwitch, toastSwitch);
+        editor.commit();
+    }
+
+    public static void setToastinstance(boolean toastSwitch) {
+        SharedPreferences.Editor editor = edit(Name);
+        editor = editor.putBoolean(Toastinstance, toastSwitch);
+        editor.commit();
+    }
+
+    public static boolean getToastinstance() {
+        SharedPreferences preferences = getPref(Name);
+        return preferences.getBoolean(Toastinstance, false);
+    }
+
+    public static boolean getToast() {
+        SharedPreferences preferences = getPref(Name);
+        return preferences.getBoolean(Toast, false);
+    }
+
+    public static void setToast(boolean toast) {
+        SharedPreferences.Editor editor = edit(Name);
+        editor = editor.putBoolean(Toast, toast);
         editor.commit();
     }
 }
