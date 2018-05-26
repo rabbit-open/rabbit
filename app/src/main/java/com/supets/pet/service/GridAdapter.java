@@ -37,7 +37,7 @@ public class GridAdapter extends RecyclerView.Adapter {
 
         MockData data = datas.get(position);
 
-        label.setText("请求接口:".concat(data.getUrl()));
+        label.setText("请求接口:\r\n".concat(data.getUrl()));
 
         StringBuffer message = new StringBuffer()
                 .append("请求参数：")
