@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:background="#fff"
         android:orientation="vertical"
-        android:padding="15dp">
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,7 +41,6 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/list"
-            android:background="#e5e5e5"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
