@@ -15,7 +15,7 @@
     <string name="toast_config">悬浮窗设置</string>
     <string name="toast_config1">打开只抓取非JSON数据</string>
     <string name="toast_config2">打开每个请求显示一个浮层，默认请求显示一个列表</string>
-    <string name="toast_config3">打开Toast，默认悬浮窗</string>
+    <string name="toast_config3">打开悬浮窗，默认Toast</string>
 
     <string name="crash_title">崩溃日志</string>
     <string name="send_mail">发邮件</string>
