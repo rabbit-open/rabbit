@@ -23,10 +23,10 @@ public final class ClipViewWidget implements View.OnClickListener, View.OnTouchL
     private ViewContainer mWholeView;
     private View mContentView;
     private ViewDismissHandler mViewDismissHandler;
-    private CharSequence mContent;
+    private String mContent;
     private TextView mTextView;
 
-    public ClipViewWidget(Context application, CharSequence content) {
+    public ClipViewWidget(Context application, String content) {
         mContext = application;
         mContent = content;
         mWindowManager = (WindowManager) application.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
@@ -36,7 +36,7 @@ public final class ClipViewWidget implements View.OnClickListener, View.OnTouchL
         mViewDismissHandler = viewDismissHandler;
     }
 
-    public void updateContent(CharSequence content) {
+    public void updateContent(String content) {
         mContent = content;
         mTextView.setText(mContent);
     }

@@ -102,10 +102,10 @@ public final class ListenClipboardService extends Service implements ClipViewWid
         if (TextUtils.isEmpty(content)) {
             return;
         }
-        showContent(content);
+        showContent(content.toString());
     }
 
-    private void showContent(CharSequence content) {
+    private void showContent(String content) {
         if (sLastContent != null && sLastContent.equals(content) || content == null) {
             return;
         }
