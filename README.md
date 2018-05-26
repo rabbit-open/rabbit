@@ -21,7 +21,7 @@
 > 
 > 方式2: APK可以自己运行源码安装，也可以点击下面地址下载安装
    
-## [Demo APK下载](https://fir.im/testpet)
+## [APK下载](https://fir.im/testpet)
 
 ## mocklib拦截器介绍（使用Okhhtp3实现）
 
