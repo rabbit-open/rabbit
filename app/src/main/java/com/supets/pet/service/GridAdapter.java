@@ -40,5 +40,6 @@ public class GridAdapter extends RecyclerView.Adapter {
 
     public void putData(String data) {
         datas.add(data);
+        notifyDataSetChanged();
     }
 }
