@@ -21,9 +21,8 @@ public class GridAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View textView = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent, false);
-        TextView label = textView.findViewById(R.id.label);
         TextView name = textView.findViewById(R.id.name);
-        label.setOnClickListener(view -> {
+        textView.setOnClickListener(view -> {
             name.setVisibility(name.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
         });
         return new RecyclerView.ViewHolder(textView) {
