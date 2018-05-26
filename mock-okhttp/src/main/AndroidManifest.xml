@@ -1,27 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     package="com.supets.pet.mocklib">
-
-    <!--<uses-permission android:name="com.supets.pet.mock.crash"/>-->
-    <!--<uses-permission android:name="com.supets.pet.mock.network"/>-->
-    <!--<uses-permission android:name="com.supets.pet.mock"/>-->
 
     <application
         android:allowBackup="true"
         android:supportsRtl="true">
-
-
-        <!--Android7.0新增的广播权限验证-->
-        <receiver
-            android:name="com.supets.pet.service.CrashService"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="mock.crash.service" />
-            </intent-filter>
-        </receiver>
-
-
-
 
     </application>
 
