@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.supets.pet.mock.bean.MockData;
+import com.supets.pet.mock.utils.FormatLogProcess;
+import com.supets.pet.mock.utils.Utils;
 import com.supets.pet.mockui.R;
 
 import java.util.ArrayList;
@@ -31,9 +34,22 @@ public class GridAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         TextView textView = holder.itemView.findViewById(R.id.name);
         TextView label = holder.itemView.findViewById(R.id.label);
-        String dd = datas.get(position);
-        label.setText("请求" + position + "--->>");
-        textView.setText(dd);
+
+
+        MockData data = datas.get(position);
+
+        label.setText("请求接口:".concat(data.getUrl()));
+
+        StringBuffer message = new StringBuffer()
+                .append("请求参数：")
+                .append("\r\n")
+                .append(Utils.formatParam(data.getRequestParam()))
+                .append("\r\n")
+                .append("请求结果：")
+                .append("\r\n")
+                //.append(FormatLogProcess.format(FormatLogProcess.formatJsonText(json)))
+                .append(FormatLogProcess.format(data.getData()));
+        textView.setText(message.toString());
     }
 
     @Override
@@ -41,9 +57,9 @@ public class GridAdapter extends RecyclerView.Adapter {
         return datas.size();
     }
 
-    public ArrayList<String> datas = new ArrayList<>();
+    public ArrayList<MockData> datas = new ArrayList<>();
 
-    public void putData(String data) {
+    public void putData(MockData data) {
         datas.add(data);
         notifyDataSetChanged();
     }

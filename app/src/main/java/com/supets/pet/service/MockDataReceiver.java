@@ -9,7 +9,6 @@ import com.supets.pet.mock.bean.MockData;
 import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.dao.MockDataDB;
 import com.supets.pet.mock.utils.FormatLogProcess;
-import com.supets.pet.mock.utils.Utils;
 
 import java.util.Date;
 
@@ -38,36 +37,20 @@ public class MockDataReceiver extends BroadcastReceiver {
 
                     if (!Config.getToastSwitch() || !FormatLogProcess.isJson(json)) {
 
-
-                        String message =
-                                new StringBuffer().append("接口名称：")
-                                        .append("\r\n")
-                                        .append(data.getUrl())
-                                        .append("\r\n")
-                                        .append("请求参数：")
-                                        .append("\r\n")
-                                        .append(Utils.formatParam(data.getRequestParam()))
-                                        .append("\r\n")
-                                        .append("请求结果：")
-                                        .append("\r\n")
-                                        //.append(FormatLogProcess.format(FormatLogProcess.formatJsonText(json)))
-                                        .append(FormatLogProcess.format(json))
-                                        .toString();
-
                         if (Config.getToastinstance()) {
-                            new TuZiWidget(context, message).setViewDismissHandler(() -> {
+                            new TuZiWidget(context, data).setViewDismissHandler(() -> {
                             }).show();
                             return;
                         }
 
                         if (!TuZiWidget.isShow) {
-                            mTipViewController = new TuZiWidget(context, message);
+                            mTipViewController = new TuZiWidget(context, data);
                             mTipViewController.setViewDismissHandler(() -> {
 
                             });
                             mTipViewController.show();
                         } else {
-                            mTipViewController.updateContent(message);
+                            mTipViewController.updateContent(data);
                         }
                     }
 

@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.supets.pet.mock.bean.MockData;
 import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.ui.home.MockUiActivity;
 import com.supets.pet.mockui.R;
@@ -24,12 +25,12 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
     private ViewContainer mWholeView;
     private View mContentView;
     private ViewDismissHandler mViewDismissHandler;
-    private String mContent;
+    private MockData mContent;
     private RecyclerView mList;
     public static boolean isShow = false;
     private GridAdapter adapter;
 
-    public TuZiWidget(Context application, String content) {
+    public TuZiWidget(Context application, MockData content) {
         mContext = application;
         mContent = content;
         mWindowManager = (WindowManager) application.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
@@ -40,7 +41,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         return this;
     }
 
-    public void updateContent(String content) {
+    public void updateContent(MockData content) {
         mContent = content;
         adapter.putData(mContent);
     }
