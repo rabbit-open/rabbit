@@ -11,8 +11,36 @@
 ## 实现原理
   
 * APP对外公开了一个内容提供者查询要mock数据接口。
+    
+    APP对外公开的Mock数据测试URI协议:
+    content://com.supets.pet.mockprovider/mockdata
+    支持url参数查询mock数据
+            
+    例子：
+        Uri uri = Uri.parse("content://com.supets.pet.mockprovider/mockdata");
+        Cursor cursor = ContentResolverCompat.query(AppContext.INSTANCE.getContentResolver(),
+        uri, null, null, new String[]{url}, null, null);
+    
+        try {
+            if (cursor != null) {
+            cursor.moveToFirst();
+            return cursor.getString(cursor.getColumnIndex("data"));
+            }
+        } finally {
+          if (cursor != null) {
+           cursor.close();
+           }
+        }
+            
+
 * APP对外公开了保存抓取网络数据保存广播协议。
-   
+      
+    APP对外开放的抓取数据广播协议：
+    Intent intent = new Intent("mock.crash.network");
+    intent.putExtra("url", url);
+    intent.putExtra("requestParam", requestParam);
+    intent.putExtra("message", !isJpg(url) ? message : "");
+       
 * mock-okhhtp是一个对外接口的一个实现库。大家也可以自行实现。
  
 ## 使用方法
