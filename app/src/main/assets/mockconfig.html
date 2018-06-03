@@ -62,11 +62,13 @@ function savemock(id,url){
 function saveconfig(data){
 
       var  ToastSwitch=  $("input[name='alert']:checked").val();
+      var  Toastinstance=  $("input[name='showmode']:checked").val();
+      var  Toast=  $("input[name='dialog']:checked").val();
       var  DebugMode=  $("#open1").is(":checked");
       var  JsonSwitch=  $("#open2").is(":checked");
       var  apikey= $("#firstname").val();
 
-      var urlpath = 'saveconfigdata'+ '?apikey='+ apikey+'&JsonSwitch='+ JsonSwitch+'&DebugMode='+ DebugMode+'&ToastSwitch='+ ToastSwitch;
+      var urlpath = 'saveconfigdata'+ '?apikey='+ apikey+'&JsonSwitch='+ JsonSwitch+'&DebugMode='+ DebugMode+'&ToastSwitch='+ ToastSwitch+'&Toast='+ Toast+'&Toastinstance='+ Toastinstance;
 
       $.getJSON(urlpath, function(data) {
 
