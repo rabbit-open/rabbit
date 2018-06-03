@@ -102,6 +102,12 @@ $(function(){
                 $("input[name='alert']").eq(1).attr("checked",data.ToastSwitch?true:false);
                 $("input[name='alert']").eq(0).attr("checked",data.ToastSwitch?false:true);
 
+                $("input[name='showmode']").eq(1).attr("checked",data.Toastinstance?true:false);
+                $("input[name='showmode']").eq(0).attr("checked",data.Toastinstance?false:true);
+
+                $("input[name='dialog']").eq(1).attr("checked",data.Toast?true:false);
+                $("input[name='dialog']").eq(0).attr("checked",data.Toast?false:true);
+
                 $("#open1").prop("checked",data.DebugMode?true:false);
                 $("#open2").prop("checked",data.JsonSwitch?true:false);
 
@@ -129,15 +135,25 @@ $(function(){
                         <h4>接口过滤规则</h4>
                         <textarea style="width:50%;height:40px;" id="firstname" rows="2"></textarea>
                         <br/>
-                        <h4>悬浮助手打开：</h4>
-                        <input type="radio" name="alert" value="0"/>实时显示接口数据
-                        <br/>
-                        <input type="radio" name="alert" value="1"/>显示非json数据
-                        <br/>
                         <h4>开关配置：</h4>
                         <input type="checkbox" id="open1"/>打开测试模式，不会抓取数据，优先级高。
                         <br/>
                         <input type="checkbox" id="open2"/>抓取数据模式，不能打开调试模式。
+                        <br/>
+                        <h4>悬浮抓包助手：</h4>
+                        <input type="radio" name="alert" value="0"/>显示所有接口数据
+                        <br/>
+                        <input type="radio" name="alert" value="1"/>显示非json接口
+                        <br/>
+                        <h4>悬浮助手接口显示方式：</h4>
+                        <input type="radio" name="showmode" value="0"/>列表模式
+                        <br/>
+                        <input type="radio" name="showmode" value="1"/>单个模式
+                        <br/>
+                        <h4>悬浮助手显示兼容：</h4>
+                        <input type="radio" name="dialog" value="0"/>使用吐司对话框
+                        <br/>
+                        <input type="radio" name="dialog" value="1"/>使用悬浮窗对话框
                         <br/>
                         <br/>
                         <button type="button" style="width:200px;height:45px;"

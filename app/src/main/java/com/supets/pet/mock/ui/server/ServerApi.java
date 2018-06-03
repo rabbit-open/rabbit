@@ -262,15 +262,23 @@ public class ServerApi {
             String DebugMode = request.getQuery().getString("DebugMode");
             String ToastSwitch = request.getQuery().getString("ToastSwitch");
 
+            String Toastinstance = request.getQuery().getString("Toastinstance");
+            String Toast = request.getQuery().getString("Toast");
+
             Log.v("serverapi", ToastSwitch);
             Log.v("serverapi", DebugMode);
             Log.v("serverapi", JsonSwitch);
             Log.v("serverapi", apikey);
+            Log.v("serverapi", Toastinstance);
+            Log.v("serverapi", Toast);
 
             Config.setBaseAPI(apikey);
             Config.setJsonSwitch(Boolean.parseBoolean(JsonSwitch));
             Config.setDebugMode(Boolean.parseBoolean(DebugMode));
             Config.setToastSwitch(Integer.parseInt(ToastSwitch) == 1);
+
+            Config.setToastinstance(Integer.parseInt(Toastinstance) == 1);
+            Config.setToast(Integer.parseInt(Toast) == 1);
 
             response.send("true");
 
@@ -316,6 +324,9 @@ public class ServerApi {
                 jsonObject.put("JsonSwitch", Config.getJsonSwitch());
                 jsonObject.put("DebugMode", Config.getDebugMode());
                 jsonObject.put("ToastSwitch", Config.getToastSwitch());
+                jsonObject.put("Toastinstance", Config.getToastinstance());
+                jsonObject.put("Toast", Config.getToast());
+
                 response.send(jsonObject);
             } catch (JSONException e) {
                 e.printStackTrace();
