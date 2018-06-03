@@ -87,7 +87,7 @@ public class MockConfigJsonActivity extends AppCompatActivity {
         mListView.setAdapter(adapter);
 
         content = findViewById(R.id.content);
-        content.setText(FormatLogProcess.formatJsonText(localMockData.getData()));
+        content.setText(FormatLogProcess.formatJsonText2(localMockData.getData()));
 
         TextView name = findViewById(R.id.name);
         name.setText(localMockData.getUrl());
@@ -137,7 +137,7 @@ public class MockConfigJsonActivity extends AppCompatActivity {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        content.setText(FormatLogProcess.formatJsonText(temp.getData()));
+                        content.setText(FormatLogProcess.formatJsonText2(temp.getData()));
                     }
                 });
                 if (FormatLogProcess.isJson(temp.getData())) {
@@ -153,7 +153,7 @@ public class MockConfigJsonActivity extends AppCompatActivity {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        content.setText(FormatLogProcess.formatJsonText(temp.getData()));
+                        content.setText(FormatLogProcess.formatJsonText2(temp.getData()));
                     }
                 });
                 if (FormatLogProcess.isJson(temp.getData())) {
@@ -169,7 +169,7 @@ public class MockConfigJsonActivity extends AppCompatActivity {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        content.setText(FormatLogProcess.formatJsonText(temp.getData()));
+                        content.setText(FormatLogProcess.formatJsonText2(temp.getData()));
                     }
                 });
                 if (FormatLogProcess.isJson(temp.getData())) {

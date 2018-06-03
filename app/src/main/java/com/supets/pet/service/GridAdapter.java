@@ -12,6 +12,9 @@ import com.supets.pet.mock.utils.FormatLogProcess;
 import com.supets.pet.mock.utils.Utils;
 import com.supets.pet.mockui.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class GridAdapter extends RecyclerView.Adapter {
@@ -39,16 +42,25 @@ public class GridAdapter extends RecyclerView.Adapter {
 
         label.setText("请求接口:\r\n".concat(data.getUrl()));
 
-        StringBuffer message = new StringBuffer()
-                .append("请求参数：")
-                .append("\r\n")
-                .append(Utils.formatParam(data.getRequestParam()))
-                .append("\r\n")
-                .append("请求结果：")
-                .append("\r\n")
-                //.append(FormatLogProcess.format(FormatLogProcess.formatJsonText(json)))
-                .append(FormatLogProcess.format(data.getData()));
-        textView.setText(message.toString());
+        if (FormatLogProcess.isJson(data.getData())) {
+            try {
+                String string = new JSONObject(data.getData()).toString();
+                String message = "请求参数：\r\n".concat(
+                        Utils.formatParam(data.getRequestParam())).concat(
+                        "\r\n请求结果：\r\n").concat(
+                        FormatLogProcess.format(string));
+                textView.setText(message);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            String message = "请求参数：\r\n".concat(
+                    Utils.formatParam(data.getRequestParam())).concat(
+                    "\r\n请求结果：\r\n").concat(
+                    data.getData());
+            textView.setText(message);
+        }
+
     }
 
     @Override

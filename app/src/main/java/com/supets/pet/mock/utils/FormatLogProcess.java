@@ -65,6 +65,24 @@ public final class FormatLogProcess {
 
     }
 
+
+    public static String formatJsonText2(String content) {
+
+        try {
+            return new JSONObject(content).toString();
+        } catch (Exception e) {
+            return content;
+        }
+    }
+
+    public static String formatJsonTab(String content) {
+        try {
+            return format(new JSONObject(content).toString());
+        } catch (Exception e) {
+            return content;
+        }
+    }
+
     private static String getLevelStr(int level) {
         StringBuffer levelStr = new StringBuffer();
         for (int levelI = 0; levelI < level; levelI++) {
@@ -73,6 +91,7 @@ public final class FormatLogProcess {
         return levelStr.toString();
     }
 
+    @Deprecated
     public static String formatJsonText(String json) {
         if (FormatLogProcess.isJson(json)) {
             try {

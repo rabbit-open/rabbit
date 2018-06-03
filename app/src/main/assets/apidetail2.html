@@ -102,12 +102,20 @@ $(function(){
     var Request = new Object();
     Request = GetRequest();
     var id= Request["id"];
+    var  url2=Request["url"];
+
+    $("#url_id").val(url2);
+    $("#debug_id").prop("checked",false);
 
     $.getJSON("getmockapidata2?id="+id, function(data) {
              if(data.length>0){
                editor.setText(data[0].data);
                $("#url_id").val(data[0].url);
                $("#debug_id").prop("checked",data[0].selected?true:false);
+             }else{
+               editor.setText("");
+               $("#url_id").val(url2);
+               $("#debug_id").prop("checked",false);
              }
          });
 

@@ -21,6 +21,9 @@ import com.supets.pet.mockui.R;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 import okhttp3.Call;
@@ -44,7 +47,14 @@ public class MockInfoActivity extends AppCompatActivity {
         if (datas != null && datas.size() > 0) {
             mockData = datas.get(0);
             mEditText = findViewById(R.id.list);
-            mEditText.setText(FormatLogProcess.format(FormatLogProcess.formatJsonText(mockData.getData())));
+
+            try {
+                String string = new JSONObject(mockData.getData()).toString();
+                mEditText.setText(FormatLogProcess.format(string));
+            } catch (JSONException e) {
+                e.printStackTrace();
+                mEditText.setText(mockData.getData());
+            }
 
             TextView name = findViewById(R.id.name);
             name.setText(FormatLogProcess.format(mockData.getUrl()));
@@ -153,7 +163,7 @@ public class MockInfoActivity extends AppCompatActivity {
                                         .append("\r\n")
                                         .append("请求结果：")
                                         .append("\r\n")
-                                        .append(FormatLogProcess.format(FormatLogProcess.formatJsonText(mockData.getData())))
+                                        .append(FormatLogProcess.formatJsonTab(mockData.getData()))
                                         .toString()
                         );
                     }
