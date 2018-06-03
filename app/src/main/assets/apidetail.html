@@ -43,9 +43,9 @@
                     <h4>接口名称</h4>
                     <textarea style="width:100%;height:40px;" id="url_id" rows="2"></textarea>
                     <br/>
-                    <h4>接口参数</h4>
-                    <textarea style="width:100%;height:40px;" id="params_id" rows="2"></textarea>
-                    <br/>
+                    <!--<h4>接口参数</h4>-->
+                    <!--<textarea style="width:100%;height:40px;" id="params_id" rows="5"></textarea>-->
+                    <!--<br/>-->
                     <h4>调试状态：</h4>
                     <input type="checkbox" id="debug_id"/>是否调试
                     <br/>
@@ -110,7 +110,7 @@ $(function(){
              if(data.length>0){
                editor.setText(data[0].data);
                $("#url_id").val(data[0].url);
-               $("#params_id").val(data[0].requestParam);
+              // $("#params_id").val(data[0].requestParam);
                $("#debug_id").prop("checked",false);
              }
          });
