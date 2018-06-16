@@ -61,13 +61,21 @@ public class MockDataProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        if (!Config.getDebugMode()){
-            return  null;
+        if (!Config.getDebugMode()) {
+            return null;
+        }
+
+        if (selectionArgs != null && selectionArgs.length > 0) {
+            int position = selectionArgs[0].indexOf("?");
+            if (position > 0) {
+                String strurl = selectionArgs[0].substring(0, position);
+                selectionArgs[0] = strurl;
+            }
         }
 
         switch (uriMatcher.match(uri)) {
             case MATCH_ALL_CODE:
-                return  db.rawQuery(getContext().getString(R.string.querysql), selectionArgs);
+                return db.rawQuery(getContext().getString(R.string.querysql), selectionArgs);
             case MATCH_ONE_CODE:
                 break;
             default:

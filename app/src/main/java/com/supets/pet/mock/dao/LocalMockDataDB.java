@@ -13,6 +13,12 @@ public class LocalMockDataDB extends SessionFactory {
 
 
     public static List<LocalMockData> queryAllMockData(String url) {
+        if (url != null && url.length() > 0) {
+            int position = url.indexOf("?");
+            if (position > 0) {
+                url = url.substring(0, position);
+            }
+        }
         return dao.queryRaw("where url= ?", url);
     }
 
