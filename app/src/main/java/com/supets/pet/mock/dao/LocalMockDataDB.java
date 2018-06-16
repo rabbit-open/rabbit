@@ -51,6 +51,14 @@ public class LocalMockDataDB extends SessionFactory {
     }
 
     public static List<LocalMockData> queryAllMockData(String url, String debug) {
+
+        if (url != null && url.length() > 0) {
+            int position = url.indexOf("?");
+            if (position > 0) {
+                url = url.substring(0, position);
+            }
+        }
+
         return dao.queryRaw("where url= ? and selected = ? ", url, Boolean.valueOf(debug)?"1":"0");
     }
 

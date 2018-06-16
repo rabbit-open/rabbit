@@ -203,6 +203,14 @@ public class ServerApi {
             List<String> datas = MockDataDB.queryAllUrl();
             if (datas != null) {
                 for (String temp : datas) {
+
+                    if (temp != null && temp.length() > 0) {
+                        int position = temp.indexOf("?");
+                        if (position > 0) {
+                            temp = temp.substring(0, position);
+                        }
+                    }
+
                     List<LocalMockData> data = LocalMockDataDB.queryAllMockData(temp);
                     if (data == null || data.size() == 0) {
                         LocalMockDataDB.insertMockData(new LocalMockData(null, temp, null, false));
@@ -213,7 +221,12 @@ public class ServerApi {
             String apikey = request.getQuery().getString("apikey");
             String debug = request.getQuery().getString("debug");
             if (TextUtils.isEmpty(apikey)) {
-                response.send(new Gson().toJson(LocalMockDataDB.queryAll(debug)));
+                if (Boolean.valueOf(debug)){
+                    response.send(new Gson().toJson(LocalMockDataDB.queryAll(debug)));
+                }else{
+                    response.send(new Gson().toJson(LocalMockDataDB.queryAll()));
+                }
+
             } else {
                 response.send(new Gson().toJson(LocalMockDataDB.queryAllMockData(apikey, debug)));
             }
