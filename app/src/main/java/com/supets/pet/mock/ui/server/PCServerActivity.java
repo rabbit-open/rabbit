@@ -19,8 +19,8 @@ import com.koushikdutta.async.http.server.AsyncHttpServer;
 import com.supets.pet.mockui.R;
 
 public class PCServerActivity extends AppCompatActivity {
-    private AsyncHttpServer server = new AsyncHttpServer();
-    private AsyncServer mAsyncServer = new AsyncServer();
+    private  static AsyncHttpServer server = new AsyncHttpServer();
+    private static AsyncServer mAsyncServer = new AsyncServer();
 
     WifiConnectChangedReceiver mWifiConnectChangedReceiver = new WifiConnectChangedReceiver();
 
