@@ -162,7 +162,9 @@ public final class HttpLoggingInterceptor3 implements Interceptor {
     }
 
     private StringBuilder sb = new StringBuilder();
-    static  String  postParam = "";
+    private String postParam = "";
+
+    private boolean requestResponse = false;//打开获取response
 
 
     @Override
@@ -237,7 +239,7 @@ public final class HttpLoggingInterceptor3 implements Interceptor {
 
                 if (isPlaintext(buffer)) {
                     //TODO 请求POST参数
-                    postParam = postParam +"body="+ buffer.readString(charset)+"&";
+                    postParam = postParam + "body=" + buffer.readString(charset) + "&";
 
                     logger.log(request.url().toString(), postParam);
                     sb.append(postParam).append("\n");
@@ -261,6 +263,7 @@ public final class HttpLoggingInterceptor3 implements Interceptor {
         } catch (Exception e) {
             logger.log(request.url().toString(), "<-- HTTP FAILED: " + e);
             sb.append("<-- HTTP FAILED: " + e).append("\n");
+            postParam = "";
             throw e;
         }
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
@@ -280,7 +283,9 @@ public final class HttpLoggingInterceptor3 implements Interceptor {
                 logger.log(request.url().toString(), headers.name(i) + ": " + headers.value(i));
                 sb.append(headers.name(i) + ": " + headers.value(i)).append("\n");
                 //TODO 响应头参数
-                postParam = postParam + ("" + headers.name(i) + "=" + headers.value(i)) + "&";
+                if (requestResponse) {
+                    postParam = postParam + ("" + headers.name(i) + "=" + headers.value(i)) + "&";
+                }
             }
 
             if (!logBody || !HttpHeaders.hasBody(response)) {
@@ -309,7 +314,7 @@ public final class HttpLoggingInterceptor3 implements Interceptor {
                         sb.append("").append("\n");
                         sb.append("Couldn't decode the response body; charset is likely malformed.").append("\n");
                         sb.append("<-- END HTTP").append("\n");
-                        postParam="";
+                        postParam = "";
                         return response;
                     }
                 }
@@ -321,7 +326,7 @@ public final class HttpLoggingInterceptor3 implements Interceptor {
 
                     sb.append("").append("\n");
                     sb.append("<-- END HTTP (binary " + buffer.size() + "-byte body omitted)").append("\n");
-                }else{
+                } else {
                     if (contentLength != 0) {
                         logger.log(request.url().toString(), "");
                         logger.log(request.url().toString(), buffer.clone().readString(charset));
@@ -340,7 +345,7 @@ public final class HttpLoggingInterceptor3 implements Interceptor {
         }
 
         logger.log3(request.url().toString(), sb.toString());
-        postParam="";
+        postParam = "";
         return response;
     }
 
