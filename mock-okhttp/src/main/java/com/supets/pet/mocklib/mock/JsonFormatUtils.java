@@ -133,4 +133,15 @@ public final class JsonFormatUtils {
         return levelStr.toString();
     }
 
+    public static void sendLocalRequest(String url, String requestParam, String message) {
+        try {
+            Intent intent = new Intent(MOCK_SERVICE_NETWORK);
+            intent.putExtra("url", url);
+            intent.putExtra("requestParam", requestParam);
+            intent.putExtra("message", message);
+            AppContext.INSTANCE.sendBroadcast(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
