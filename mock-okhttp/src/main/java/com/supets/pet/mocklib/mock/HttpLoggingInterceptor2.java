@@ -212,6 +212,7 @@ public final class HttpLoggingInterceptor2 implements Interceptor {
                 if (!"Content-Type".equalsIgnoreCase(name) && !"Content-Length".equalsIgnoreCase(name)) {
                     logger.log(request.url().toString(), name + ": " + headers.value(i));
                     sb.append(name + ": " + headers.value(i)).append("\n");
+                    postParam=postParam+(""+name+"="+headers.value(i))+"&";
                 }
             }
 
@@ -232,6 +233,7 @@ public final class HttpLoggingInterceptor2 implements Interceptor {
                 }
                 logger.log(request.url().toString(), "");
                 sb.append("").append("\n");
+
                 if (isPlaintext(buffer)) {
 
                     postParam = buffer.readString(charset);

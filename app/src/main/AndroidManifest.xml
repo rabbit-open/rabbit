@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.supets.pet.mockui">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -25,7 +26,8 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
-        android:theme="@style/CustomAppTheme">
+        android:theme="@style/CustomAppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <!--Android7.0新增的广播权限验证-->
         <receiver
             android:name="com.supets.pet.service.CrashService"
