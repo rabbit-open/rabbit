@@ -64,8 +64,27 @@
 
 ## mocklib拦截器介绍（使用Okhhtp3实现）
 
-    HttpLoggingInterceptor2  格式化日志显示json功能和json数据抓取功能
+    HttpLoggingInterceptor2/3  格式化日志显示json功能和json数据抓取功能
     MockInterceptor          简易API调用本地测试数据
+
+    public class TuziMockManager {
+        //本地mock数据编辑
+        public static Interceptor getMockInterceptors() {
+            return null;
+        }
+        //参数只是post参数
+        public static Interceptor getMockLogInterceptors2() {
+            return null;
+        }
+        //参数包含Header参数，POST参数
+        public static Interceptor getMockLogInterceptors3() {
+            return null;
+        }
+        //本地模拟发送请求，可使用于日志可视化，MQTT
+        public static void sendLocalRequest(String url, String requestParam, String message) {
+        }
+    }
+
 
 ## APP和浏览器使用图示
 
