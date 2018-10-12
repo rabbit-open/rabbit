@@ -7,7 +7,7 @@ import com.supets.pet.mocklib.AppContext;
 
 import org.json.JSONObject;
 
-public final class JsonFormatUtils {
+final class JsonFormatUtils {
 
     public static final String MOCK_SERVICE_NETWORK = "mock.crash.network";
 

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/mock-okhttp/mock-okhttp.iml" filepath="$PROJECT_DIR$/mock-okhttp/mock-okhttp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mock-okhttp-no-op/mock-okhttp-no-op.iml" filepath="$PROJECT_DIR$/mock-okhttp-no-op/mock-okhttp-no-op.iml" />
       <module fileurl="file://$PROJECT_DIR$/rabbit.iml" filepath="$PROJECT_DIR$/rabbit.iml" />
     </modules>
   </component>
