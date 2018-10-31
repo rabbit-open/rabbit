@@ -2,41 +2,41 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
-apply plugin: 'android-apt'
+//apply plugin: 'android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 
-    compile 'com.android.support:appcompat-v7:27.1.1'
-    compile 'com.android.support:design:27.1.1'
-    compile 'com.android.support:recyclerview-v7:27.1.1'
-    compile 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
 
 
-    compile 'com.cloudpet.base:baserouter:1.0.0'
-    compile 'com.cloudpet.ui:commonui:1.1.2'
-    compile 'com.cloudpet.ui:themelib:1.2.0'
-    compile 'com.supets.lib:maillib:2.2.0'
-    compile 'com.supets.lib:jsoneditlib:1.4.0'
+    implementation 'com.cloudpet.base:baserouter:1.0.0'
+    implementation 'com.cloudpet.ui:commonui:1.1.2'
+    implementation 'com.cloudpet.ui:themelib:1.2.0'
+    implementation 'com.supets.lib:maillib:2.2.0'
+    implementation 'com.supets.lib:jsoneditlib:1.4.0'
 
-    compile 'com.zhy:okhttputils:2.6.2'
+    implementation 'com.zhy:okhttputils:2.6.2'
 
-    compile 'org.greenrobot:greendao:3.2.2'
+    implementation 'org.greenrobot:greendao:3.2.2'
     //数据库加密时添加
-    compile 'net.zetetic:android-database-sqlcipher:3.5.4'
+    implementation 'net.zetetic:android-database-sqlcipher:3.5.4'
     //使用数据库升级辅助GreenDaoUpgradleHepler时添加
-    compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v1.2.0'
+    implementation 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v1.2.0'
     // 搭建Android上的服务器 “实现隔空取物”
-    compile "com.jakewharton:butterknife:8.4.0"
-    compile "com.jakewharton:butterknife-compiler:8.4.0"
-    compile 'com.koushikdutta.async:androidasync:2.2.1'
-    compile 'com.jakewharton.timber:timber:4.3.0'
-    compile "com.hwangjr.rxbus:rxbus:1.0.5"
+    implementation "com.jakewharton:butterknife:8.5.1"
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    implementation 'com.koushikdutta.async:androidasync:2.2.1'
+    implementation 'com.jakewharton.timber:timber:4.3.0'
+    implementation "com.hwangjr.rxbus:rxbus:1.0.5"
 }
 
 android {
@@ -44,8 +44,8 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility rootProject.ext.sourceCompatibility
+        targetCompatibility rootProject.ext.targetCompatibility
     }
 
     signingConfigs {
@@ -79,6 +79,7 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        flavorDimensions "1"
     }
     buildTypes {
 
@@ -98,54 +99,47 @@ android {
     }
 
 
-lintOptions {
-    abortOnError true
-}
-
-applicationVariants.all { variant ->
-    variant.outputs.each { output ->
-        def outputFile = output.outputFile
-        // 输出apk名称为supets_localhost_V3.5.0_build110.apk
-        def runTasks = gradle.startParameter.taskNames
-
-        if (('assembleDebug' in runTasks)) {
-            def  outputFileName  = "Tuzi__${variant.productFlavors[0].name}_V${defaultConfig.versionName}_build${defaultConfig.versionCode}_debug.apk"
-            output.outputFile = new File(outputFile.parent, outputFileName)
-        } else if (('assembleRelease' in runTasks)) {
-            def outputFileName  = "Tuzi__${variant.productFlavors[0].name}_V${defaultConfig.versionName}_build${defaultConfig.versionCode}_release.apk"
-            output.outputFile = new File(outputFile.parent, outputFileName)
-        } else {
-            def outputFileName  = "Tuzi__${variant.productFlavors[0].name}_V${defaultConfig.versionName}_build${defaultConfig.versionCode}.apk"
-            output.outputFile = new File(outputFile.parent, outputFileName)
-        }
+    lintOptions {
+        abortOnError true
     }
-}
 
-android.applicationVariants.all { variant ->
-    variant.assemble.doLast {
-        variant.outputs.each { output ->
-            File file = output.packageApplication.outputFile;
-            if (variant.buildType.zipAlignEnabled && file.getName().contains("unaligned")) {
-                println "deleting " + file.getName()
-                file.delete()
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def runTasks = gradle.startParameter.taskNames
+            if (('assembleDebug' in runTasks)) {
+                outputFileName = "Tuzi__${variant.productFlavors[0].name}_V${defaultConfig.versionName}_build${defaultConfig.versionCode}_debug.apk"
+            } else if (('assembleRelease' in runTasks)) {
+                outputFileName = "Tuzi__${variant.productFlavors[0].name}_V${defaultConfig.versionName}_build${defaultConfig.versionCode}_release.apk"
+            } else {
+                outputFileName = "Tuzi__${variant.productFlavors[0].name}_V${defaultConfig.versionName}_build${defaultConfig.versionCode}.apk"
             }
         }
-
-        updateVersionCode()
     }
-}
+
+    android.applicationVariants.all { variant ->
+        variant.assemble.doLast {
+            variant.outputs.all {
+                File file = new File(outputFileName)
+                if (variant.buildType.zipAlignEnabled && file.getName().contains("unaligned")) {
+                    println "deleting " + file.getName()
+                    file.delete()
+                }
+            }
+            updateVersionCode()
+        }
+    }
 
 
-productFlavors {
-    localhost {}
-}
-
+    productFlavors {
+        localhost {
+            dimension "1"
+        }
+    }
 }
 
 
 def getVersionCode() {
     def versionFile = file('version.properties')
-
     if (versionFile.exists()) {
         def Properties versionProps = new Properties()
         versionProps.load(new FileInputStream(versionFile))
@@ -153,7 +147,6 @@ def getVersionCode() {
         println('Current version code is ' + versionCode.toString())
         return versionCode
     } else {
-        throw new GradleException("Could not find version.properties!")
     }
 }
 
@@ -167,7 +160,6 @@ def getVersionName() {
         println('Current version code is ' + versionCode.toString())
         return versionCode
     } else {
-        throw new GradleException("Could not find version.properties!")
     }
 }
 
@@ -205,35 +197,5 @@ def updateVersionCode() {
         versionProps.store(versionFile.newWriter(), null)
         println('Updated version code to ' + currentVersionCode.toString())
     } else {
-        throw new GradleException("Could not find version.properties!")
     }
-}
-
-//读取签名配置文件def
-def getSigningProperties() {
-    def propFile = file('signing.properties')
-    if (propFile.canRead()) {
-        def Properties props = new Properties()
-        props.load(new FileInputStream(propFile))
-        if (props != null && props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
-                props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {
-            android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
-            android.signingConfigs.release.storePassword = props['STORE_PASSWORD']
-            android.signingConfigs.release.keyAlias = props['KEY_ALIAS']
-            android.signingConfigs.release.keyPassword = props['KEY_PASSWORD']
-
-            android.signingConfigs.debug.storeFile = file(props['STORE_FILE'])
-            android.signingConfigs.debug.storePassword = props['STORE_PASSWORD']
-            android.signingConfigs.debug.keyAlias = props['KEY_ALIAS']
-            android.signingConfigs.debug.keyPassword = props['KEY_PASSWORD']
-
-        } else {
-            println 'signing.properties found but some entries are missing'
-            android.buildTypes.release.signingConfig = null
-        }
-    } else {
-        println 'signing.properties not found'
-        android.buildTypes.release.signingConfig = null
-    }
-
 }

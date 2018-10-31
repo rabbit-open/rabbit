@@ -1,1 +1,3 @@
-include ':app', ':mock-okhttp', ':mock-okhttp-no-op'
+include ':app'
+include ':mock-okhttp'
+include ':mock-okhttp-no-op'
