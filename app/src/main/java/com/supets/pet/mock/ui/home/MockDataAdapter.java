@@ -28,7 +28,7 @@ public class MockDataAdapter extends BaseRecycleAdapter<MockData> {
     }
 
     @Override
-    public void onBindViewHolder(BaseRecycleViewHolder holder, final int position) {
+    public void onBindViewHolder(final BaseRecycleViewHolder holder, int position) {
 
         ((TextView) holder.itemView.findViewById(R.id.name)).setText(data.get(position).getUrl());
 
@@ -48,7 +48,7 @@ public class MockDataAdapter extends BaseRecycleAdapter<MockData> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), MockInfoActivity.class);
-                intent.putExtra("id", data.get(position).getId().toString());
+                intent.putExtra("id", data.get(holder.getAdapterPosition()).getId().toString());
                 view.getContext().startActivity(intent);
             }
         });
@@ -56,13 +56,14 @@ public class MockDataAdapter extends BaseRecycleAdapter<MockData> {
         holder.itemView.findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 //无动画快速删除，不容易出现数组越界
-               // if (position < data.size()&&data.size()>0) {
-                    MockDataDB.deleteMockData(data.get(position));
-                    data.remove(position);
-                    notifyItemRemoved(position);
-                    notifyItemRangeChanged(0,getItemCount()-position);
-              //  }
+                //无动画快速删除，不容易出现数组越界
+                // if (position < data.size()&&data.size()>0) {
+                int pos = holder.getAdapterPosition();
+                MockDataDB.deleteMockData(data.get(pos));
+                data.remove(pos);
+                notifyItemRemoved(pos);
+                notifyItemRangeChanged(0, getItemCount() - pos);
+                //  }
             }
         });
 

@@ -75,6 +75,9 @@ android {
 
         flavorDimensions "1"
     }
+
+    getSigningProperties()
+
     buildTypes {
 
         debug {
@@ -187,5 +190,33 @@ def updateVersionCode() {
         versionProps.store(versionFile.newWriter(), null)
         println('Updated version code to ' + currentVersionCode.toString())
     } else {
+    }
+}
+
+//读取签名配置文件def
+def getSigningProperties() {
+    def propFile = file('signing.properties')
+    if (propFile.canRead()) {
+        def Properties props = new Properties()
+        props.load(new FileInputStream(propFile))
+        if (props != null && props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
+                props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {
+            android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
+            android.signingConfigs.release.storePassword = props['STORE_PASSWORD']
+            android.signingConfigs.release.keyAlias = props['KEY_ALIAS']
+            android.signingConfigs.release.keyPassword = props['KEY_PASSWORD']
+
+            android.signingConfigs.debug.storeFile = file(props['STORE_FILE'])
+            android.signingConfigs.debug.storePassword = props['STORE_PASSWORD']
+            android.signingConfigs.debug.keyAlias = props['KEY_ALIAS']
+            android.signingConfigs.debug.keyPassword = props['KEY_PASSWORD']
+
+        } else {
+            println 'signing.properties found but some entries are missing'
+            android.buildTypes.release.signingConfig = null
+        }
+    } else {
+        println 'signing.properties not found'
+        android.buildTypes.release.signingConfig = null
     }
 }

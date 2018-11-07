@@ -24,7 +24,7 @@ public class MockTestAdapter extends BaseRecycleAdapter<LocalMockData> {
     }
 
     @Override
-    public void onBindViewHolder(final BaseRecycleViewHolder holder, final int position) {
+    public void onBindViewHolder(final BaseRecycleViewHolder holder, int position) {
 
         ((TextView) holder.itemView.findViewById(R.id.name)).setText(data.get(position).getUrl());
 
@@ -33,8 +33,8 @@ public class MockTestAdapter extends BaseRecycleAdapter<LocalMockData> {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                data.get(position).setSelected(checkBox.isChecked());
-                LocalMockDataDB.updateMockData(data.get(position));
+                data.get(holder.getAdapterPosition()).setSelected(checkBox.isChecked());
+                LocalMockDataDB.updateMockData(data.get(holder.getAdapterPosition()));
             }
         });
 
@@ -42,7 +42,7 @@ public class MockTestAdapter extends BaseRecycleAdapter<LocalMockData> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), MockConfigJsonActivity.class);
-                intent.putExtra("url", data.get(position).getUrl());
+                intent.putExtra("url", data.get(holder.getAdapterPosition()).getUrl());
                 view.getContext().startActivity(intent);
             }
         });
@@ -54,11 +54,13 @@ public class MockTestAdapter extends BaseRecycleAdapter<LocalMockData> {
                 if (!isDelete) {
                     isDelete = true;
                     //有动画快速删除，任意出现数组越界异常
+
+                    int position = holder.getAdapterPosition();
                     if (position < data.size() && data.size() > 0) {
                         LocalMockDataDB.deleteMockData(data.get(position));
                         data.remove(position);
                         notifyItemRemoved(position);
-                        notifyItemRangeChanged(0, getItemCount()-position);
+                        notifyItemRangeChanged(0, getItemCount() - position);
                     } else {
                         Toast.makeText(holder.itemView.getContext(), "删除异常了", Toast.LENGTH_SHORT).show();
                     }
@@ -74,7 +76,7 @@ public class MockTestAdapter extends BaseRecycleAdapter<LocalMockData> {
                             isDelete = false;
                         }
                     }).start();
-                }else{
+                } else {
                     Toast.makeText(holder.itemView.getContext(), "兄弟，手速慢点", Toast.LENGTH_SHORT).show();
                 }
 

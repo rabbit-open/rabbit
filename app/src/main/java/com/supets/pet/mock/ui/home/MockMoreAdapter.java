@@ -26,27 +26,27 @@ public class MockMoreAdapter extends BaseRecycleAdapter<String> {
     }
 
     @Override
-    public void onBindViewHolder(BaseRecycleViewHolder holder, final int position) {
+    public void onBindViewHolder(final BaseRecycleViewHolder holder, int position) {
         ((TextView) holder.itemView.findViewById(R.id.name)).setText(data.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (position == 0) {
+                if (holder.getAdapterPosition() == 0) {
                     Intent intent = new Intent(view.getContext(), MockUrlRuleActivity.class);
                     view.getContext().startActivity(intent);
-                } else if (position == 1) {
+                } else if (holder.getAdapterPosition() == 1) {
                     Intent intent = new Intent(view.getContext(), MockConfigActivity.class);
                     view.getContext().startActivity(intent);
-                } else if (position == 2) {
+                } else if (holder.getAdapterPosition() == 2) {
                     Intent intent = new Intent(view.getContext(), MockEmailListActivity.class);
                     view.getContext().startActivity(intent);
-                } else if (position == 3) {
+                } else if (holder.getAdapterPosition() == 3) {
                     Intent intent = new Intent(view.getContext(), MockModelActivity.class);
                     view.getContext().startActivity(intent);
-                } else if (position == 4) {
+                } else if (holder.getAdapterPosition() == 4) {
                     Intent intent = new Intent(view.getContext(), MockCrashListActivity.class);
                     view.getContext().startActivity(intent);
-                } else if (position == 5) {
+                } else if (holder.getAdapterPosition() == 5) {
                     Intent intent = new Intent(view.getContext(), MockAboutActivity.class);
                     view.getContext().startActivity(intent);
                 }
