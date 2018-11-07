@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
-group = 'com.supets.pet'
+group = 'com.supets.mock'
 version = '2.3.1'
 
 uploadArchives {
@@ -14,19 +14,19 @@ uploadArchives {
 }
 //
 ////jcenter
-//apply plugin: 'com.novoda.bintray-release'//添加
-////添加
-//publish {
-//    userOrg = 'lihongjiang'//bintray.com用户名
-//    groupId = 'com.supets.pet.mocklib'//jcenter上的路径
-//    artifactId = 'mock-okhttp'//项目名称
-//    publishVersion = '1.0.1'//版本号
-//    desc = 'mock test app'//描述，不重要
-//    website = 'https://github.com/lihongjiang'//网站，不重要；尽量模拟github上的地址
-//    bintrayKey = 'f50daeebc7196f39b695baa401c06dcc47efff0b'
-//    bintrayUser = 'lihongjiang'
-//    dryRun = false
-//}
+apply plugin: 'com.novoda.bintray-release'//添加
+//添加
+publish {
+    userOrg = 'lihongjiang'//bintray.com用户名
+    groupId = 'com.supets.pet.mocklib'//jcenter上的路径
+    artifactId = 'mock-okhttp'//项目名称
+    publishVersion = '1.2.0'//版本号
+    desc = 'mock test app'//描述，不重要
+    website = 'https://github.com/lihongjiang'//网站，不重要；尽量模拟github上的地址
+    bintrayKey = 'f50daeebc7196f39b695baa401c06dcc47efff0b'
+    bintrayUser = 'lihongjiang'
+    dryRun = false
+}
 
 dependencies {
 
@@ -36,9 +36,8 @@ dependencies {
     })
     testImplementation 'junit:junit:4.12'
 
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
 
 }
