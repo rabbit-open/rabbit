@@ -33,6 +33,9 @@ dependencies {
     implementation 'com.koushikdutta.async:androidasync:2.2.1'
     implementation 'com.jakewharton.timber:timber:4.3.0'
     implementation "com.hwangjr.rxbus:rxbus:1.0.5"
+
+    debugImplementation 'com.supets.pet.mocklib:mock-okhttp-no-op:1..2.1'
+    releaseImplementation 'com.supets.pet.mocklib:mock-okhttp:1..2.1'
 }
 
 android {

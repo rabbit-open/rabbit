@@ -56,7 +56,11 @@
  
 ## 使用方法
 
-> 方式1: 引用依赖工程mocklib，设置okhttp拦截器即可.
+> 方式1: 引用依赖工程mock-okhttp，设置okhttp拦截器即可.
+>   或者 
+>   debugImplementation 'com.supets.pet.mocklib:mock-okhttp-no-op:1..2.1'
+>   releaseImplementation 'com.supets.pet.mocklib:mock-okhttp:1..2.1'
+>
 > 
 > 方式2: APK可以自己运行源码安装，也可以点击下面地址下载安装
    
