@@ -33,18 +33,9 @@ publish {
 //./gradlew clean build bintrayUpload  -PbintrayUser=lihongjiang  -PbintrayKey=f50daeebc7196f39b695baa401c06dcc47efff0b -PdryRun=true  //调试不会上传
 
 dependencies {
-
-
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testImplementation 'junit:junit:4.12'
-
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-
 }
 
 

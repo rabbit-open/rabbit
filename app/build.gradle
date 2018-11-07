@@ -7,10 +7,6 @@ apply plugin: 'me.tatarka.retrolambda'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testImplementation 'junit:junit:4.12'
 
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.android.support:design:${rootProject.ext.supportLibVersion}"
@@ -77,8 +73,6 @@ android {
         versionCode currentVersionCode
         versionName currentVersionName
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
         flavorDimensions "1"
     }
     buildTypes {
@@ -91,10 +85,6 @@ android {
         release {
             signingConfig signingConfigs.release
             zipAlignEnabled true
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            // 移除无用的resource文件
-            shrinkResources true
         }
     }
 
