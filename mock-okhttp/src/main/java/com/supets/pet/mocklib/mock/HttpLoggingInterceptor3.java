@@ -52,8 +52,7 @@ public final class HttpLoggingInterceptor3 implements Interceptor {
         NONE,
         /**
          * Logs request and response lines.
-         * <p>
-         * <p>Example:
+         * <p>Example:</p>
          * <pre>{@code
          * --> POST /greeting http/1.1 (3-byte body)
          *
@@ -63,8 +62,7 @@ public final class HttpLoggingInterceptor3 implements Interceptor {
         BASIC,
         /**
          * Logs request and response lines and their respective headers.
-         * <p>
-         * <p>Example:
+         * <p>Example:</p>
          * <pre>{@code
          * --> POST /greeting http/1.1
          * Host: example.com
@@ -81,8 +79,7 @@ public final class HttpLoggingInterceptor3 implements Interceptor {
         HEADERS,
         /**
          * Logs request and response lines and their respective headers and bodies (if present).
-         * <p>
-         * <p>Example:
+         * <p>Example:</p>
          * <pre>{@code
          * --> POST /greeting http/1.1
          * Host: example.com
@@ -148,9 +145,6 @@ public final class HttpLoggingInterceptor3 implements Interceptor {
 
     private volatile Level level = Level.NONE;
 
-    /**
-     * Change the level at which this interceptor logs.
-     */
     public HttpLoggingInterceptor3 setLevel(Level level) {
         if (level == null) throw new NullPointerException("level == null. Use Level.NONE instead.");
         this.level = level;
