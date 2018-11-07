@@ -69,9 +69,3 @@ ext {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-// 指定javadoc UTF-8格式
-task javadoc(type: Javadoc) {
-    options.encoding = "utf-8"
-}
-

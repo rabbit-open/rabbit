@@ -214,7 +214,7 @@ public final class HttpLoggingInterceptor3 implements Interceptor {
                 if (!"Content-Type".equalsIgnoreCase(name) && !"Content-Length".equalsIgnoreCase(name)) {
                     logger.log(request.url().toString(), name + ": " + headers.value(i));
                     sb.append(name + ": " + headers.value(i)).append("\n");
-                    //TODO 请求头参数
+                    //TODO header param
                     postParam = postParam + ("" + name + "=" + headers.value(i)) + "&";
                 }
             }
@@ -282,7 +282,7 @@ public final class HttpLoggingInterceptor3 implements Interceptor {
             for (int i = 0, count = headers.size(); i < count; i++) {
                 logger.log(request.url().toString(), headers.name(i) + ": " + headers.value(i));
                 sb.append(headers.name(i) + ": " + headers.value(i)).append("\n");
-                //TODO 响应头参数
+                //TODO response  param
                 if (requestResponse) {
                     postParam = postParam + ("" + headers.name(i) + "=" + headers.value(i)) + "&";
                 }

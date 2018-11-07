@@ -89,7 +89,7 @@ final class JsonFormatUtils {
     }
 
     /**
-     * 得到格式化json数据  退格用\t 换行用\r
+     * get format json  data  tab \t change line \r
      */
     public static String format(String jsonStr) {
         int level = 0;
