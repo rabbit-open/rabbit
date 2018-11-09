@@ -30,10 +30,26 @@ publish {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
-    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-}
 
+    def mockDepen = rootProject.ext.mockOkhttpDepencies
+    Iterator<String> types = mockDepen.keySet().iterator()
+    while (types.hasNext()) {
+        def depenciesType = types.next()
+        def depenciesMap = mockDepen.get(depenciesType)
+        Iterator<String> keys = depenciesMap.keySet().iterator()
+        while (keys.hasNext()) {
+            if (depenciesType == "implementation") {
+                implementation depenciesMap.get(keys.next())
+            } else if (depenciesType == "androidTestImplementation") {
+                androidTestImplementation depenciesMap.get(keys.next())
+            } else if (depenciesType == "annotationProcessor") {
+                annotationProcessor depenciesMap.get(keys.next())
+            } else if (depenciesType == "testImplementation") {
+                testImplementation depenciesMap.get(keys.next())
+            }
+        }
+    }
+}
 
 android {
 

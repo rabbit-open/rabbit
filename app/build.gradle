@@ -8,34 +8,28 @@ apply plugin: 'me.tatarka.retrolambda'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
-    implementation "com.android.support:design:${rootProject.ext.supportLibVersion}"
-    implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}"
-    implementation "com.android.support:cardview-v7:${rootProject.ext.supportLibVersion}"
-
-
-    implementation 'com.cloudpet.base:baserouter:1.0.0'
-    implementation 'com.cloudpet.ui:commonui:1.1.2'
-    implementation 'com.cloudpet.ui:themelib:1.2.0'
-    implementation 'com.supets.lib:maillib:2.2.0'
-    implementation 'com.supets.lib:jsoneditlib:1.4.0'
-
-    implementation 'com.zhy:okhttputils:2.6.2'
-
-    implementation 'org.greenrobot:greendao:3.2.2'
-    //数据库加密时添加
-    implementation 'net.zetetic:android-database-sqlcipher:3.5.4'
-    //使用数据库升级辅助GreenDaoUpgradleHepler时添加
-    implementation 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v1.2.0'
-    // 搭建Android上的服务器 “实现隔空取物”
-    implementation "com.jakewharton:butterknife:8.5.1"
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    implementation 'com.koushikdutta.async:androidasync:2.2.1'
-    implementation 'com.jakewharton.timber:timber:4.3.0'
-    implementation "com.hwangjr.rxbus:rxbus:1.0.5"
-
-    debugImplementation 'com.supets.pet.mocklib:mock-okhttp-no-op:1.2.1'
-    releaseImplementation 'com.supets.pet.mocklib:mock-okhttp:1.2.1'
+    def mockDepen = rootProject.ext.appDependencies
+    Iterator<String> types = mockDepen.keySet().iterator()
+    while (types.hasNext()) {
+        def depenciesType = types.next()
+        def depenciesMap = mockDepen.get(depenciesType)
+        Iterator<String> keys = depenciesMap.keySet().iterator()
+        while (keys.hasNext()) {
+            if (depenciesType == "implementation") {
+                implementation depenciesMap.get(keys.next())
+            } else if (depenciesType == "androidTestImplementation") {
+                androidTestImplementation depenciesMap.get(keys.next())
+            } else if (depenciesType == "annotationProcessor") {
+                annotationProcessor depenciesMap.get(keys.next())
+            } else if (depenciesType == "testImplementation") {
+                testImplementation depenciesMap.get(keys.next())
+            }else if (depenciesType == "debugImplementation") {
+                debugImplementation depenciesMap.get(keys.next())
+            }else if (depenciesType == "releaseImplementation") {
+                releaseImplementation depenciesMap.get(keys.next())
+            }
+        }
+    }
 }
 
 android {
@@ -76,7 +70,7 @@ android {
         versionCode currentVersionCode
         versionName currentVersionName
 
-        flavorDimensions "1"
+        flavorDimensions "rabbit"
     }
 
     getSigningProperties()
@@ -128,9 +122,19 @@ android {
 
     productFlavors {
         localhost {
-            dimension "1"
+            dimension "rabbit"
         }
     }
+
+    dexOptions {
+        javaMaxHeapSize "6g"
+    }
+
+//    externalNativeBuild {
+//        cmake {
+//            path 'CMakeLists.txt'
+//        }
+//    }
 }
 
 
