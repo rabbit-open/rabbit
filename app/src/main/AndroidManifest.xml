@@ -19,6 +19,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:name="com.supets.pet.MyApplication"
         android:allowBackup="true"
@@ -134,6 +137,7 @@
             android:name="com.baidusoso.wifitransfer.WebService"
             android:enabled="true"
             android:exported="true" />
+        <service android:name="com.supets.pet.service.LogService" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -152,13 +156,13 @@
         <activity
             android:name="com.supets.pet.mock.ui.translate.TranslateActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name="com.supets.pet.mock.ui.translate.MYPetSortActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustNothing" />
 
     </application>
 
