@@ -129,12 +129,6 @@ android {
     dexOptions {
         javaMaxHeapSize "6g"
     }
-
-//    externalNativeBuild {
-//        cmake {
-//            path 'CMakeLists.txt'
-//        }
-//    }
 }
 
 
