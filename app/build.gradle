@@ -23,9 +23,9 @@ dependencies {
                 annotationProcessor depenciesMap.get(keys.next())
             } else if (depenciesType == "testImplementation") {
                 testImplementation depenciesMap.get(keys.next())
-            }else if (depenciesType == "debugImplementation") {
+            } else if (depenciesType == "debugImplementation") {
                 debugImplementation depenciesMap.get(keys.next())
-            }else if (depenciesType == "releaseImplementation") {
+            } else if (depenciesType == "releaseImplementation") {
                 releaseImplementation depenciesMap.get(keys.next())
             }
         }
@@ -69,6 +69,8 @@ android {
 
         versionCode currentVersionCode
         versionName currentVersionName
+
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
         flavorDimensions "rabbit"
     }
