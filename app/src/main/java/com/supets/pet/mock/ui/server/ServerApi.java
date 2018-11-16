@@ -12,6 +12,8 @@ import com.supets.pet.mock.bean.LocalMockData;
 import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.dao.LocalMockDataDB;
 import com.supets.pet.mock.dao.MockDataDB;
+import com.supets.pet.mock.ui.phone.ContactsBean;
+import com.supets.pet.mock.ui.phone.PhoneUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +40,7 @@ public class ServerApi {
         this.mAsyncServer = mAsyncServer;
 
         addhtml("/mp4", "mp4.html");
+        addhtml("/phone", "phone.html");
         addhtml("/jpg", "jpg.html");
         addhtml("/apk", "apk.html");
         addhtml("/tools", "tools.html");
@@ -72,7 +75,15 @@ public class ServerApi {
         saveconfigdata();
         addmockapi();
         getmockconfig();
+        getPhoneInfo();
         this.server.listen(this.mAsyncServer, 54321);
+    }
+
+    private void getPhoneInfo() {
+        server.get("/getPhoneInfo", (request, response) -> {
+            List<ContactsBean> list = PhoneUtils.getContactInfo(mContext);
+            response.send(new Gson().toJson(list));
+        });
     }
 
 
@@ -221,9 +232,9 @@ public class ServerApi {
             String apikey = request.getQuery().getString("apikey");
             String debug = request.getQuery().getString("debug");
             if (TextUtils.isEmpty(apikey)) {
-                if (Boolean.valueOf(debug)){
+                if (Boolean.valueOf(debug)) {
                     response.send(new Gson().toJson(LocalMockDataDB.queryAll(debug)));
-                }else{
+                } else {
                     response.send(new Gson().toJson(LocalMockDataDB.queryAll()));
                 }
 

@@ -1,0 +1,140 @@
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <script src="jquery-1.7.2.min.js" type="text/javascript"></script>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <title>手机联系人</title>
+
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+            font-style: normal;
+            font-family: arial;
+            font-family: Microsoft YaHei, arial;
+        }
+
+        .twoRankedBox {
+            margin: 6px 8px;
+            overflow: hidden;
+            padding-bottom: 25px;
+        }
+
+        .twoRankedBox ul {
+            width: 49%;
+            float: left;
+        }
+
+        .twoRankedBox ul:last-child {
+            margin-left: 2%;
+        }
+
+        .twoRankedBox ul li {
+            padding: 5px;
+            margin-bottom: 6px;
+            padding-bottom: 8px;
+            background-color: #FFFFFF;
+        }
+
+        .twoRankedBox ul li p:first-child {
+            padding-top: 0px;
+        }
+
+        .twoRankedBox ul li p {
+            padding-top: 4px;
+        }
+
+        .product_picture img {
+            display: block;
+            width: 100%;
+        }
+
+        .product_np {
+            overflow: hidden;
+            line-height: 20px;
+        }
+
+        .product_np a {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .product_np a:first-child {
+            font-size: 0.9em;
+            color: #58b7e3;
+            width: 65%;
+            float: left;
+        }
+
+        .product_np a:last-child {
+            font-size: 0.8em;
+            color: #f00;
+            float: right;
+            width: 35%;
+            text-align: right;
+        }
+
+        .product_ie {
+            font-size: 0.8em;
+            color: #777;
+        }
+
+
+    </style>
+
+</head>
+
+<body style="background-color: #f3f3f3;">
+<!-- 商品列表 -->
+<div class="twoRankedBox">
+    <ul class="BoxLeft">
+
+    </ul>
+
+    <ul class="BoxRight">
+
+    </ul>
+</div>
+
+<script>
+
+    $(function () {
+
+            var url = 'getPhoneInfo';
+
+            $.getJSON(url, function(data) {
+                for (var i = 0; i < data.length; i++) {
+            var itemContent = ' <li><p class="product_np">' + data[i].name + '<p class="product_ie">' + data[i].phone + '</p></li>';
+            var leftTotalHeight = $(".BoxLeft");
+            var rightTotalHeight = $(".BoxRight");
+
+            if (leftTotalHeight.height() < rightTotalHeight.height()) {
+                leftTotalHeight.append(itemContent);
+            } else {
+                rightTotalHeight.append(itemContent);
+            }
+
+
+                }
+            });
+
+
+
+
+    });
+
+
+
+
+</script>
+
+</body>
+
+</html>
