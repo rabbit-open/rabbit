@@ -1,5 +1,7 @@
 package com.supets.pet.mock.ui.phone;
 
+import android.content.ContentProviderOperation;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -153,6 +155,36 @@ public class PhoneUtils {
             }
         }
         return re;
+    }
+
+    public static void insertData(Context context, String name, String phone) {
+        try {
+            Uri uri = Uri.parse("content://com.android.contacts/raw_contacts");
+            ContentResolver resolver = context.getContentResolver();
+            ArrayList<ContentProviderOperation> operations = new ArrayList<>();
+            //此处.withValue("account_name", null)一定要加，不然会抛NullPointerException
+            ContentProviderOperation operation1 = ContentProviderOperation
+                    .newInsert(uri).withValue("account_name", null).build();
+            operations.add(operation1);
+            // 向data添加数据
+            uri = Uri.parse("content://com.android.contacts/data");
+            //添加姓名
+            ContentProviderOperation operation2 = ContentProviderOperation
+                    .newInsert(uri).withValueBackReference("raw_contact_id", 0)
+                    .withValue("mimetype", "vnd.android.cursor.item/name")
+                    .withValue("data2", name).build();
+            operations.add(operation2);
+            //添加手机数据
+            ContentProviderOperation operation3 = ContentProviderOperation
+                    .newInsert(uri).withValueBackReference("raw_contact_id", 0)
+                    .withValue("mimetype", "vnd.android.cursor.item/phone_v2")
+                    .withValue("data2", "2")
+                    .withValue("data1", phone).build();
+            operations.add(operation3);
+            resolver.applyBatch("com.android.contacts", operations);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
