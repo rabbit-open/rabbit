@@ -3,10 +3,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
 //apply plugin: 'android-apt'
-apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'me.tatarka.retrolambda'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(":libweb")
 
     def mockDepen = rootProject.ext.appDependencies
     Iterator<String> types = mockDepen.keySet().iterator()
