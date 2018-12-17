@@ -11,11 +11,6 @@ import java.util.Map;
 
 public class JSbridge implements ICaidanmaoWebViewJS {
 
-    @Override
-    public void inputByVoice(WebView webView, String json) {
-        asyncExcuteJsMethed(webView, "inputByVoice", json);
-    }
-
     private static void asyncExcuteJsMethed(WebView webView, String jsMethedName, String json) {
         String js = String.format(Locale.US, "javascript:" + jsMethedName + "('%s')", json);
         webView.loadUrl(js);

@@ -32,8 +32,14 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/CustomAppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4" />
+
         <!--Android7.0新增的广播权限验证-->
         <receiver
             android:name="com.supets.pet.service.CrashService"
