@@ -1,3 +1,4 @@
 include ':app', ':libweb'
 include ':mock-okhttp'
 include ':mock-okhttp-no-op'
+include ':mock-okhttp-simple'

@@ -22,7 +22,8 @@ ext {
     mockOkhttpDepencies = [
             "implementation": [
                     'appcompat-v7': "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}",
-                    'okhttp'      : "com.squareup.okhttp3:okhttp:3.10.0"
+                    'okhttp'      : "com.squareup.okhttp3:okhttp:3.10.0",
+                    'recyclerview-v7': "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}",
             ],
     ]
 

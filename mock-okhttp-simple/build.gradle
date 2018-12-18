@@ -1,0 +1,79 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+group = 'com.supets.mock'
+version = '2.3.1'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: 'http://localhost:8082/nexus/content/repositories/supet') {
+                authentication(userName: "admin", password: "admin123")
+            }
+        }
+    }
+}
+//
+////jcenter
+apply plugin: 'com.novoda.bintray-release'//添加
+//添加
+publish {
+    userOrg = 'lihongjiang'//bintray.com用户名
+    groupId = 'com.supets.pet.mocklib'//jcenter上的路径
+    artifactId = 'mock-okhttp-simple'//项目名称
+    publishVersion = '1.2.28'//版本号
+    desc = 'mock test app'//描述，不重要
+    website = 'https://github.com/lihongjiang'//网站，不重要；尽量模拟github上的地址
+    bintrayKey = 'f50daeebc7196f39b695baa401c06dcc47efff0b'
+    bintrayUser = 'lihongjiang'
+    dryRun = false
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    def mockDepen = rootProject.ext.mockOkhttpDepencies
+    Iterator<String> types = mockDepen.keySet().iterator()
+    while (types.hasNext()) {
+        def depenciesType = types.next()
+        def depenciesMap = mockDepen.get(depenciesType)
+        Iterator<String> keys = depenciesMap.keySet().iterator()
+        while (keys.hasNext()) {
+            if (depenciesType == "implementation") {
+                implementation depenciesMap.get(keys.next())
+            } else if (depenciesType == "androidTestImplementation") {
+                androidTestImplementation depenciesMap.get(keys.next())
+            } else if (depenciesType == "annotationProcessor") {
+                annotationProcessor depenciesMap.get(keys.next())
+            } else if (depenciesType == "testImplementation") {
+                testImplementation depenciesMap.get(keys.next())
+            }
+        }
+    }
+}
+
+android {
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    compileOptions {
+        sourceCompatibility rootProject.ext.sourceCompatibility
+        targetCompatibility rootProject.ext.targetCompatibility
+    }
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}

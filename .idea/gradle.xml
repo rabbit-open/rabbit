@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/libweb" />
             <option value="$PROJECT_DIR$/mock-okhttp" />
             <option value="$PROJECT_DIR$/mock-okhttp-no-op" />
+            <option value="$PROJECT_DIR$/mock-okhttp-simple" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

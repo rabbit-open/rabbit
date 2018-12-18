@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/libweb/libweb.iml" filepath="$PROJECT_DIR$/libweb/libweb.iml" />
       <module fileurl="file://$PROJECT_DIR$/mock-okhttp/mock-okhttp.iml" filepath="$PROJECT_DIR$/mock-okhttp/mock-okhttp.iml" />
       <module fileurl="file://$PROJECT_DIR$/mock-okhttp-no-op/mock-okhttp-no-op.iml" filepath="$PROJECT_DIR$/mock-okhttp-no-op/mock-okhttp-no-op.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mock-okhttp-simple/mock-okhttp-simple.iml" filepath="$PROJECT_DIR$/mock-okhttp-simple/mock-okhttp-simple.iml" />
       <module fileurl="file://$PROJECT_DIR$/rabbit.iml" filepath="$PROJECT_DIR$/rabbit.iml" />
     </modules>
   </component>
