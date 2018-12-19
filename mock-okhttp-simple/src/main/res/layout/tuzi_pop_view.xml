@@ -31,6 +31,7 @@
                 android:textSize="15sp" />
 
             <Button
+                android:visibility="invisible"
                 android:id="@+id/pop_view_content_view"
                 android:layout_width="80dp"
                 android:layout_height="40dp"

@@ -7,7 +7,7 @@ import android.content.Intent;
 
 public class MockDataReceiver extends BroadcastReceiver {
 
-    public static final String MOCK_SERVICE_NETWORK = "mock.crash.network";
+    public static final String MOCK_SERVICE_NETWORK = "mock.crash.network2";
     private static TuZiWidget mTipViewController;
 
     @Override

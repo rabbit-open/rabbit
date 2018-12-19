@@ -8,6 +8,14 @@
         android:allowBackup="true"
         android:supportsRtl="true">
 
+        <receiver
+            android:name="com.supets.pet.mocklib.widget.MockDataReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="mock.crash.network2" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

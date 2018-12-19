@@ -1,18 +1,17 @@
 package com.supets.pet.mocklib.mock;
 
+import android.content.ComponentName;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.supets.pet.mocklib.AppContext;
-import com.supets.pet.mocklib.widget.MockDataReceiver;
 
 import org.json.JSONObject;
 
+import static com.supets.pet.mocklib.widget.MockDataReceiver.MOCK_SERVICE_NETWORK;
+
 final class JsonFormatUtils {
 
-    public static final String MOCK_SERVICE_NETWORK = "mock.crash.network";
 
     public static boolean isJson(String message) {
         try {
@@ -133,23 +132,19 @@ final class JsonFormatUtils {
     }
 
 
-    private static boolean isRegister = false;
-
     public static void sendLocalRequest(String url, String requestParam, String message) {
         try {
-
-            if (!isRegister) {
-                isRegister = true;
-                LocalBroadcastManager.getInstance(AppContext.INSTANCE).registerReceiver(new MockDataReceiver(), new IntentFilter(MOCK_SERVICE_NETWORK));
-            }
-
             Intent intent = new Intent(MOCK_SERVICE_NETWORK);
+            intent.setComponent(
+                    new ComponentName("com.supets.pet.mocklib.widget",
+                            "com.supets.pet.mocklib.widget.MockDataReceiver"));
             intent.putExtra("url", url);
             intent.putExtra("requestParam", requestParam);
             intent.putExtra("message", message);
-            LocalBroadcastManager.getInstance(AppContext.INSTANCE).sendBroadcast(intent);
+            AppContext.INSTANCE.sendBroadcast(intent);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 }
