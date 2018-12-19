@@ -3,4 +3,8 @@
     <string name="permission_success">权限授予成功！</string>
     <string name="permission_fail">权限授予失败，无法开启悬浮窗</string>
     <string name="permission_no">没有悬浮窗权限!</string>
+    <string name="notify_channel_id">本地服务</string>
+    <string name="notify_channel_name">本地推送消息</string>
+    <string name="notify_channel_title">Mock服务</string>
+    <string name="notify_channel_content">实时监听网络数据</string>
 </resources>
