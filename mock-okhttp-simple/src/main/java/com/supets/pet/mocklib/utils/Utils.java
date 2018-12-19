@@ -77,6 +77,7 @@ public class Utils {
         } catch (Exception e) {
             e.printStackTrace();
             mTipViewController = null;
+            TuZiWidget.isShow = false;
         }
     }
 }
