@@ -2,7 +2,9 @@ package com.supets.pet.mocklib;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.os.Build;
 
+import com.supets.pet.mocklib.utils.JobService21Compcat;
 import com.supets.pet.mocklib.utils.SystermAlertWindowCompact;
 
 @SuppressLint("PrivateApi")
@@ -36,5 +38,8 @@ public class AppContext {
         // 2 service+broadcast
         //SystermAlertWindowCompact.checkPermission(AppContext.INSTANCE);
         SystermAlertWindowCompact.startService(AppContext.INSTANCE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            JobService21Compcat.scheduleJob(AppContext.INSTANCE);
+        }
     }
 }
