@@ -51,7 +51,6 @@ public class SystermAlertWindowCompact {
         }
 
     }
-
     @MainThread
     protected static void onActivityResult(Context context, int requestCode, int resultCode, Intent data) {
         if (requestCode == OVERLAY_PERMISSION_REQ_CODE) {

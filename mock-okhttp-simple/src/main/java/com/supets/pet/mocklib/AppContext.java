@@ -34,6 +34,7 @@ public class AppContext {
         // 1 broadcast
         //AppContext.INSTANCE.registerReceiver(new MockDataReceiver(), new IntentFilter(MOCK_SERVICE_NETWORK));
         // 2 service+broadcast
-        SystermAlertWindowCompact.checkPermission(AppContext.INSTANCE);
+        //SystermAlertWindowCompact.checkPermission(AppContext.INSTANCE);
+        SystermAlertWindowCompact.startService(AppContext.INSTANCE);
     }
 }
