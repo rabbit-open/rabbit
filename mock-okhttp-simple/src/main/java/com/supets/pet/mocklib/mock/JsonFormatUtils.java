@@ -1,6 +1,5 @@
 package com.supets.pet.mocklib.mock;
 
-import android.content.ComponentName;
 import android.content.Intent;
 import android.util.Log;
 
@@ -9,6 +8,7 @@ import com.supets.pet.mocklib.AppContext;
 import org.json.JSONObject;
 
 import static com.supets.pet.mocklib.widget.MockDataReceiver.MOCK_SERVICE_NETWORK;
+
 
 final class JsonFormatUtils {
 
@@ -135,9 +135,6 @@ final class JsonFormatUtils {
     public static void sendLocalRequest(String url, String requestParam, String message) {
         try {
             Intent intent = new Intent(MOCK_SERVICE_NETWORK);
-            intent.setComponent(
-                    new ComponentName("com.supets.pet.mocklib.widget",
-                            "com.supets.pet.mocklib.widget.MockDataReceiver"));
             intent.putExtra("url", url);
             intent.putExtra("requestParam", requestParam);
             intent.putExtra("message", message);

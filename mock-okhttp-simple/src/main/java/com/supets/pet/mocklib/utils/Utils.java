@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.supets.pet.mocklib.AppContext;
+import com.supets.pet.mocklib.widget.MockData;
+import com.supets.pet.mocklib.widget.TuZiWidget;
+
 import java.net.URLDecoder;
 import java.util.HashMap;
 
@@ -32,6 +36,7 @@ public class Utils {
                 map.put(keys[0], URLDecoder.decode(keys[1]));
             }
         } catch (Exception ex) {
+
             ex.printStackTrace();
         }
         return map;
@@ -47,6 +52,31 @@ public class Utils {
             context.startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private static TuZiWidget mTipViewController;
+
+    public static void showFloatView(Intent intent) {
+        try {
+            MockData data = new MockData();
+            data.setUrl(intent.getStringExtra("url"));
+            data.setData(intent.getStringExtra("message"));
+            data.setRequestParam(intent.getStringExtra("requestParam"));
+
+            if (!TuZiWidget.isShow) {
+                mTipViewController = new TuZiWidget(AppContext.INSTANCE, data);
+                mTipViewController.setViewDismissHandler(() -> {
+
+                });
+                mTipViewController.show();
+            } else {
+                mTipViewController.updateContent(data);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            mTipViewController = null;
         }
     }
 }
