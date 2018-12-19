@@ -1,9 +1,9 @@
 package com.supets.pet.mocklib.widget;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Gravity;
@@ -71,7 +71,11 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         int flags = 0;
         int type = 0;
 
-        type = WindowManager.LayoutParams.TYPE_PHONE;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        } else {
+            type = WindowManager.LayoutParams.TYPE_PHONE;
+        }
 
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(w, h, type, flags, PixelFormat.TRANSLUCENT);
         layoutParams.gravity = Gravity.TOP;
