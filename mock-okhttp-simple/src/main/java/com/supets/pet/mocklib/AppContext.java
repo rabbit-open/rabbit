@@ -2,12 +2,8 @@ package com.supets.pet.mocklib;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
-import android.content.IntentFilter;
 
-import com.supets.pet.mocklib.widget.MockDataReceiver;
-import com.supets.pet.mocklib.widget.TuZiWidget;
-
-import static com.supets.pet.mocklib.widget.MockDataReceiver.MOCK_SERVICE_NETWORK;
+import com.supets.pet.mocklib.utils.SystermAlertWindowCompact;
 
 @SuppressLint("PrivateApi")
 public class AppContext {
@@ -35,8 +31,9 @@ public class AppContext {
         } finally {
             INSTANCE = app;
         }
-
-        AppContext.INSTANCE.registerReceiver(new MockDataReceiver(), new IntentFilter(MOCK_SERVICE_NETWORK));
-
+        // 1 broadcast
+        //AppContext.INSTANCE.registerReceiver(new MockDataReceiver(), new IntentFilter(MOCK_SERVICE_NETWORK));
+        // 2 service+broadcast
+        SystermAlertWindowCompact.checkPermission(AppContext.INSTANCE);
     }
 }

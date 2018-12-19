@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="permission_success">权限授予成功！</string>
+    <string name="permission_fail">权限授予失败，无法开启悬浮窗</string>
+    <string name="permission_no">没有悬浮窗权限!</string>
+</resources>

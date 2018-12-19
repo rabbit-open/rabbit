@@ -94,7 +94,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
 
     }
 
-    private void removePoppedViewAndClear() {
+    public void removePoppedViewAndClear() {
 
         // remove view
         if (mWindowManager != null && mWholeView != null) {

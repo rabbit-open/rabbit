@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import com.supets.pet.mocklib.R;
 import com.supets.pet.mocklib.utils.FormatLogProcess;
 import com.supets.pet.mocklib.utils.Utils;
@@ -71,7 +70,10 @@ public class GridAdapter extends RecyclerView.Adapter {
     public ArrayList<MockData> datas = new ArrayList<>();
 
     public void putData(MockData data) {
-        datas.add(data);
-        notifyDataSetChanged();
+        if (data != null) {
+            datas.add(data);
+            notifyDataSetChanged();
+        }
+
     }
 }
