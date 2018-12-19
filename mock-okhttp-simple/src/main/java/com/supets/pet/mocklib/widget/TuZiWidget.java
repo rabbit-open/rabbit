@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Gravity;
@@ -71,8 +72,15 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         int flags = 0;
         int type = 0;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (Settings.canDrawOverlays(mContext)) {
+                type = WindowManager.LayoutParams.TYPE_PHONE;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+                }
+            }else {
+                type = WindowManager.LayoutParams.TYPE_TOAST;
+            }
         } else {
             type = WindowManager.LayoutParams.TYPE_PHONE;
         }

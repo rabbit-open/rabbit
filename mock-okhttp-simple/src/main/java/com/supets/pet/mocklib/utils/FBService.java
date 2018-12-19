@@ -3,6 +3,7 @@ package com.supets.pet.mocklib.utils;
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.app.NotificationManagerCompat;
 
@@ -21,9 +22,6 @@ public class FBService extends Service {
         if (!NotificationManagerCompat.from(getApplicationContext()).areNotificationsEnabled()) {
             NotificationUtils.goToSet(getApplicationContext());
         }
-        startForeground(0, new NotificationUtils(getApplicationContext(),
-                "channel_mock", getString(R.string.notify_channel_id), getString(R.string.notify_channel_name))
-                .createNotification(getString(R.string.notify_channel_title), getString(R.string.notify_channel_content)));
     }
 
     @Override
@@ -33,6 +31,11 @@ public class FBService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            startForeground(1, new NotificationUtils(getApplicationContext(),
+                    "channel_mock", getString(R.string.notify_channel_id), getString(R.string.notify_channel_name))
+                    .createNotification(getString(R.string.notify_channel_title), getString(R.string.notify_channel_content)));
+        }
         return START_STICKY;
     }
 
@@ -40,6 +43,8 @@ public class FBService extends Service {
     public void onDestroy() {
         super.onDestroy();
         unregisterReceiver(mockDataReceiver);
-        stopForeground(true);
+        if (Build.VERSION.SDK_INT >= 26) {
+            stopForeground(true);
+        }
     }
 }
