@@ -59,9 +59,9 @@
 >  方式1:  引用依赖工程mock-okhttp，设置okhttp拦截器即可.
 >  方式2:  jcenter() 或者 maven{ url 'https://dl.bintray.com/lihongjiang/maven/'} 
 >       
->          debugImplementation "com.supets.pet.mocklib:mock-okhttp-simple:1.2.28"  不需要安装APK,简易可视化
->          releaseImplementation "com.supets.pet.mocklib:mock-okhttp-no-op:1.2.28"  
->          releaseImplementation "com.supets.pet.mocklib:mock-okhttp:1.2.28"  需要安装APK
+>          debugImplementation "com.supets.pet.mocklib:mock-okhttp-simple:2.10.28"  不需要安装APK,简易可视化，需要悬浮窗权限
+>          releaseImplementation "com.supets.pet.mocklib:mock-okhttp-no-op:2.10.28"  
+>          releaseImplementation "com.supets.pet.mocklib:mock-okhttp:2.10.28"  需要安装APK
 >
 >  方式3:  PK可以自己运行源码安装，也可以点击下面地址下载安装
    
