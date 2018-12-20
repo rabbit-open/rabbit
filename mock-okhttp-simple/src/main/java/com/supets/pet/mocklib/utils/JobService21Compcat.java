@@ -11,7 +11,7 @@ public class JobService21Compcat {
 
     public static final int JOB_ID = 100;
 
-    //Perio  task
+    //Period  task
     public static void scheduleJob(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ComponentName serviceComponent = new ComponentName(context, PAJobService.class);
@@ -19,11 +19,12 @@ public class JobService21Compcat {
 
             JobScheduler jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                builder.setPeriodic(15 * 60 * 1000);
+                builder.setPeriodic(15 * 60 * 1000, 5 * 60 * 1000);
             } else {
-                builder.setPeriodic( 60 * 1000);
+                builder.setPeriodic(60 * 1000);
             }
-            builder.setMinimumLatency(5000);
+            // Can't call setMinimumLatency() on a periodic job
+            //builder.setMinimumLatency(5000);
             builder.setPersisted(true);
             builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
             int ret = jobScheduler.schedule(builder.build());
