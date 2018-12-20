@@ -49,7 +49,6 @@ public class ServerApi {
         addhtml("/detail", "detail.html");
         addhtml("/filedir", "filedir.html");
         addhtml("/aboutus", "aboutus.html");
-
         addhtml("/", "index.html");
         addhtml("/content.html", "content.html");
 
@@ -64,6 +63,7 @@ public class ServerApi {
 
         addLocalJSResource("/qrcode.min.js");
         addLocalJSResource("/qrcode.js");
+        addLocalJSResource("/jquery-1.7.2.min.js");
         addLocalJSResource("/dist/.*");
         addLocalJSResource("/dist/img/.*");
 
@@ -171,7 +171,12 @@ public class ServerApi {
 
     private void addJsonApi() {
         server.get("/files", (request, response) -> {
+
+
             String format = request.getQuery().getString("format");
+
+            Log.v("serverapi", format);
+
             JSONArray array = new JSONArray();
             File dir = new File(Environment.getExternalStorageDirectory().getPath());
             ServerUtils.getfiles(array, dir, format);
