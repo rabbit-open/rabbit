@@ -8,10 +8,9 @@ import android.widget.TextView;
 import com.baidusoso.wifitransfer.MainWifiApkActivity;
 import com.supets.pet.mock.base.BaseRecycleAdapter;
 import com.supets.pet.mock.base.BaseRecycleViewHolder;
-import com.supets.pet.mock.ui.server.PCServerActivity;
+import com.supets.pet.server.PCServerActivity;
 import com.supets.pet.mock.ui.tool.MockToolActivity;
 import com.supets.pet.mock.ui.translate.MYPetSortActivity;
-import com.supets.pet.mock.ui.translate.TranslateActivity;
 import com.supets.pet.mock.utils.Utils;
 import com.supets.pet.mockui.R;
 

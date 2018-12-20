@@ -160,7 +160,7 @@
         </provider>
 
         <activity
-            android:name="com.supets.pet.mock.ui.server.PCServerActivity"
+            android:name="com.supets.pet.server.PCServerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

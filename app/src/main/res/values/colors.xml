@@ -24,4 +24,5 @@
         <item name="android:orientation">vertical</item>
         <item name="tanslucent_mode">none</item>
     </style>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.supets.pet.mock.ui.server;
+package com.supets.pet.server;
 
 import android.content.Intent;
 import android.content.IntentFilter;

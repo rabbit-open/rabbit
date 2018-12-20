@@ -1,4 +1,4 @@
-package com.supets.pet.mock.ui.server;
+package com.supets.pet.server;
 
 import android.content.Context;
 import android.os.Environment;
@@ -12,6 +12,8 @@ import com.supets.pet.mock.bean.LocalMockData;
 import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.dao.LocalMockDataDB;
 import com.supets.pet.mock.dao.MockDataDB;
+import com.supets.pet.mock.ui.filebrowser.FileData;
+import com.supets.pet.mock.ui.filebrowser.FilieManagerUtils;
 import com.supets.pet.mock.ui.phone.ContactsBean;
 import com.supets.pet.mock.ui.phone.PhoneUtils;
 
@@ -45,6 +47,8 @@ public class ServerApi {
         addhtml("/apk", "apk.html");
         addhtml("/tools", "tools.html");
         addhtml("/detail", "detail.html");
+        addhtml("/filedir", "filedir.html");
+        addhtml("/aboutus", "aboutus.html");
 
         addhtml("/", "index.html");
         addhtml("/content.html", "content.html");
@@ -58,7 +62,8 @@ public class ServerApi {
         addhtml("/apidetail.html*", "apidetail.html");
         addhtml("/apidetail2.html*", "apidetail2.html");
 
-        addLocalJSResource("/jquery-1.7.2.min.js");
+        addLocalJSResource("/qrcode.min.js");
+        addLocalJSResource("/qrcode.js");
         addLocalJSResource("/dist/.*");
         addLocalJSResource("/dist/img/.*");
 
@@ -76,7 +81,24 @@ public class ServerApi {
         addmockapi();
         getmockconfig();
         getPhoneInfo();
+        getFilePath();
         this.server.listen(this.mAsyncServer, 54321);
+    }
+
+    private void getFilePath() {
+        server.get("/getfilepath", (request, response) -> {
+
+            String path = request.getQuery().getString("path");
+            if (path == null || path.equals("")) {
+                List<FileData> list = FilieManagerUtils.getFileListSdCard();
+                response.send(new Gson().toJson(list));
+            } else {
+                List<FileData> list = FilieManagerUtils.getFileList(path);
+                response.send(new Gson().toJson(list));
+            }
+
+
+        });
     }
 
     private void getPhoneInfo() {
