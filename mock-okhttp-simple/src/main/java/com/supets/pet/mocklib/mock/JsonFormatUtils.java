@@ -138,6 +138,7 @@ final class JsonFormatUtils {
             intent.putExtra("url", url);
             intent.putExtra("requestParam", requestParam);
             intent.putExtra("message", message);
+            intent.setPackage(AppContext.INSTANCE.getPackageName());
             AppContext.INSTANCE.sendBroadcast(intent);
         } catch (Exception e) {
             e.printStackTrace();

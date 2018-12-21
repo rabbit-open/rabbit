@@ -54,6 +54,7 @@ public class DefaultBugHandler implements UncaughtExceptionHandler {
     private void sendBroadCast(String file) {
         Intent intent = new Intent(MOCK_SERVICE_CRASH);
         intent.putExtra("crashlog", file);
+        intent.setPackage(AppContext.INSTANCE.getPackageName());
         AppContext.INSTANCE.sendBroadcast(intent);
     }
 
