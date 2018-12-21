@@ -21,10 +21,10 @@ import okio.Buffer;
 
 public class BasicParamsInterceptor implements Interceptor {
 
-    private Map<String, String> queryParamsMap = new HashMap<>(); // 添加到 URL 末尾，Get Post 方法都使用
-    private Map<String, String> paramsMap = new HashMap<>(); // 添加到公共参数到消息体，适用 Post 请求
-    private Map<String, String> headerParamsMap = new HashMap<>(); // 公共 Headers 添加
-    private List<String> headerLinesList = new ArrayList<>(); // 消息头 集合形式，一次添加一行 // 私有构造器
+    private Map<String, String> queryParamsMap = new HashMap<>();
+    private Map<String, String> paramsMap = new HashMap<>();
+    private Map<String, String> headerParamsMap = new HashMap<>();
+    private List<String> headerLinesList = new ArrayList<>();
 
     private BasicParamsInterceptor() {
     }
@@ -35,7 +35,6 @@ public class BasicParamsInterceptor implements Interceptor {
         Request.Builder requestBuilder = request.newBuilder();
         // process header params inject
         Headers.Builder headerBuilder = request.headers().newBuilder();
-        // 以 Entry 添加消息头
         if (headerParamsMap.size() > 0) {
             Iterator iterator = headerParamsMap.entrySet().iterator();
             while (iterator.hasNext()) {
@@ -44,7 +43,6 @@ public class BasicParamsInterceptor implements Interceptor {
             }
             requestBuilder.headers(headerBuilder.build());
         }
-        // 以 String 形式添加消息头
         if (headerLinesList.size() > 0) {
             for (String line : headerLinesList) {
                 headerBuilder.add(line);
@@ -73,13 +71,6 @@ public class BasicParamsInterceptor implements Interceptor {
         return chain.proceed(request);
     }
 
-    /**
-     * 确认是否是 post
-     * 请求
-     *
-     * @param request 发出的请求
-     * @return true 需要注入公共参数
-     */
     private boolean canInjectIntoBody(Request request) {
         if (request == null) {
             return false;
@@ -135,31 +126,26 @@ public class BasicParamsInterceptor implements Interceptor {
             interceptor = new BasicParamsInterceptor();
         }
 
-        // 添加公共参数到 post 消息体
         public Builder addParam(String key, String value) {
             interceptor.paramsMap.put(key, value);
             return this;
         }
 
-        // 添加公共参数到 post 消息体
         public Builder addParamsMap(Map<String, String> paramsMap) {
             interceptor.paramsMap.putAll(paramsMap);
             return this;
         }
-        // 添加公共参数到消息头
 
         public Builder addHeaderParam(String key, String value) {
             interceptor.headerParamsMap.put(key, value);
             return this;
         }
 
-        // 添加公共参数到消息头
         public Builder addHeaderParamsMap(Map<String, String> headerParamsMap) {
             interceptor.headerParamsMap.putAll(headerParamsMap);
             return this;
         }
 
-        // 添加公共参数到消息头
         public Builder addHeaderLine(String headerLine) {
             int index = headerLine.indexOf(":");
             if (index == -1) {
@@ -169,7 +155,6 @@ public class BasicParamsInterceptor implements Interceptor {
             return this;
         }
 
-        // 添加公共参数到消息头
         public Builder addHeaderLinesList(List<String> headerLinesList) {
             for (String headerLine : headerLinesList) {
                 int index = headerLine.indexOf(":");
@@ -181,13 +166,11 @@ public class BasicParamsInterceptor implements Interceptor {
             return this;
         }
 
-        // 添加公共参数到 URL
         public Builder addQueryParam(String key, String value) {
             interceptor.queryParamsMap.put(key, value);
             return this;
         }
 
-        // 添加公共参数到 URL
         public Builder addQueryParamsMap(Map<String, String> queryParamsMap) {
             interceptor.queryParamsMap.putAll(queryParamsMap);
             return this;

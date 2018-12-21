@@ -8,11 +8,6 @@ import com.supets.pet.mocklib.AppContext;
 
 class NetUtil {
 
-    /**
-     * 判断是否有网络
-     *
-     * @return 返回值
-     */
     public static boolean isNetworkConnected() {
         Context context = AppContext.INSTANCE;
         if (context != null) {

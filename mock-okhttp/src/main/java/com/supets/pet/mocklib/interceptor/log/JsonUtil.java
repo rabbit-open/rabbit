@@ -1,12 +1,6 @@
 package com.supets.pet.mocklib.interceptor.log;
 
 class JsonUtil {
-    /**
-     * 格式化json字符串
-     *
-     * @param jsonStr 需要格式化的json串
-     * @return 格式化后的json串
-     */
     public static String formatJson(String jsonStr) {
         if (null == jsonStr || "".equals(jsonStr)) return "";
         StringBuilder sb = new StringBuilder();
@@ -16,7 +10,6 @@ class JsonUtil {
         for (int i = 0; i < jsonStr.length(); i++) {
             last = current;
             current = jsonStr.charAt(i);
-            //遇到{ [换行，且下一行缩进
             switch (current) {
                 case '{':
                 case '[':
@@ -25,7 +18,6 @@ class JsonUtil {
                     indent++;
                     addIndentBlank(sb, indent);
                     break;
-                //遇到} ]换行，当前行缩进
                 case '}':
                 case ']':
                     sb.append('\n');
@@ -33,7 +25,6 @@ class JsonUtil {
                     addIndentBlank(sb, indent);
                     sb.append(current);
                     break;
-                //遇到,换行
                 case ',':
                     sb.append(current);
                     if (last != '\\') {
@@ -48,24 +39,12 @@ class JsonUtil {
         return sb.toString();
     }
 
-    /**
-     * 添加space
-     *
-     * @param sb
-     * @param indent
-     */
     private static void addIndentBlank(StringBuilder sb, int indent) {
         for (int i = 0; i < indent; i++) {
             sb.append('\t');
         }
     }
 
-    /**
-     * http 请求数据返回 json 中中文字符为 unicode 编码转汉字转码
-     *
-     * @param theString
-     * @return 转化后的结果.
-     */
     public static String decodeUnicode(String theString) {
         char aChar;
         int len = theString.length();
