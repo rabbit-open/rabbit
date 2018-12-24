@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.hualala.librealm.dao.DogDao;
-import com.hualala.librealm.dao.RealmArrayList;
 import com.hualala.librealm.model.Dog;
 import com.hualala.librealm.model.DogEmail;
 
