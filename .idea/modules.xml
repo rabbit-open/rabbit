@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/librealm/librealm.iml" filepath="$PROJECT_DIR$/librealm/librealm.iml" />
       <module fileurl="file://$PROJECT_DIR$/libweb/libweb.iml" filepath="$PROJECT_DIR$/libweb/libweb.iml" />
       <module fileurl="file://$PROJECT_DIR$/mock-okhttp/mock-okhttp.iml" filepath="$PROJECT_DIR$/mock-okhttp/mock-okhttp.iml" />
       <module fileurl="file://$PROJECT_DIR$/mock-okhttp-no-op/mock-okhttp-no-op.iml" filepath="$PROJECT_DIR$/mock-okhttp-no-op/mock-okhttp-no-op.iml" />

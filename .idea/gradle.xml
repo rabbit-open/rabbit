@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/librealm" />
             <option value="$PROJECT_DIR$/libweb" />
             <option value="$PROJECT_DIR$/mock-okhttp" />
             <option value="$PROJECT_DIR$/mock-okhttp-no-op" />
