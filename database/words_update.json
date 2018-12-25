@@ -132,7 +132,6 @@
       "delegate velocity tracker configuration debug group overlay outline parent property animator stub",
       "tree observer window stats content inset mode"
     ],
-
     "spring注解单词": [
       "controller service autowired request mapping request param model attribute",
       "cache able cache flush resource post construct pre destroy repository component",
@@ -199,6 +198,10 @@
       "arithmetic bounds store cast illegal argument monitor state negative security operation",
       "instantiation field cause trace element throwable",
       "override overload package annotation"
+    ],
+    "kotlin": [
+      "mutable fold reduce",
+      "predicate initial previous accumulator"
     ]
   }
 }
