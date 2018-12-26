@@ -200,7 +200,7 @@
       "override overload package annotation"
     ],
     "kotlin": [
-      "mutable fold reduce",
+      "mutable fold reduce slice indices range",
       "predicate initial previous accumulator"
     ]
   }
