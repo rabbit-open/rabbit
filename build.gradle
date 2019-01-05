@@ -35,6 +35,9 @@ buildscript {
 
         //releam
         classpath "io.realm:realm-gradle-plugin:5.8.0"
+
+        //proto
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.2' //as3.0以下的要0.8.0版本
     }
 
 

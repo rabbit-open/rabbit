@@ -1,0 +1,12 @@
+//生成的java类所在的包名
+package com.hualala.proto.dto;
+//登录请求结构体
+message LoginRequest {
+    required string username = 1;
+    optional string pwd = 2;
+}
+//登录响应结构体
+message LoginResponse {
+    optional int32 code = 1;
+    optional string msg = 2;
+}

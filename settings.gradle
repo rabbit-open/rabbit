@@ -1,4 +1,4 @@
-include ':app', ':libweb', ':librealm', ':libqrcode'
+include ':app', ':libweb', ':librealm', ':libqrcode', ':libdragger'
 include ':mock-okhttp'
 include ':mock-okhttp-no-op'
 include ':mock-okhttp-simple'

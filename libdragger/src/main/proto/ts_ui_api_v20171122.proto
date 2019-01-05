@@ -1,0 +1,205 @@
+package tianshu.ui.api;
+
+/*
+    聚屏媒体接入api文档，接口版本: 6.0.0
+*/
+
+
+// 操作系统类型
+enum OsType {
+    UNKNOWN = 0;
+    ANDROID = 1;  // Android
+    IOS = 2;  // iOS
+    WINDOWS = 3;
+};
+
+// 版本号信息
+message Version {
+    optional uint32 major = 1[default = 0]; // 必填！
+    optional uint32 minor = 2[default = 0]; // 选填！
+    optional uint32 micro = 3[default = 0]; // 选填！
+};
+
+// 唯一用户标识，必需使用明文，必需按要求填写，具体填写指导详见接口说明文档
+enum UdIdType {
+
+    MAC = 1; // 设备的WiFi网卡MAC地址，字母大写，格式要求[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}
+    MEDIA_ID = 2; //媒体内部维护的唯一Id,仅对少部分媒体开放，默认仅允许mac id
+}
+message UdId {
+    optional UdIdType id_type = 1; //必填! id 类型，默认仅允许mac
+    optional bytes id = 2; //必填!
+};
+
+// 二维尺寸信息
+message Size {
+    optional uint32 width = 1[default = 0];  // 必填！宽度 单位是像素
+    optional uint32 height = 2[default = 0];  // 必填！高度 单位是像素
+};
+
+message Device {
+    optional UdId udid = 1;  // 必填！唯一设备标识，必需按要求填写
+    optional OsType os_type = 2;  // 必填！操作系统类型
+    optional Version os_version = 3;  // 必填！操作系统版本
+    optional bytes vendor = 4[default = ""];  // 必填！设备厂商名称，中文需要UTF-8编码
+    optional bytes model = 5[default = ""];  // 必填！设备型号，中文需要UTF-8编码
+    optional Size screen_size = 6; // 必填！设备屏幕宽高
+}
+
+// WiFi热点信息
+message WiFiAp {
+    optional bytes ap_mac = 1;  // 必填！热点MAC地址，格式要求[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}
+    optional int32 rssi = 2;  // 必填！热点信号强度，通常是负数
+    optional bytes ap_name = 3;  // 必填！热点名称，可不传递，建议传递当前接入热点的名称，用于判断用户当前所处场所，中文需要UTF-8编码
+};
+
+// GPS信息
+message Gps {
+    // GPS坐标类型
+    enum CoordinateType {
+        WGS84 = 1;  // 全球卫星定位系统坐标系
+        GCJ02 = 2;  // 国家测绘局坐标系
+        BD09 = 3;  // 百度坐标系
+    };
+    optional CoordinateType coordinate_type = 1;  // 必填！坐标类型
+    optional double longitude = 2;  // 必填！经度
+    optional double latitude = 3;  // 必填！纬度
+};
+
+// 网络环境信息
+message Network {
+    // 网络连接类型
+    enum ConnectionType {
+        UNKNOWN_NETWORK = 0;
+        WIFI = 1;
+        MOBILE_2G = 2;
+        MOBILE_3G = 3;
+        MOBILE_4G = 4;
+        ETHERNET = 101; // 以太网接入
+        NEW_TYPE = 999;  // 未知新类型
+    };
+
+    // 运营商代号，每个运营商唯一(PLMN码每个运营商可能有多个)
+    enum OperatorType {
+        ISP_UNKNOWN         = 0;  //未知运营商
+        ISP_CHINA_MOBILE    = 1;  //中国移动
+        ISP_CHINA_UNICOM    = 2;  //中国联通
+        ISP_CHINA_TELECOM   = 3;  //中国电信
+        ISP_FOREIGN         = 254; //其它运营商
+    }
+    optional bytes ipv4 = 1;  // 必填！用户设备的公网IPv4地址，服务器对接必填，格式要求：255.255.255.255
+    optional ConnectionType connection_type = 2;  // 必填！网络连接类型，用于判断网速
+    optional OperatorType operator_type = 3;  // 必填！移动运营商类型，用于运营商定向广告
+};
+
+//物料类型
+enum MaterialType {
+    VIDEO = 1;
+    IMAGE = 2;
+}
+
+//媒体的用户特征数据
+message UserInfo {
+    optional bytes media_channel = 1; //选填! 电视频道、公交路线等。需预先和百度确定映射关系
+    repeated bytes tags = 2; //选填! 当前设备用户画像。需预先和百度确定映射关系
+    repeated bytes phone_numbers = 3; //选填! 当前设备用户手机号当前设备用户手机号。加密规则预先约定，需支持反解
+    repeated bytes browse = 4; // 选填! 当前设备历史流量信息。需预先和百度确定映射关系
+}
+
+//设备探针数据
+message ProbeInfo {
+    optional bytes client_mac = 1; //必填! 探测设备mac
+    optional int32 client_rssi = 2; //必填! 探测设备热点强度
+}
+
+message SlotInfo {
+    required bytes adslot_id = 1; // 必填! 广告位id 平台生成
+    optional uint32 base_price = 2; //选填! [仅百度内部流量可用，其它流量暂时不允许填充]
+    optional uint32 multi_show = 3; //选填! [仅百度内部流量可用， 其它流量暂时不允许填充]
+}
+
+message TsApiRequest {
+    //1.基础参数
+    required bytes request_id = 1; //必填!   接入方自定义请求ID [仅英文字母和数字, 32位]
+    required Version api_version = 2;  // 必填！API版本，按照当前接入所参照的API文档版本赋值，影响所有后续逻辑，填写错误会导致拒绝请求。
+
+    //2. 媒体参数
+    required bytes app_id = 3; //必填! 标识资源方，平台生成
+
+    //3. 广告位参数
+    required SlotInfo slot = 4; //必填！ 广告位信息
+
+    //4. 设备参数
+    optional Device device = 5; //必填! 设备信息
+
+    //5. 网络参数
+    optional Network network = 6;  // 必填！网络环境信息
+
+    //6. wifi ap参数
+    optional WiFiAp wifi_ap = 7;  // 选填！连接的wifi热点参数, OTT强烈建议填写
+
+    //7. 探针参数 或者 通过路由表等方式获取到的周边设备MAC地址
+    repeated ProbeInfo prob_infos = 8; //选填！ 设备探针数据，强烈建议填写
+
+    //8.GPS 参数
+    optional Gps gps = 9;  // 选填！GPS定位信息，用于辅助触发LBS广告
+
+    //9. 用户参数
+    optional UserInfo user_info = 10; //选填! 建议尽可能提供更多的用户信息，提升变现能力
+
+    repeated WiFiAp scan_wifi_ap = 11;  // 选填！扫描到的wifi热点参数, OTT强烈建议填写
+}
+
+// 广告物料元数据信息
+message MaterialMeta {
+    optional MaterialType material_type = 1; //物料类型 图片，视频
+    optional bytes click_url = 2;  // 点击行为地址，用户点击后，在客户端进行响应，会经过多次302跳转最终到达目标地址
+    repeated bytes icon_src = 5;  // 广告图标地址，注意：单个广告可能有多张图标返回
+    repeated bytes image_src = 6;  // 广告图片地址，注意：单个广告可能有多张图片返回
+    optional bytes video_url = 7;  // 广告视频物料地址
+    optional uint32 video_duration = 8;  // 广告视频物料时长
+    optional uint32 material_width = 9;  // 物料的宽度:如果是图片,表示图片的宽度;如果是视频(含有视频截图),则为视频宽度;如果是图文或文本,则不会填充此字段
+    optional uint32 material_height = 10;  // 物料的高度:如果是图片,表示图片的高度;如果是视频(含有视频截图),则为视频高度;如果是图文或文本,则不会填充此字段
+    optional uint32 material_size = 11; // 图片、视频物料大小,单位kb
+    optional bytes material_md5 = 12; // 图片，视频物料的md5值
+};
+
+// 广告效果跟踪信息
+message Tracking {
+    // 广告展示过程事件类型
+    enum TrackingEvent {
+        // 视频类广告展示过程事件
+        VIDEO_AD_START = 1;  // 视频开始播放
+        VIDEO_AD_FULL_SCREEN = 2;  // 视频全屏
+        VIDEO_AD_END = 3;  // 视频正常播放结束
+        VIDEO_AD_START_CARD_CLICK = 4;  // 点击预览图播放视频
+    };
+    optional TrackingEvent tracking_event = 1;  // 被跟踪的广告展示过程事件
+    repeated bytes tracking_url = 2;  // 事件监控URL
+};
+
+message Ad {
+    optional bytes title = 1; //广告标题，utf-8 编码
+    optional bytes brand_name = 2; //广告品牌名，utf-8 编码
+    optional bytes description = 3; //广告描述，utf-8编码
+    optional bytes icon_url = 4; // 广告主品牌logo
+    repeated MaterialMeta material_metas = 5; //物料的元数据
+    repeated bytes win_notice_url = 6;  // 曝光日志URL列表，在曝光后必须在客户端逐个汇报完
+    repeated Tracking ad_tracking = 7;  // 广告监控信息(预留接口，媒体暂时不需要关注)
+    repeated bytes third_monitor_url = 8 ; //广告主监控请求，在曝光后必须在客户端端逐个汇报完
+    optional bytes ad_key = 9;  //广告唯一标识id
+}
+
+message TsApiResponse {
+    //1.0 基础参数
+    required bytes request_id = 1;  // 对应请求的接入方自定义请求ID
+    required uint64 error_code = 2;  // 请求响应出错时的错误码，用于问题排查
+    optional bytes adslot_id = 3;  // 对应请求时填写的广告位ID
+    // 广告清单
+    repeated Ad ads = 4;  // 应答广告清单，一次请求可以返回多个广告，需要逐个解析
+    optional uint32 expiration_time = 5;  // 广告清单过期时间戳，单位秒
+    optional bytes search_key = 6; // 当次请求百度生成的唯一表示ID
+    //广告logo标识
+    optional bytes jp_adtext = 7; //新广告法出台，要求明确使用"广告"，该字段为"广告"小图标地址，媒体需要在渲染的时候添加
+    optional bytes jp_adlogo = 8; //新广告法出台，该字段为与上述字段配合使用的"熊掌"图标地址，媒体需要在渲染的时候添加
+}

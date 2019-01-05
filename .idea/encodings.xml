@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/libdragger/src/main/proto/ts_ui_api_v20171122.proto" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-okhttp/src/main/java/com/supets/pet/mocklib/interceptor/cache/NetInterceptor.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-okhttp/src/main/java/com/supets/pet/mocklib/interceptor/cache/NetUtil.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-okhttp/src/main/java/com/supets/pet/mocklib/interceptor/cache/NoNetInterceptor.java" charset="UTF-8" />

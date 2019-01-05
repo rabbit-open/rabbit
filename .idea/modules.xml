@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libdragger/libdragger.iml" filepath="$PROJECT_DIR$/libdragger/libdragger.iml" />
       <module fileurl="file://$PROJECT_DIR$/libqrcode/libqrcode.iml" filepath="$PROJECT_DIR$/libqrcode/libqrcode.iml" />
       <module fileurl="file://$PROJECT_DIR$/librealm/librealm.iml" filepath="$PROJECT_DIR$/librealm/librealm.iml" />
       <module fileurl="file://$PROJECT_DIR$/libweb/libweb.iml" filepath="$PROJECT_DIR$/libweb/libweb.iml" />
