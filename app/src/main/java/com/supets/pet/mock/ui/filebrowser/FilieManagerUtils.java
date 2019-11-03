@@ -12,8 +12,8 @@ public class FilieManagerUtils {
         ArrayList<FileData> data = new ArrayList<>();
         File rootFile = new File(root);//当前目录
         if (rootFile.isDirectory()) {
-            if (rootFile.getAbsolutePath().equals(Environment.getExternalStorageDirectory().getAbsolutePath())) {
-                data.add(new FileData("根目录:", Environment.getExternalStorageDirectory().getAbsolutePath(), true));
+            if (rootFile.getAbsolutePath().equals(Environment.getDataDirectory().getAbsolutePath())) {
+                data.add(new FileData("根目录:", Environment.getDataDirectory().getAbsolutePath(), true));
             } else {
                 data.add(new FileData("当前所在目录：" + rootFile.getName() + "  上一级目录:" + rootFile.getParentFile().getName(), rootFile.getParentFile().getAbsolutePath(), true));
             }
@@ -27,13 +27,8 @@ public class FilieManagerUtils {
         return data;
     }
 
-
     public static ArrayList<FileData> getFileListSdCard() {
-        return getFileList(Environment.getExternalStorageDirectory().getAbsolutePath());
-    }
-
-    public static ArrayList<FileData> getFileListRoot() {
-        return getFileList(Environment.getRootDirectory().getAbsolutePath());
+        return getFileList(Environment.getDataDirectory().getAbsolutePath());
     }
 
 }
