@@ -28,14 +28,10 @@ publish {
     dryRun = false
 }
 
-//f50daeebc7196f39b695baa401c06dcc47efff0b
-//./gradlew clean build bintrayUpload  -PbintrayUser=lihongjiang  -PbintrayKey=f50daeebc7196f39b695baa401c06dcc47efff0b -PdryRun=false
-//./gradlew clean build bintrayUpload  -PbintrayUser=lihongjiang  -PbintrayKey=f50daeebc7196f39b695baa401c06dcc47efff0b -PdryRun=true  //调试不会上传
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    def mockDepen = rootProject.ext.mockOkhttpDepencies
+    def mockDepen = rootProject.ext.mocknoOkhttpDepencies
     Iterator<String> types = mockDepen.keySet().iterator()
     while (types.hasNext()) {
         def depenciesType = types.next()

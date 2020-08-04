@@ -158,7 +158,7 @@ public final class HttpLoggingInterceptor3 implements Interceptor {
     private StringBuilder sb = new StringBuilder();
     private String postParam = "";
 
-    private boolean requestResponse = false;//打开获取response
+    private boolean requestResponse = true;//打开获取response
 
 
     @Override

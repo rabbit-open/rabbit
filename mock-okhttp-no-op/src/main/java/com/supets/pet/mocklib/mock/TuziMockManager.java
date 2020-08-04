@@ -34,6 +34,4 @@ public class TuziMockManager {
         };
     }
 
-    public static void sendLocalRequest(String url, String requestParam, String message) {
-    }
 }

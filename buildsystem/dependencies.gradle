@@ -10,7 +10,7 @@ ext {
     buildToolsVersion = "28.0.3"
     supportLibVersion = "28.0.0"
 
-    mockOkhttpVersion = "2.13.28"
+    mockOkhttpVersion = "2.14.27"
 
     androidDependencies = [
             "implementation": [
@@ -26,6 +26,12 @@ ext {
                     'appcompat-v7': "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}",
                     'okhttp'      : "com.squareup.okhttp3:okhttp:3.10.0",
                     'recyclerview-v7': "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}",
+            ],
+    ]
+
+    mocknoOkhttpDepencies = [
+            "implementation": [
+                    'okhttp'      : "com.squareup.okhttp3:okhttp:3.10.0",
             ],
     ]
 
