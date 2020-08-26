@@ -6,6 +6,7 @@ import android.net.Uri;
 
 import com.supets.pet.mocklib.AppContext;
 import com.supets.pet.mocklib.widget.MockData;
+import com.supets.pet.mocklib.widget.MockDataReceiver;
 import com.supets.pet.mocklib.widget.TuZiWidget;
 
 import java.net.URLDecoder;
@@ -61,9 +62,10 @@ public class Utils {
         try {
             MockData data = new MockData();
             data.setUrl(intent.getStringExtra("url"));
-            data.setData(intent.getStringExtra("message"));
+            String key = intent.getStringExtra("message");
+            data.setData(MockDataReceiver.bigMessage.get(key));
             data.setRequestParam(intent.getStringExtra("requestParam"));
-
+            MockDataReceiver.bigMessage.remove(key);
             if (!TuZiWidget.isShow) {
                 mTipViewController = new TuZiWidget(AppContext.INSTANCE, data);
                 mTipViewController.setViewDismissHandler(() -> {

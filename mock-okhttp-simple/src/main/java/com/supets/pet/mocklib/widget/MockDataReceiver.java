@@ -7,8 +7,12 @@ import android.content.Intent;
 
 import com.supets.pet.mocklib.utils.Utils;
 
+import java.util.HashMap;
+
 public class MockDataReceiver extends BroadcastReceiver {
     public static final String MOCK_SERVICE_NETWORK = "mock.crash.network2";
+
+    public static HashMap<String,String> bigMessage=new HashMap<>();
 
     @Override
     public void onReceive(Context context, Intent intent) {

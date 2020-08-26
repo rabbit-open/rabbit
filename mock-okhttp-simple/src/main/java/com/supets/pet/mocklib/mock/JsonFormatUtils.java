@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.supets.pet.mocklib.AppContext;
+import com.supets.pet.mocklib.widget.MockDataReceiver;
 
 import org.json.JSONObject;
+
+import java.util.UUID;
 
 import static com.supets.pet.mocklib.widget.MockDataReceiver.MOCK_SERVICE_NETWORK;
 
@@ -137,7 +140,9 @@ final class JsonFormatUtils {
             Intent intent = new Intent(MOCK_SERVICE_NETWORK);
             intent.putExtra("url", url);
             intent.putExtra("requestParam", requestParam);
-            intent.putExtra("message", message);
+            String key= UUID.randomUUID().toString();
+            MockDataReceiver.bigMessage.put(key,message);
+            intent.putExtra("message", key);
             intent.setPackage(AppContext.INSTANCE.getPackageName());
             AppContext.INSTANCE.sendBroadcast(intent);
         } catch (Exception e) {
