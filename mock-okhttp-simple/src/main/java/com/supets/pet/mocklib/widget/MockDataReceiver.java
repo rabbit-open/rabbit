@@ -13,6 +13,7 @@ public class MockDataReceiver extends BroadcastReceiver {
     public static final String MOCK_SERVICE_NETWORK = "mock.crash.network2";
 
     public static HashMap<String,String> bigMessage=new HashMap<>();
+    public static HashMap<String,String> bigRequest=new HashMap<>();
 
     @Override
     public void onReceive(Context context, Intent intent) {

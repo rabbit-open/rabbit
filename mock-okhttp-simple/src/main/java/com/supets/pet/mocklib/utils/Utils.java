@@ -62,10 +62,12 @@ public class Utils {
         try {
             MockData data = new MockData();
             data.setUrl(intent.getStringExtra("url"));
-            String key = intent.getStringExtra("message");
-            data.setData(MockDataReceiver.bigMessage.get(key));
-            data.setRequestParam(intent.getStringExtra("requestParam"));
-            MockDataReceiver.bigMessage.remove(key);
+            String key1 = intent.getStringExtra("message");
+            String key2 = intent.getStringExtra("requestParam");
+            data.setData(MockDataReceiver.bigMessage.get(key1));
+            data.setRequestParam(MockDataReceiver.bigRequest.get(key2));
+            MockDataReceiver.bigMessage.remove(key1);
+            MockDataReceiver.bigMessage.remove(key2);
             if (!TuZiWidget.isShow) {
                 mTipViewController = new TuZiWidget(AppContext.INSTANCE, data);
                 mTipViewController.setViewDismissHandler(() -> {

@@ -137,11 +137,12 @@ final class JsonFormatUtils {
 
     public static void sendLocalRequest(String url, String requestParam, String message) {
         try {
+            String key= UUID.randomUUID().toString();
             Intent intent = new Intent(MOCK_SERVICE_NETWORK);
             intent.putExtra("url", url);
-            intent.putExtra("requestParam", requestParam);
-            String key= UUID.randomUUID().toString();
+            intent.putExtra("requestParam", key);
             MockDataReceiver.bigMessage.put(key,message);
+            MockDataReceiver.bigRequest.put(key,requestParam);
             intent.putExtra("message", key);
             intent.setPackage(AppContext.INSTANCE.getPackageName());
             AppContext.INSTANCE.sendBroadcast(intent);
