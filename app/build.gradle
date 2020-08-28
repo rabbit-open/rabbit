@@ -8,7 +8,6 @@ apply plugin: 'org.greenrobot.greendao'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(":libweb")
 
     def mockDepen = rootProject.ext.appDependencies
     Iterator<String> types = mockDepen.keySet().iterator()

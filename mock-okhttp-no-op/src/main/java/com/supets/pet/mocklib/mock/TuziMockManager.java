@@ -16,16 +16,7 @@ public class TuziMockManager {
         };
     }
 
-    public static Interceptor getMockLogInterceptors2() {
-        return new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                return chain.proceed(chain.request());
-            }
-        };
-    }
-
-    public static Interceptor getMockLogInterceptors3() {
+    public static Interceptor getMockLogInterceptors() {
         return new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {

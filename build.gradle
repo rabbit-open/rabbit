@@ -29,15 +29,9 @@ buildscript {
         //注解处理服务
         //classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'com.google.auto.service:auto-service:1.0-rc2'
-
         //jcenter
         classpath 'com.novoda:bintray-release:0.8.1'//3.1.0-4.4
 
-        //releam
-        classpath "io.realm:realm-gradle-plugin:5.8.0"
-
-        //proto
-        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.2' //as3.0以下的要0.8.0版本
     }
 
 

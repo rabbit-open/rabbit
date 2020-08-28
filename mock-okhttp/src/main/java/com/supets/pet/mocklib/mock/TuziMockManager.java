@@ -10,12 +10,9 @@ public class TuziMockManager {
         return new MockInterceptor();
     }
 
-    public static Interceptor getMockLogInterceptors2() {
-        return new HttpLoggingInterceptor2();
-    }
 
-    public static Interceptor getMockLogInterceptors3() {
-        return new HttpLoggingInterceptor3();
+    public static Interceptor getMockLogInterceptors() {
+        return new HttpLoggingInterceptor(HttpLoggingInterceptor.Logger.DEFAULT,true);
     }
 
     public static void sendLocalRequest(String url, String requestParam, String message) {
