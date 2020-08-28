@@ -82,7 +82,7 @@ public class ServerApi {
         getmockconfig();
         getPhoneInfo();
         getFilePath();
-        this.server.listen(this.mAsyncServer, 80);
+        this.server.listen(this.mAsyncServer, 8088);
     }
 
     private void getFilePath() {

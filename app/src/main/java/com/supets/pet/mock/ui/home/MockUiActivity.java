@@ -29,9 +29,10 @@ public class MockUiActivity extends TabLayoutBottomActivity {
         disposable = rxPermissions.requestEachCombined(
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.READ_CONTACTS,
                 Manifest.permission.SYSTEM_ALERT_WINDOW,
-                Manifest.permission.CAMERA,
-                Manifest.permission.READ_PHONE_STATE)
+                Manifest.permission.CAMERA)
                 .subscribe(permission -> {
                     //只回调一次
                     if (permission.granted) {
