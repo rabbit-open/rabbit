@@ -48,14 +48,13 @@ public class MockToolsAdapter extends BaseRecycleAdapter<String> {
                 view.getContext().startActivity(intent);
             }
             if (position == 6) {
-                Intent intent = new Intent(view.getContext(), PCServerActivity.class);
-                view.getContext().startActivity(intent);
-            }
-            if (position == 7) {
                 Intent intent = new Intent(view.getContext(), MYPetSortActivity.class);
                 view.getContext().startActivity(intent);
             }
-
+//            if (position == 7) {
+//                Intent intent = new Intent(view.getContext(), PCServerActivity.class);
+//                view.getContext().startActivity(intent);
+//            }
         });
     }
 

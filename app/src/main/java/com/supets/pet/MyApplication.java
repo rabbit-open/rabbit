@@ -1,14 +1,12 @@
 package com.supets.pet;
 
 import android.app.Application;
-import android.content.Intent;
 import android.content.IntentFilter;
 
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
 import com.supets.pet.server.ServerApi;
 import com.supets.pet.service.CrashService;
-import com.supets.pet.service.LogService;
 import com.supets.pet.service.MockDataReceiver;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -24,7 +22,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         OkHttpUtils.initClient(new OkHttpClient());
-        startService(new Intent(this, LogService.class));
         //启动服务
         new ServerApi(this, server, mAsyncServer);
         //注册广播

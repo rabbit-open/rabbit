@@ -23,11 +23,6 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-    <uses-permission
-        android:name="android.permission.READ_LOGS"
-        tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <permission
         android:name="com.supets.pet.permission.MOCK_CRASH_SERVICE"
         android:protectionLevel="normal" />
@@ -109,17 +104,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
-        <!--测试-->
         <service
             android:name="com.supets.pet.uctoast.ListenClipboardService"
             android:enabled="true"
             android:exported="true"
             android:process=":process" />
-
-        <service
-            android:name="com.supets.pet.alert.PullMsgService"
-            android:exported="true"
-            android:process=":supetsmsg" />
 
         <receiver
             android:name="com.supets.pet.uctoast.BootCompletedReceiver"
@@ -140,7 +129,6 @@
             android:name="com.baidusoso.wifitransfer.WebService"
             android:enabled="true"
             android:exported="true" />
-        <service android:name="com.supets.pet.service.LogService" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

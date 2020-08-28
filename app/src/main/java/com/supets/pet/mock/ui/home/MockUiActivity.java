@@ -1,14 +1,13 @@
 package com.supets.pet.mock.ui.home;
 
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.ServiceConnection;
+import android.Manifest;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.supets.pet.alert.PullMsgService;
 import com.supets.pet.uctoast.ListenClipboardService;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+
+import io.reactivex.disposables.Disposable;
 
 
 public class MockUiActivity extends TabLayoutBottomActivity {
@@ -18,28 +17,36 @@ public class MockUiActivity extends TabLayoutBottomActivity {
         super.onCreate(savedInstanceState);
         update();
         ListenClipboardService.start(this);
-    }
 
-    private void startMsgService() {
-        Intent intent = new Intent(this, PullMsgService.class);
-        // bindService(intent, msgconnect, Context.BIND_AUTO_CREATE);
-        startService(intent);
+        permissionCheck();
     }
 
 
-    private void stopMsgService() {
-        unbindService(msgconnect);
+    Disposable disposable;
+
+    private void permissionCheck() {
+        RxPermissions rxPermissions = new RxPermissions(this);
+        disposable = rxPermissions.requestEachCombined(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.SYSTEM_ALERT_WINDOW,
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_PHONE_STATE)
+                .subscribe(permission -> {
+                    //只回调一次
+                    if (permission.granted) {
+                        //全部权限获取成功
+                    } else if (permission.shouldShowRequestPermissionRationale) {
+                        //至少一个权限获取失败，但是用户没有勾选”不再询问“，在这里应该弹出对话框向用户解释为何需要该权限
+                    } else {
+                        //至少一个权限申请失败，用户勾选了“不再询问”，在这里应该引导用户去设置页面打开权限
+                    }
+                });
     }
 
-    private ServiceConnection msgconnect = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-
-        }
-    };
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        disposable.dispose();
+    }
 }
