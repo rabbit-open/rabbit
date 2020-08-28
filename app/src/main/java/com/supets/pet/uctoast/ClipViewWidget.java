@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.os.Build;
+import android.provider.Settings;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -12,7 +13,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.ui.translate.TranslateActivity;
 import com.supets.pet.mockui.R;
 
@@ -63,23 +63,18 @@ public final class ClipViewWidget implements View.OnClickListener, View.OnTouchL
         int flags = 0;
         int type = 0;
 
-        if (Config.getToast()) {
-            type = WindowManager.LayoutParams.TYPE_PHONE;
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (Settings.canDrawOverlays(mContext)) {
+                type = WindowManager.LayoutParams.TYPE_PHONE;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+                }
+            } else {
+                type = WindowManager.LayoutParams.TYPE_TOAST;
+            }
         } else {
-            type = WindowManager.LayoutParams.TYPE_TOAST;
+            type = WindowManager.LayoutParams.TYPE_PHONE;
         }
-
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            //解决Android 7.1.1起不能再用Toast的问题（先解决crash）
-//            if (Build.VERSION.SDK_INT > 24) {
-//                type = WindowManager.LayoutParams.TYPE_PHONE;
-//            } else {
-//                type = WindowManager.LayoutParams.TYPE_TOAST;
-//                //  type = WindowManager.LayoutParams.TYPE_PHONE;
-//            }
-//        } else {
-//            type = WindowManager.LayoutParams.TYPE_PHONE;
-//        }
 
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(w, h, type, flags, PixelFormat.TRANSLUCENT);
         layoutParams.gravity = Gravity.TOP;
@@ -97,7 +92,6 @@ public final class ClipViewWidget implements View.OnClickListener, View.OnTouchL
         mContext.startActivity(intent);
 
     }
-
 
 
     private void removePoppedViewAndClear() {

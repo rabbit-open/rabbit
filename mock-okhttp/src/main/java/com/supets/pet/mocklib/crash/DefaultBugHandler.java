@@ -10,8 +10,6 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.lang.Thread.UncaughtExceptionHandler;
 
-import static com.supets.pet.mocklib.MockConfig.permission_mock_crash;
-
 public class DefaultBugHandler implements UncaughtExceptionHandler {
 
     public static final String MOCK_SERVICE_CRASH = "mock.crash.service";
@@ -55,8 +53,7 @@ public class DefaultBugHandler implements UncaughtExceptionHandler {
     private void sendBroadCast(String file) {
         Intent intent = new Intent(MOCK_SERVICE_CRASH);
         intent.putExtra("crashlog", file);
-        intent.setPackage(AppContext.INSTANCE.getPackageName());
-        AppContext.INSTANCE.sendBroadcast(intent, permission_mock_crash);
+        AppContext.INSTANCE.sendBroadcast(intent);
     }
 
     private String saveBugFileInfo(Throwable ex) {

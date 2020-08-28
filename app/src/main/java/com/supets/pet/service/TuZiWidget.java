@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.os.Build;
+import android.provider.Settings;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Gravity;
@@ -75,26 +77,22 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         int flags = 0;
         int type = 0;
 
-        if (Config.getToast()) {
-            type = WindowManager.LayoutParams.TYPE_PHONE;
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (Settings.canDrawOverlays(mContext)) {
+                type = WindowManager.LayoutParams.TYPE_PHONE;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+                }
+            } else {
+                type = WindowManager.LayoutParams.TYPE_TOAST;
+            }
         } else {
-            type = WindowManager.LayoutParams.TYPE_TOAST;
+            type = WindowManager.LayoutParams.TYPE_PHONE;
         }
+
 
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(w, h, type, flags, PixelFormat.TRANSLUCENT);
         layoutParams.gravity = Gravity.TOP;
-
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            //解决Android 7.1.1起不能再用Toast的问题（先解决crash）
-//            if (Build.VERSION.SDK_INT > 24) {
-//                type = WindowManager.LayoutParams.TYPE_PHONE;
-//            } else {
-//                type = WindowManager.LayoutParams.TYPE_TOAST;
-//                //type = WindowManager.LayoutParams.TYPE_PHONE;
-//            }
-//        } else {
-//            type = WindowManager.LayoutParams.TYPE_PHONE;
-//        }
 
         mWindowManager.addView(mWholeView, layoutParams);
     }

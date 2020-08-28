@@ -4,13 +4,8 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.supets.pet.mocklib.AppContext;
-import com.supets.pet.mocklib.MockConfig;
 
 import org.json.JSONObject;
-
-import java.util.UUID;
-
-import static com.supets.pet.mocklib.MockConfig.permission_mock_network;
 
 final class JsonFormatUtils {
 
@@ -31,7 +26,21 @@ final class JsonFormatUtils {
 
     public static void logSave(String url, String message, String requestParam) {
         sendLocalRequest(url, message, requestParam);
-        log(message);
+        try {
+            if (isJson(message)) {
+                String jsonStr = JsonFormatUtils.format(message);
+                long totalpage = jsonStr.length() % 2048 == 0 ? 0 : 1 + jsonStr.length() / 2048;
+                int start = 0;
+                for (int i = 0; i < totalpage; i++) {
+                    int dds = Math.min((i + 1) * 2048, jsonStr.length());
+                    int last = jsonStr.indexOf(",", dds);
+                    Log.v("okhttp-" + totalpage + "-" + getIntStr(i), "\n" + jsonStr.substring(start, last == -1 ? dds : (last + 1)));
+                    start = last == -1 ? dds : (last + 1);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void logFile(String url, String message) {
@@ -117,15 +126,17 @@ final class JsonFormatUtils {
 
     public static void sendLocalRequest(String url, String requestParam, String message) {
         try {
-            String key = UUID.randomUUID().toString();
-            MockConfig.bigMessage.put(key, !isJpg(url) ? message : "jpg|png|jpeg|gif|apk");
-            MockConfig.bigRequest.put(key, requestParam);
+            if (requestParam.length()>600000){
+                return;
+            }
+            if (message.length()>600000){
+                return;
+            }
             Intent intent = new Intent(MOCK_SERVICE_NETWORK);
             intent.putExtra("url", url);
-            intent.putExtra("requestParam", key);
-            intent.putExtra("message", key);
-            intent.setPackage(AppContext.INSTANCE.getPackageName());
-            AppContext.INSTANCE.sendBroadcast(intent, permission_mock_network);
+            intent.putExtra("requestParam", requestParam);
+            intent.putExtra("message", !isJpg(url) ? message : "jpg|png|jpeg|gif|apk");
+            AppContext.INSTANCE.sendBroadcast(intent);
         } catch (Exception e) {
             e.printStackTrace();
         }

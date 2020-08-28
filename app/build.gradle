@@ -1,9 +1,5 @@
-//apply plugin: 'com.android.library'
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
-
-//apply plugin: 'android-apt'
-//apply plugin: 'me.tatarka.retrolambda'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

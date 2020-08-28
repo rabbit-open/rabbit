@@ -19,7 +19,6 @@ public class MockConfigActivity extends AppCompatActivity implements View.OnClic
     private CheckBox mDebugMore;
     private CheckBox mToastMode;
     private CheckBox mToastinstance;
-    private CheckBox toast;
 
     private EditText mApi;
 
@@ -57,10 +56,6 @@ public class MockConfigActivity extends AppCompatActivity implements View.OnClic
         mToastinstance = findViewById(R.id.toastinstance);
         mToastinstance.setOnClickListener(this);
         mToastinstance.setChecked(Config.getToastinstance());
-
-        toast = findViewById(R.id.toast);
-        toast.setOnClickListener(this);
-        toast.setChecked(Config.getToast());
 
         mApi = findViewById(R.id.api);
         mApi.setText(Config.getBaseAPI());
@@ -129,9 +124,6 @@ public class MockConfigActivity extends AppCompatActivity implements View.OnClic
             Config.setToastinstance(mToastinstance.isChecked());
         }
 
-        if (v == toast) {
-            Config.setToast(toast.isChecked());
-        }
     }
 
     @Override

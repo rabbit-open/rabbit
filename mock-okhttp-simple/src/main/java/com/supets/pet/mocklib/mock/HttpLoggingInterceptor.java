@@ -135,13 +135,17 @@ public final class HttpLoggingInterceptor implements Interceptor {
     public HttpLoggingInterceptor() {
         this(Logger.DEFAULT);
         setLevel(Level.BODY);
+        this.requestResponse = true;
     }
 
     public HttpLoggingInterceptor(Logger logger) {
+        setLevel(Level.BODY);
         this.logger = logger;
+        this.requestResponse = true;
     }
 
     public HttpLoggingInterceptor(Logger logger, boolean requestResponse) {
+        setLevel(Level.BODY);
         this.logger = logger;
         this.requestResponse = requestResponse;
     }
