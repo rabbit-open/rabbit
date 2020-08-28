@@ -3,13 +3,14 @@ package com.supets.pet.mocklib.crash;
 import android.content.Context;
 import android.content.Intent;
 
-
 import com.supets.pet.mocklib.AppContext;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.lang.Thread.UncaughtExceptionHandler;
+
+import static com.supets.pet.mocklib.MockConfig.permission_mock_crash;
 
 public class DefaultBugHandler implements UncaughtExceptionHandler {
 
@@ -55,7 +56,7 @@ public class DefaultBugHandler implements UncaughtExceptionHandler {
         Intent intent = new Intent(MOCK_SERVICE_CRASH);
         intent.putExtra("crashlog", file);
         intent.setPackage(AppContext.INSTANCE.getPackageName());
-        AppContext.INSTANCE.sendBroadcast(intent);
+        AppContext.INSTANCE.sendBroadcast(intent, permission_mock_crash);
     }
 
     private String saveBugFileInfo(Throwable ex) {

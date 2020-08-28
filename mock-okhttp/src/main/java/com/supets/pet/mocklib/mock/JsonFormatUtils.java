@@ -10,6 +10,8 @@ import org.json.JSONObject;
 
 import java.util.UUID;
 
+import static com.supets.pet.mocklib.MockConfig.permission_mock_network;
+
 final class JsonFormatUtils {
 
     public static final String MOCK_SERVICE_NETWORK = "mock.crash.network";
@@ -123,7 +125,7 @@ final class JsonFormatUtils {
             intent.putExtra("requestParam", key);
             intent.putExtra("message", key);
             intent.setPackage(AppContext.INSTANCE.getPackageName());
-            AppContext.INSTANCE.sendBroadcast(intent);
+            AppContext.INSTANCE.sendBroadcast(intent, permission_mock_network);
         } catch (Exception e) {
             e.printStackTrace();
         }

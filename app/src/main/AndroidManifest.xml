@@ -19,12 +19,17 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <uses-permission android:name="android.permission.READ_LOGS"
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+
+
+    <permission android:name="com.supets.pet.permission.MOCK_CRASH_SERVICE" />
+    <permission android:name="com.supets.pet.permission.MOCK_CRASH_NETWORK" />
 
     <application
         android:name="com.supets.pet.MyApplication"
@@ -33,8 +38,8 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/CustomAppTheme"
+        android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
 
         <meta-data
@@ -44,14 +49,16 @@
         <!--Android7.0新增的广播权限验证-->
         <receiver
             android:name="com.supets.pet.service.CrashService"
-            android:exported="true">
+            android:exported="true"
+            android:permission="com.supets.pet.permission.MOCK_CRASH_SERVICE">
             <intent-filter>
                 <action android:name="mock.crash.service" />
             </intent-filter>
         </receiver>
         <receiver
             android:name="com.supets.pet.service.MockDataReceiver"
-            android:exported="true">
+            android:exported="true"
+            android:permission="com.supets.pet.permission.MOCK_CRASH_NETWORK">
             <intent-filter>
                 <action android:name="mock.crash.network" />
             </intent-filter>
