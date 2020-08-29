@@ -8,6 +8,7 @@ import com.koushikdutta.async.http.server.AsyncHttpServer;
 import com.supets.pet.server.ServerApi;
 import com.supets.pet.service.CrashService;
 import com.supets.pet.service.MockDataReceiver;
+import com.supets.pet.uctoast.ListenClipboardService;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import okhttp3.OkHttpClient;
@@ -23,6 +24,7 @@ public class MyApplication extends Application {
         super.onCreate();
         OkHttpUtils.initClient(new OkHttpClient());
         //启动服务
+        ListenClipboardService.start(this);
         new ServerApi(this, server, mAsyncServer);
         //注册广播
         registerReceiver(new MockDataReceiver(), new IntentFilter("mock.crash.network"),

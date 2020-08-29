@@ -72,6 +72,7 @@ public class MockInfoActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 OkHttpUtils.post().url(mockData.getUrl())
+                        .headers(Utils.formatHashMap(mockData.getHeaderParam()))
                         .params(Utils.formatHashMap(mockData.getRequestParam())).build().execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
@@ -91,6 +92,7 @@ public class MockInfoActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 OkHttpUtils.get().url(mockData.getUrl())
+                        .headers(Utils.formatHashMap(mockData.getHeaderParam()))
                         .params(Utils.formatHashMap(mockData.getRequestParam())).build().execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {

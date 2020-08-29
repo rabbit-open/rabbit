@@ -45,22 +45,26 @@ public class GridAdapter extends RecyclerView.Adapter {
         if (FormatLogProcess.isJson(data.getData())) {
             try {
                 String string = new JSONObject(data.getData()).toString();
-                String message = "请求参数：\r\n".concat(
-                        Utils.formatParam(data.getRequestParam())).concat(
-                        "\r\n请求结果：\r\n").concat(
-                        FormatLogProcess.format(string));
+                String message =
+                        "请求Header参数：\r\n".concat(
+                                Utils.formatParam(data.getHeaderParam())).
+                                concat("请求Post参数：\r\n").concat(
+                                Utils.formatParam(data.getRequestParam())).concat(
+                                "\r\n请求结果：\r\n").concat(
+                                FormatLogProcess.format(string));
                 textView.setText(message);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         } else {
-            String message = "请求参数：\r\n".concat(
-                    Utils.formatParam(data.getRequestParam())).concat(
-                    "\r\n请求结果：\r\n").concat(
-                    data.getData());
+            String message =
+                    "请求Header参数：\r\n".concat(
+                            Utils.formatParam(data.getHeaderParam())).
+                            concat("请求Post参数：\r\n").concat(
+                            Utils.formatParam(data.getRequestParam())).concat(
+                            "\r\n请求结果：\r\n").concat(data.getData());
             textView.setText(message);
         }
-
     }
 
     @Override
