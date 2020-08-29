@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.util.Base64;
 import android.util.Log;
 
+import com.supets.pet.mocklib.AppContext;
+import com.supets.pet.mocklib.MockConfig;
+
 import org.json.JSONObject;
 
 import java.util.UUID;
