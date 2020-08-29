@@ -33,6 +33,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
     private GridAdapter adapter;
 
     public TuZiWidget(Context application, MockData content) {
+
         mContext = application;
         mContent = content;
         mWindowManager = (WindowManager) application.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);

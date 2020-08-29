@@ -41,7 +41,9 @@ public class MockDataReceiver extends BroadcastReceiver {
                         data.setHeaderParam(strs[0]);
                         data.setRequestParam(strs[1]);
                         data.setData(strs[2]);
-                        data.setResponseParam(strs[3]);
+                        if (strs.length == 4) {
+                            data.setResponseParam(strs[3]);
+                        }
                     } else {
                         data.setData(intent.getStringExtra("message"));
                         data.setRequestParam(intent.getStringExtra("requestParam"));
@@ -61,10 +63,11 @@ public class MockDataReceiver extends BroadcastReceiver {
                         }
 
                         if (!TuZiWidget.isShow) {
-                            mTipViewController = new TuZiWidget(context, data);
-                            mTipViewController.setViewDismissHandler(() -> {
-
-                            });
+                            if (mTipViewController == null) {
+                                mTipViewController = new TuZiWidget(context, data);
+                                mTipViewController.setViewDismissHandler(() -> {
+                                });
+                            }
                             mTipViewController.show();
                         } else {
                             mTipViewController.updateContent(data);
@@ -74,9 +77,9 @@ public class MockDataReceiver extends BroadcastReceiver {
                 } catch (Exception e) {
                     e.printStackTrace();
                     mTipViewController = null;
+                    TuZiWidget.isShow = false;
                 }
             }
-
 
         }
     }
