@@ -75,4 +75,11 @@ public class GridAdapter extends RecyclerView.Adapter {
         datas.add(data);
         notifyDataSetChanged();
     }
+
+    public void addHomeData(MockData data) {
+        datas.clear();
+        datas.add(data);
+        notifyDataSetChanged();
+    }
+
 }

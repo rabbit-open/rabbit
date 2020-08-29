@@ -20,7 +20,7 @@ public class Utils {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return request;
+        return request==null?"":request;
     }
 
     public static HashMap<String, String> formatHashMap(String request) {

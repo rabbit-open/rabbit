@@ -57,27 +57,17 @@ public class MockDataReceiver extends BroadcastReceiver {
                     if (!Config.getErrorJsonSwitch() || !FormatLogProcess.isJson(json)) {
 
                         if (Config.getToastinstance()) {
-                            new TuZiWidget(context, data).setViewDismissHandler(() -> {
-                            }).show();
+                            TuZiWidget tuZiWidget = new TuZiWidget(context);
+                            tuZiWidget.updateContent(data);
                             return;
                         }
-
-                        if (!TuZiWidget.isShow) {
-                            if (mTipViewController == null) {
-                                mTipViewController = new TuZiWidget(context, data);
-                                mTipViewController.setViewDismissHandler(() -> {
-                                });
-                            }
-                            mTipViewController.show();
-                        } else {
-                            mTipViewController.updateContent(data);
+                        if (mTipViewController == null) {
+                            mTipViewController = new TuZiWidget(context);
                         }
+                        mTipViewController.updateContent(data);
                     }
-
                 } catch (Exception e) {
                     e.printStackTrace();
-                    mTipViewController = null;
-                    TuZiWidget.isShow = false;
                 }
             }
 
