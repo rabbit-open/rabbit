@@ -175,10 +175,11 @@ final class JsonFormatUtils {
             String key = UUID.randomUUID().toString();
             Intent intent = new Intent(MOCK_SERVICE_NETWORK);
             intent.putExtra("url", url);
+            intent.putExtra("uuid", key);
             intent.putExtra("requestParam", key);
+            intent.putExtra("message", key);
             MockDataReceiver.bigMessage.put(key, message);
             MockDataReceiver.bigRequest.put(key, requestParam);
-            intent.putExtra("message", key);
             intent.setPackage(AppContext.INSTANCE.getPackageName());
             AppContext.INSTANCE.sendBroadcast(intent);
         } catch (Exception e) {

@@ -32,18 +32,19 @@ public class Utils {
             MockData data = new MockData();
             data.setUrl(intent.getStringExtra("url"));
             String uuid = intent.getStringExtra("uuid");
-
-            data.setData(MockDataReceiver.bigMessage.get(uuid));
-
-            String[] strs = MockDataReceiver.bigRequest.get(uuid).split(uuid);
-            if (strs.length == 3) {
-                data.setHeaderParam(strs[0]);
-                data.setRequestParam(strs[1]);
-                data.setResponseParam(strs[2]);
+            if (uuid != null) {
+                data.setData(MockDataReceiver.bigMessage.get(uuid));
+                String[] strs = MockDataReceiver.bigRequest.get(uuid).split(uuid);
+                if (strs.length == 3) {
+                    data.setHeaderParam(strs[0]);
+                    data.setRequestParam(strs[1]);
+                    data.setResponseParam(strs[2]);
+                } else {
+                    data.setRequestParam(MockDataReceiver.bigRequest.get(uuid));
+                }
             } else {
-                data.setRequestParam(MockDataReceiver.bigRequest.get(uuid));
+                return;
             }
-
             MockDataReceiver.bigMessage.remove(uuid);
             MockDataReceiver.bigMessage.remove(uuid);
             if (mTipViewController == null) {
