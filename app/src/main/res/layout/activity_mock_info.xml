@@ -36,6 +36,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="#333333"
                 android:textSize="15sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,6 +52,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="#333333"
                 android:textSize="15sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,19 +73,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:text="响应Header参数"
+                android:textColor="#333333"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/rparam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="#333333"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="接口请求结果"
                 android:textColor="#333333"
                 android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/list"
-                android:autoLink="all"
-                android:longClickable="true"
-                android:textIsSelectable="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:autoLink="all"
+                android:longClickable="true"
                 android:textColor="#333333"
+                android:textIsSelectable="true"
                 android:textSize="15sp" />
         </LinearLayout>
     </ScrollView>
@@ -115,7 +133,6 @@
             android:textSize="20sp" />
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/formatjson"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -124,6 +141,7 @@
             android:gravity="center"
             android:text="格式化编辑"
             android:textColor="#333333"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="gone" />
     </LinearLayout>
 </LinearLayout>

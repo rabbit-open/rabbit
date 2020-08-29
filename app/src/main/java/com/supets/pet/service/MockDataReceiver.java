@@ -41,6 +41,7 @@ public class MockDataReceiver extends BroadcastReceiver {
                         data.setHeaderParam(strs[0]);
                         data.setRequestParam(strs[1]);
                         data.setData(strs[2]);
+                        data.setResponseParam(strs[3]);
                     } else {
                         data.setData(intent.getStringExtra("message"));
                         data.setRequestParam(intent.getStringExtra("requestParam"));

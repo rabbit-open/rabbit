@@ -18,18 +18,21 @@ public class MockData {
     private String requestParam;
     @Property(nameInDb = "headerParam")
     private String headerParam;
+    @Property(nameInDb = "responseParam")
+    private String responseParam;
     @Property(nameInDb = "data")
     private String data;
     @Property(nameInDb = "time")
     private Date  time;
 
-    @Generated(hash = 677152694)
+    @Generated(hash = 171611277)
     public MockData(Long id, String url, String requestParam, String headerParam,
-            String data, Date time) {
+            String responseParam, String data, Date time) {
         this.id = id;
         this.url = url;
         this.requestParam = requestParam;
         this.headerParam = headerParam;
+        this.responseParam = responseParam;
         this.data = data;
         this.time = time;
     }
@@ -84,6 +87,14 @@ public class MockData {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public String getResponseParam() {
+        return this.responseParam;
+    }
+
+    public void setResponseParam(String responseParam) {
+        this.responseParam = responseParam;
     }
 
 }
