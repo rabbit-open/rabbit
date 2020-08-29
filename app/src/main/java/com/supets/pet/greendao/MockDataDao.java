@@ -27,8 +27,9 @@ public class MockDataDao extends AbstractDao<MockData, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Url = new Property(1, String.class, "url", false, "url");
         public final static Property RequestParam = new Property(2, String.class, "requestParam", false, "requestParam");
-        public final static Property Data = new Property(3, String.class, "data", false, "data");
-        public final static Property Time = new Property(4, java.util.Date.class, "time", false, "time");
+        public final static Property HeaderParam = new Property(3, String.class, "headerParam", false, "headerParam");
+        public final static Property Data = new Property(4, String.class, "data", false, "data");
+        public final static Property Time = new Property(5, java.util.Date.class, "time", false, "time");
     }
 
 
@@ -47,8 +48,9 @@ public class MockDataDao extends AbstractDao<MockData, Long> {
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"url\" TEXT," + // 1: url
                 "\"requestParam\" TEXT," + // 2: requestParam
-                "\"data\" TEXT," + // 3: data
-                "\"time\" INTEGER);"); // 4: time
+                "\"headerParam\" TEXT," + // 3: headerParam
+                "\"data\" TEXT," + // 4: data
+                "\"time\" INTEGER);"); // 5: time
     }
 
     /** Drops the underlying database table. */
@@ -76,14 +78,19 @@ public class MockDataDao extends AbstractDao<MockData, Long> {
             stmt.bindString(3, requestParam);
         }
  
+        String headerParam = entity.getHeaderParam();
+        if (headerParam != null) {
+            stmt.bindString(4, headerParam);
+        }
+ 
         String data = entity.getData();
         if (data != null) {
-            stmt.bindString(4, data);
+            stmt.bindString(5, data);
         }
  
         java.util.Date time = entity.getTime();
         if (time != null) {
-            stmt.bindLong(5, time.getTime());
+            stmt.bindLong(6, time.getTime());
         }
     }
 
@@ -106,14 +113,19 @@ public class MockDataDao extends AbstractDao<MockData, Long> {
             stmt.bindString(3, requestParam);
         }
  
+        String headerParam = entity.getHeaderParam();
+        if (headerParam != null) {
+            stmt.bindString(4, headerParam);
+        }
+ 
         String data = entity.getData();
         if (data != null) {
-            stmt.bindString(4, data);
+            stmt.bindString(5, data);
         }
  
         java.util.Date time = entity.getTime();
         if (time != null) {
-            stmt.bindLong(5, time.getTime());
+            stmt.bindLong(6, time.getTime());
         }
     }
 
@@ -128,8 +140,9 @@ public class MockDataDao extends AbstractDao<MockData, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // url
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // requestParam
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // data
-            cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)) // time
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // headerParam
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // data
+            cursor.isNull(offset + 5) ? null : new java.util.Date(cursor.getLong(offset + 5)) // time
         );
         return entity;
     }
@@ -139,8 +152,9 @@ public class MockDataDao extends AbstractDao<MockData, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setUrl(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setRequestParam(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setData(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setTime(cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)));
+        entity.setHeaderParam(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setData(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setTime(cursor.isNull(offset + 5) ? null : new java.util.Date(cursor.getLong(offset + 5)));
      }
     
     @Override

@@ -83,11 +83,13 @@ public class Config extends BasePref {
         editor.commit();
     }
 
+    //调试模式
     public static boolean getDebugMode() {
         SharedPreferences preferences = getPref(Name);
         return preferences.getBoolean(DebugMode, false);
     }
 
+    //抓取模式
     public static boolean getJsonSwitch() {
         SharedPreferences preferences = getPref(Name);
         return preferences.getBoolean(JsonSwitch, false);

@@ -103,7 +103,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
     public interface Logger {
         void log(String url, String message);
 
-        void log2(String url, String content, String requestParam);
+        void log2(String url, String content, String postParam,String headerParam);
 
         void log3(String url, String messgae);
 
@@ -119,8 +119,8 @@ public final class HttpLoggingInterceptor implements Interceptor {
             }
 
             @Override
-            public void log2(String url, String message, String requestParam) {
-                JsonFormatUtils.logSave(url, message, requestParam);
+            public void log2(String url, String message, String postParam,String headerParam) {
+                JsonFormatUtils.logSave(url, message, postParam,headerParam);
             }
 
             @Override
@@ -166,6 +166,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
 
     private StringBuilder sb = new StringBuilder();
     private String postParam = "";
+    private String headerParam = "";
 
     private boolean requestResponse = false;//打开获取response
 
@@ -218,7 +219,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
                     logger.log(request.url().toString(), name + ": " + headers.value(i));
                     sb.append(name + ": " + headers.value(i)).append("\n");
                     //TODO header param
-                    postParam = postParam + ("" + name + "=" + headers.value(i)) + "&";
+                    headerParam = headerParam + ("" + name + "=" + headers.value(i)) + "&";
                 }
             }
 
@@ -242,7 +243,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
 
                 if (isPlaintext(buffer)) {
                     //TODO 请求POST参数
-                    postParam = postParam + "body=" + buffer.readString(charset) + "&";
+                    postParam = buffer.readString(charset);
 
                     logger.log(request.url().toString(), postParam);
                     sb.append(postParam).append("\n");
@@ -267,6 +268,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
             logger.log(request.url().toString(), "<-- HTTP FAILED: " + e);
             sb.append("<-- HTTP FAILED: " + e).append("\n");
             postParam = "";
+            headerParam = "";
             throw e;
         }
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
@@ -287,7 +289,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
                 sb.append(headers.name(i) + ": " + headers.value(i)).append("\n");
                 //TODO response  param
                 if (requestResponse) {
-                    postParam = postParam + ("" + headers.name(i) + "=" + headers.value(i)) + "&";
+                    headerParam = headerParam + ("" + headers.name(i) + "=" + headers.value(i)) + "&";
                 }
             }
 
@@ -318,6 +320,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
                         sb.append("Couldn't decode the response body; charset is likely malformed.").append("\n");
                         sb.append("<-- END HTTP").append("\n");
                         postParam = "";
+                        headerParam = "";
                         return response;
                     }
                 }
@@ -337,7 +340,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
                         sb.append(request.url().toString()).append("\n");
                         sb.append(buffer.clone().readString(charset)).append("\n");
                         //TODO 响应结果
-                        logger.log2(request.url().toString(), buffer.clone().readString(charset), postParam);
+                        logger.log2(request.url().toString(), buffer.clone().readString(charset), postParam, headerParam);
                     }
 
                     logger.log(request.url().toString(), "<-- END HTTP (" + buffer.size() + "-byte body)");
@@ -349,6 +352,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
 
         logger.log3(request.url().toString(), sb.toString());
         postParam = "";
+        headerParam = "";
         return response;
     }
 

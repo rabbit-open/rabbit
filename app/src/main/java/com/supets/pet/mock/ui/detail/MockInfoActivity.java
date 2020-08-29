@@ -61,6 +61,8 @@ public class MockInfoActivity extends AppCompatActivity {
 
             TextView param = findViewById(R.id.param);
             param.setText(Utils.formatParam(mockData.getRequestParam()));
+            TextView headerParam = findViewById(R.id.headerParam);
+            headerParam.setText(Utils.formatParam(mockData.getHeaderParam()));
 
         }
 

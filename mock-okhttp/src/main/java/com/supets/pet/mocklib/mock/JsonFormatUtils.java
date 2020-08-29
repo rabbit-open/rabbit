@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.supets.pet.mocklib.AppContext;
+import com.supets.pet.mocklib.MockConfig;
 
 import org.json.JSONObject;
+
+import java.util.UUID;
 
 final class JsonFormatUtils {
 
@@ -24,8 +27,21 @@ final class JsonFormatUtils {
         Log.v("okhttp", message);
     }
 
-    public static void logSave(String url, String message, String requestParam) {
-        sendLocalRequest(url, message, requestParam);
+    public static void logSave(String url, String message, String postParam, String headerParam) {
+        try {
+            String uuid = UUID.randomUUID().toString().replace("-", "");
+            CacheFileUtils.saveFile(MockConfig.RESPONSE_PATH,
+                    uuid.concat(".response"),
+                    headerParam.concat(uuid).concat(postParam).concat(uuid).concat(message));
+            Intent intent = new Intent(MOCK_SERVICE_NETWORK);
+            intent.putExtra("url", url);
+            intent.putExtra("uuid", uuid);
+            intent.putExtra("filePath", MockConfig.RESPONSE_PATH + uuid.concat(".response"));
+            AppContext.INSTANCE.sendBroadcast(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         try {
             if (isJson(message)) {
                 String jsonStr = JsonFormatUtils.format(message);
@@ -42,6 +58,7 @@ final class JsonFormatUtils {
             e.printStackTrace();
         }
     }
+
 
     public static void logFile(String url, String message) {
 
@@ -124,18 +141,12 @@ final class JsonFormatUtils {
         return levelStr.toString();
     }
 
-    public static void sendLocalRequest(String url, String requestParam, String message) {
+    public static void sendLocalRequest(String url, String message, String requestParam) {
         try {
-            if (requestParam.length()>600000){
-                return;
-            }
-            if (message.length()>600000){
-                return;
-            }
             Intent intent = new Intent(MOCK_SERVICE_NETWORK);
             intent.putExtra("url", url);
             intent.putExtra("requestParam", requestParam);
-            intent.putExtra("message", !isJpg(url) ? message : "jpg|png|jpeg|gif|apk");
+            intent.putExtra("message", message);
             AppContext.INSTANCE.sendBroadcast(intent);
         } catch (Exception e) {
             e.printStackTrace();

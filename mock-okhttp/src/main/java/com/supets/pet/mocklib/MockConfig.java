@@ -1,15 +1,12 @@
 package com.supets.pet.mocklib;
 
-import java.util.HashMap;
+import android.os.Environment;
 
 public class MockConfig {
 
     public static final String permission_mock_network = "com.supets.pet.permission.MOCK_CRASH_NETWORK";
     public static final String permission_mock_crash = "com.supets.pet.permission.MOCK_CRASH_SERVICE";
-
-    public static HashMap<String, String> bigMessage = new HashMap<>();
-    public static HashMap<String, String> bigRequest = new HashMap<>();
-
+    public static final String RESPONSE_PATH = Environment.getExternalStorageDirectory() + "/兔子测试/response/";
 
     public static boolean getDebugSwitch() {
         return true;
