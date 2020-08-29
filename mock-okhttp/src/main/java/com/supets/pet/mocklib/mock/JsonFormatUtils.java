@@ -27,12 +27,12 @@ final class JsonFormatUtils {
         Log.v("okhttp", message);
     }
 
-    public static void logSave(String url, String message, String postParam, String headerParam) {
+    public static void logSave(String url, String message, String postParam, String headerParam, String responseHeaderParam) {
         try {
             String uuid = UUID.randomUUID().toString().replace("-", "");
             CacheFileUtils.saveFile(MockConfig.RESPONSE_PATH,
                     uuid.concat(".response"),
-                    headerParam.concat(uuid).concat(postParam).concat(uuid).concat(message));
+                    headerParam.concat(uuid).concat(postParam).concat(uuid).concat(message).concat(uuid).concat(responseHeaderParam));
             Intent intent = new Intent(MOCK_SERVICE_NETWORK);
             intent.putExtra("url", url);
             intent.putExtra("uuid", uuid);
