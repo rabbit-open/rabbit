@@ -34,6 +34,10 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
     public TuZiWidget(Context application) {
         mContext = application;
         mWindowManager = (WindowManager) application.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        initView();
+    }
+
+    private void initView() {
         ViewContainer view = (ViewContainer) View.inflate(mContext, R.layout.tuzi_pop_view, null);
         mList = view.findViewById(R.id.list);
         mList.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
@@ -62,8 +66,19 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
 
         int flags = 0;
         int type = 0;
-        type = WindowManager.LayoutParams.TYPE_TOAST;
-        if (!Config.getToastCompat()) {
+
+        if (Build.VERSION.SDK_INT >= 24) {
+            if (Settings.canDrawOverlays(mContext)) {
+                type = WindowManager.LayoutParams.TYPE_PHONE;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+                }
+            }
+        } else {
+            type = WindowManager.LayoutParams.TYPE_TOAST;//24 不允许定义Toast对话框
+        }
+
+        if (Config.getToastCompat()) {
             if (Build.VERSION.SDK_INT >= 23) {
                 if (Settings.canDrawOverlays(mContext)) {
                     type = WindowManager.LayoutParams.TYPE_PHONE;
@@ -75,10 +90,8 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
                 type = WindowManager.LayoutParams.TYPE_PHONE;
             }
         }
-
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(w, h, type, flags, PixelFormat.TRANSLUCENT);
         layoutParams.gravity = Gravity.TOP;
-
         mWindowManager.addView(mWholeView, layoutParams);
     }
 

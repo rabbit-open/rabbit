@@ -205,23 +205,24 @@ public final class HttpLoggingInterceptor implements Interceptor {
                 if (requestBody.contentType() != null) {
                     logger.log(request.url().toString(), "Content-Type: " + requestBody.contentType());
                     sb.append("Content-Type: " + requestBody.contentType()).append("\n");
+                    headerParam = headerParam + ("Content-Type" + "=" + requestBody.contentType()) + "&";
                 }
                 if (requestBody.contentLength() != -1) {
                     logger.log(request.url().toString(), "Content-Length: " + requestBody.contentLength());
                     sb.append("Content-Length: " + requestBody.contentLength()).append("\n");
+                    headerParam = headerParam + ("Content-Length" + "=" + requestBody.contentLength()) + "&";
                 }
             }
 
             Headers headers = request.headers();
             for (int i = 0, count = headers.size(); i < count; i++) {
                 String name = headers.name(i);
-                //TODO  Skip headers from the request body as they are explicitly logged above.
                 if (!"Content-Type".equalsIgnoreCase(name) && !"Content-Length".equalsIgnoreCase(name)) {
                     logger.log(request.url().toString(), name + ": " + headers.value(i));
                     sb.append(name + ": " + headers.value(i)).append("\n");
+                    headerParam = headerParam + ("" + name + "=" + headers.value(i)) + "&";
+                    sb.append(headerParam).append("\n");
                 }
-                headerParam = headerParam + ("" + name + "=" + headers.value(i)) + "&";
-                sb.append(headerParam).append("\n");
             }
 
             if (!logBody || !hasRequestBody) {
