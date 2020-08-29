@@ -1,10 +1,8 @@
 package com.supets.pet.mocklib.mock;
 
 import android.content.Intent;
+import android.util.Base64;
 import android.util.Log;
-
-import com.supets.pet.mocklib.AppContext;
-import com.supets.pet.mocklib.MockConfig;
 
 import org.json.JSONObject;
 
@@ -61,7 +59,11 @@ final class JsonFormatUtils {
 
 
     public static void logFile(String url, String message) {
+        CacheFileUtils.saveFile(MockConfig.RESPONSE_SUCCESS_PATH, Base64.encodeToString(url.getBytes(), Base64.NO_PADDING).concat(".txt"), message);
+    }
 
+    public static void logErrorFile(String url, String message) {
+        CacheFileUtils.saveFile(MockConfig.RESPONSE_ERROR_PATH, Base64.encodeToString(url.getBytes(), Base64.NO_PADDING).concat(".txt"), message);
     }
 
     static boolean isJpg(String url) {
