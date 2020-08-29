@@ -36,8 +36,7 @@ public class GridAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         TextView textView = holder.itemView.findViewById(R.id.name);
         TextView label = holder.itemView.findViewById(R.id.label);
-
-
+        textView.setVisibility(View.GONE);
         MockData data = datas.get(position);
 
         label.setText("请求接口:\r\n".concat(data.getUrl()));
@@ -46,20 +45,20 @@ public class GridAdapter extends RecyclerView.Adapter {
             try {
                 String string = new JSONObject(data.getData()).toString();
                 String message =
-                        "请求Header参数：\r\n".concat(Utils.formatParam(data.getHeaderParam()))
-                                .concat("请求Post参数：\r\n").concat(Utils.formatParam(data.getRequestParam()))
-                                .concat("响应Header参数：\r\n").concat(Utils.formatParam(data.getResponseParam()))
-                                .concat("\r\n请求响应结果：\r\n").concat(FormatLogProcess.format(string));
+                        "请求Header参数：\n".concat(Utils.formatParam(data.getHeaderParam()))
+                                .concat("\n请求Post参数：\n").concat(Utils.formatParam(data.getRequestParam()))
+                                .concat("\n响应Header参数：\n").concat(Utils.formatParam(data.getResponseParam()))
+                                .concat("\n请求响应结果：\n").concat(FormatLogProcess.format(string));
                 textView.setText(message);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         } else {
             String message =
-                    "请求Header参数：\r\n".concat(Utils.formatParam(data.getHeaderParam())).
-                            concat("请求Post参数：\r\n").concat(Utils.formatParam(data.getRequestParam()))
-                            .concat("响应Header参数：\r\n").concat(Utils.formatParam(data.getResponseParam()))
-                            .concat("\r\n请求响应结果：\r\n").concat(data.getData());
+                    "请求Header参数：\n".concat(Utils.formatParam(data.getHeaderParam())).
+                            concat("\n请求Post参数：\n").concat(Utils.formatParam(data.getRequestParam()))
+                            .concat("\n响应Header参数：\n").concat(Utils.formatParam(data.getResponseParam()))
+                            .concat("\n请求响应结果：\n").concat(data.getData());
             textView.setText(message);
         }
     }
