@@ -26,7 +26,7 @@ public class MockDataReceiver extends BroadcastReceiver {
             //抓取数据模式
             //调试模式不能打开
             if (Config.isFilterGuice(intent.getStringExtra("url"))
-                    && Config.getJsonSwitch()
+                    && Config.getDataMode()
                     && !Config.getDebugMode()) {
                 try {
                     MockData data = new MockData();
@@ -51,7 +51,7 @@ public class MockDataReceiver extends BroadcastReceiver {
                     final String json = data.getData();
 
                     //是否打开只抓取非json
-                    if (!Config.getToastSwitch() || !FormatLogProcess.isJson(json)) {
+                    if (!Config.getErrorJsonSwitch() || !FormatLogProcess.isJson(json)) {
 
                         if (Config.getToastinstance()) {
                             new TuZiWidget(context, data).setViewDismissHandler(() -> {

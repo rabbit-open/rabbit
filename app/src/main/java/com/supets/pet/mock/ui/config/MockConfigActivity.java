@@ -15,10 +15,11 @@ import com.supets.pet.uctoast.ClipViewWidget;
 
 public class MockConfigActivity extends AppCompatActivity implements View.OnClickListener, ClipViewWidget.ViewDismissHandler {
 
-    private CheckBox mDebugSwitch;
-    private CheckBox mDebugMore;
-    private CheckBox mToastMode;
+    private CheckBox debugMode;
+    private CheckBox dataMode;
+    private CheckBox erroeJsonSwitch;
     private CheckBox mToastinstance;
+    private CheckBox phoneSwitch;
 
     private EditText mApi;
 
@@ -41,21 +42,25 @@ public class MockConfigActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
-        mDebugSwitch = findViewById(R.id.debugmode);
-        mDebugSwitch.setOnClickListener(this);
-        mDebugSwitch.setChecked(Config.getDebugMode());
+        debugMode = findViewById(R.id.debugmode);
+        debugMode.setOnClickListener(this);
+        debugMode.setChecked(Config.getDebugMode());
 
-        mDebugMore = findViewById(R.id.jsonswitch);
-        mDebugMore.setOnClickListener(this);
-        mDebugMore.setChecked(Config.getJsonSwitch());
+        dataMode = findViewById(R.id.jsonswitch);
+        dataMode.setOnClickListener(this);
+        dataMode.setChecked(Config.getDataMode());
 
-        mToastMode = findViewById(R.id.toastmode);
-        mToastMode.setOnClickListener(this);
-        mToastMode.setChecked(Config.getToastSwitch());
+        erroeJsonSwitch = findViewById(R.id.toastmode);
+        erroeJsonSwitch.setOnClickListener(this);
+        erroeJsonSwitch.setChecked(Config.getErrorJsonSwitch());
 
         mToastinstance = findViewById(R.id.toastinstance);
         mToastinstance.setOnClickListener(this);
         mToastinstance.setChecked(Config.getToastinstance());
+
+        phoneSwitch = findViewById(R.id.phoneSwitch);
+        phoneSwitch.setOnClickListener(this);
+        phoneSwitch.setChecked(Config.getToastCompat());
 
         mApi = findViewById(R.id.api);
         mApi.setText(Config.getBaseAPI());
@@ -108,20 +113,23 @@ public class MockConfigActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        if (v == mDebugSwitch) {
-            Config.setDebugMode(mDebugSwitch.isChecked());
+        if (v == debugMode) {
+            Config.setDebugMode(debugMode.isChecked());
         }
 
-        if (v == mDebugMore) {
-            Config.setJsonSwitch(mDebugMore.isChecked());
+        if (v == dataMode) {
+            Config.setDataMode(dataMode.isChecked());
         }
 
-        if (v == mToastMode) {
-            Config.setToastSwitch(mToastMode.isChecked());
+        if (v == erroeJsonSwitch) {
+            Config.setErrorJsonSwitch(erroeJsonSwitch.isChecked());
         }
 
         if (v == mToastinstance) {
             Config.setToastinstance(mToastinstance.isChecked());
+        }
+        if (v == phoneSwitch) {
+            Config.setToastCompat(phoneSwitch.isChecked());
         }
 
     }

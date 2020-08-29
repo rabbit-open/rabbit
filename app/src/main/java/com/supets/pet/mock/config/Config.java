@@ -71,7 +71,7 @@ public class Config extends BasePref {
         editor.commit();
     }
 
-    public static void setJsonSwitch(boolean jsonSwitch) {
+    public static void setDataMode(boolean jsonSwitch) {
         SharedPreferences.Editor editor = edit(Name);
         editor = editor.putBoolean(JsonSwitch, jsonSwitch);
         editor.commit();
@@ -90,7 +90,7 @@ public class Config extends BasePref {
     }
 
     //抓取模式
-    public static boolean getJsonSwitch() {
+    public static boolean getDataMode() {
         SharedPreferences preferences = getPref(Name);
         return preferences.getBoolean(JsonSwitch, false);
     }
@@ -119,12 +119,12 @@ public class Config extends BasePref {
         return false;
     }
 
-    public static boolean getToastSwitch() {
+    public static boolean getErrorJsonSwitch() {
         SharedPreferences preferences = getPref(Name);
         return preferences.getBoolean(ToastSwitch, false);
     }
 
-    public static void setToastSwitch(boolean toastSwitch) {
+    public static void setErrorJsonSwitch(boolean toastSwitch) {
         SharedPreferences.Editor editor = edit(Name);
         editor = editor.putBoolean(ToastSwitch, toastSwitch);
         editor.commit();
@@ -141,12 +141,12 @@ public class Config extends BasePref {
         return preferences.getBoolean(Toastinstance, false);
     }
 
-    public static boolean getToast() {
+    public static boolean getToastCompat() {
         SharedPreferences preferences = getPref(Name);
         return preferences.getBoolean(Toast, false);
     }
 
-    public static void setToast(boolean toast) {
+    public static void setToastCompat(boolean toast) {
         SharedPreferences.Editor editor = edit(Name);
         editor = editor.putBoolean(Toast, toast);
         editor.commit();

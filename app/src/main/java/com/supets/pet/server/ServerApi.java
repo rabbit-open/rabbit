@@ -324,12 +324,12 @@ public class ServerApi {
             Log.v("serverapi", Toast);
 
             Config.setBaseAPI(apikey);
-            Config.setJsonSwitch(Boolean.parseBoolean(JsonSwitch));
+            Config.setDataMode(Boolean.parseBoolean(JsonSwitch));
             Config.setDebugMode(Boolean.parseBoolean(DebugMode));
-            Config.setToastSwitch(Integer.parseInt(ToastSwitch) == 1);
+            Config.setErrorJsonSwitch(Integer.parseInt(ToastSwitch) == 1);
 
             Config.setToastinstance(Integer.parseInt(Toastinstance) == 1);
-            Config.setToast(Integer.parseInt(Toast) == 1);
+            Config.setToastCompat(Integer.parseInt(Toast) == 1);
 
             response.send("true");
 
@@ -372,11 +372,11 @@ public class ServerApi {
 
             try {
                 jsonObject.put("apikey", Config.getBaseAPI());
-                jsonObject.put("JsonSwitch", Config.getJsonSwitch());
+                jsonObject.put("JsonSwitch", Config.getDataMode());
                 jsonObject.put("DebugMode", Config.getDebugMode());
-                jsonObject.put("ToastSwitch", Config.getToastSwitch());
+                jsonObject.put("ToastSwitch", Config.getErrorJsonSwitch());
                 jsonObject.put("Toastinstance", Config.getToastinstance());
-                jsonObject.put("Toast", Config.getToast());
+                jsonObject.put("Toast", Config.getToastCompat());
 
                 response.send(jsonObject);
             } catch (JSONException e) {
