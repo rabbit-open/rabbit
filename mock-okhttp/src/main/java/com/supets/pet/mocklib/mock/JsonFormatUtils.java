@@ -1,6 +1,7 @@
 package com.supets.pet.mocklib.mock;
 
 import android.content.Intent;
+import android.os.Build;
 import android.util.Base64;
 import android.util.Log;
 
@@ -62,11 +63,23 @@ final class JsonFormatUtils {
 
 
     public static void logFile(String url, String message) {
-        CacheFileUtils.saveFile(MockConfig.RESPONSE_SUCCESS_PATH, Base64.encodeToString(url.getBytes(), Base64.NO_PADDING).concat(".txt"), message);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
+            CacheFileUtils.saveFile(MockConfig.RESPONSE_SUCCESS_PATH, Base64.encodeToString(url.getBytes(), Base64.NO_PADDING).concat(".txt"), message);
+        }
     }
 
     public static void logErrorFile(String url, String message) {
-        CacheFileUtils.saveFile(MockConfig.RESPONSE_ERROR_PATH, Base64.encodeToString(url.getBytes(), Base64.NO_PADDING).concat(".txt"), message);
+        String uuid = Base64.encodeToString(url.getBytes(), Base64.NO_PADDING).concat(".txt");
+        CacheFileUtils.saveFile(MockConfig.RESPONSE_ERROR_PATH, uuid, message);
+        try {
+            Intent intent = new Intent(MOCK_SERVICE_NETWORK);
+            intent.putExtra("url", url);
+            intent.putExtra("uuid", uuid);
+            intent.putExtra("filePath", MockConfig.RESPONSE_ERROR_PATH + uuid);
+            AppContext.INSTANCE.sendBroadcast(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     static boolean isJpg(String url) {

@@ -1,5 +1,6 @@
 package com.supets.pet.mocklib.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
@@ -21,65 +22,52 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
     private Context mContext;
     private ViewContainer mWholeView;
     private View mContentView;
-    private ViewDismissHandler mViewDismissHandler;
-    private MockData mContent;
     private RecyclerView mList;
-    public static boolean isShow = false;
     private GridAdapter adapter;
 
-    public TuZiWidget(Context application, MockData content) {
+    @SuppressLint("ClickableViewAccessibility")
+    public TuZiWidget(Context application) {
         mContext = application;
-        mContent = content;
         mWindowManager = (WindowManager) application.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        initView();
     }
 
-    public TuZiWidget setViewDismissHandler(ViewDismissHandler viewDismissHandler) {
-        mViewDismissHandler = viewDismissHandler;
-        return this;
-    }
-
-    public void updateContent(MockData content) {
-        mContent = content;
-        adapter.putData(mContent);
-    }
-
-    public void show() {
-
+    private void initView() {
         ViewContainer view = (ViewContainer) View.inflate(mContext, R.layout.tuzi_pop_view, null);
-
-        isShow = true;
-        // mContext.registerReceiver(update, new IntentFilter("update_data"));
-
-        // display content
         mList = view.findViewById(R.id.list);
         mList.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
-
         adapter = new GridAdapter();
-        adapter.putData(mContent);
-
         mList.setAdapter(adapter);
         mWholeView = view;
         mContentView = view.findViewById(R.id.pop_view_content_view);
-
         // event listeners
         mContentView.setOnClickListener(this);
         mWholeView.setOnTouchListener(this);
         mWholeView.setKeyEventHandler(this);
+    }
 
+    public void updateContent(MockData content) {
+        if (mWholeView.getParent() == null) {
+            adapter.addHomeData(content);
+            show();
+        } else {
+            adapter.putData(content);
+        }
+    }
+
+    private void show() {
         int w = WindowManager.LayoutParams.MATCH_PARENT;
         int h = WindowManager.LayoutParams.MATCH_PARENT;
 
         int flags = 0;
         int type = 0;
 
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= 24) {
             if (Settings.canDrawOverlays(mContext)) {
                 type = WindowManager.LayoutParams.TYPE_PHONE;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
                 }
-            }else {
-                type = WindowManager.LayoutParams.TYPE_TOAST;
             }
         } else {
             type = WindowManager.LayoutParams.TYPE_PHONE;
@@ -87,37 +75,19 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
 
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(w, h, type, flags, PixelFormat.TRANSLUCENT);
         layoutParams.gravity = Gravity.TOP;
-
         mWindowManager.addView(mWholeView, layoutParams);
     }
 
     @Override
     public void onClick(View v) {
         removePoppedViewAndClear();
-        startForContent(mContext, mContent.toString());
     }
 
-
-    public static void startForContent(Context context, String content) {
-
-    }
-
-    public void removePoppedViewAndClear() {
-
-        // remove view
-        if (mWindowManager != null && mWholeView != null) {
+    @SuppressLint("ClickableViewAccessibility")
+    private void removePoppedViewAndClear() {
+        if (mWindowManager != null && mWholeView != null && mWholeView.getParent() != null) {
             mWindowManager.removeView(mWholeView);
         }
-
-        if (mViewDismissHandler != null) {
-            isShow = false;
-            mViewDismissHandler.onViewDismiss();
-        }
-
-        // remove listeners
-        mContentView.setOnClickListener(null);
-        mWholeView.setOnTouchListener(null);
-        mWholeView.setKeyEventHandler(null);
     }
 
     /**
@@ -141,10 +111,6 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
             removePoppedViewAndClear();
         }
-    }
-
-    public interface ViewDismissHandler {
-        void onViewDismiss();
     }
 
 }

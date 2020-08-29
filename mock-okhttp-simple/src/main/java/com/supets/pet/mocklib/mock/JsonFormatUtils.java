@@ -29,12 +29,27 @@ final class JsonFormatUtils {
         Log.v("okhttp", message);
     }
 
-    public static void logSave(String url, String message, String requestParam) {
+    public static void logSave(String url, String message, String postParam, String headerParam, String responseHeaderParam) {
 
         try {
 
-            sendLocalRequest(url, requestParam, !isJpg(url) ? message : "jpg|png|jpeg|gif|apk");
+            String uuid = UUID.randomUUID().toString();
+            MockDataReceiver.bigMessage.put(uuid, message);
+            MockDataReceiver.bigRequest.put(uuid, headerParam + uuid + postParam + uuid + responseHeaderParam);
 
+            Intent intent = new Intent(MOCK_SERVICE_NETWORK);
+            intent.putExtra("url", url);
+            intent.putExtra("uuid", uuid);
+            intent.putExtra("requestParam", uuid);
+            intent.putExtra("message", uuid);
+
+            intent.setPackage(AppContext.INSTANCE.getPackageName());
+            AppContext.INSTANCE.sendBroadcast(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
             if (isJson(message)) {
                 String jsonStr = JsonFormatUtils.format(message);
                 long totalpage = jsonStr.length() % 2048 == 0 ? 0 : 1 + jsonStr.length() / 2048;
@@ -51,10 +66,30 @@ final class JsonFormatUtils {
         }
     }
 
+
     public static void logFile(String url, String message) {
 
     }
 
+    public static void logErrorFile(String url, String message) {
+        try {
+
+            String uuid = UUID.randomUUID().toString();
+            MockDataReceiver.bigMessage.put(uuid, message);
+            MockDataReceiver.bigRequest.put(uuid, "");
+
+            Intent intent = new Intent(MOCK_SERVICE_NETWORK);
+            intent.putExtra("url", url);
+            intent.putExtra("uuid", uuid);
+            intent.putExtra("requestParam", uuid);
+            intent.putExtra("message", uuid);
+
+            intent.setPackage(AppContext.INSTANCE.getPackageName());
+            AppContext.INSTANCE.sendBroadcast(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     static boolean isJpg(String url) {
         int end = url.lastIndexOf(".");
@@ -137,12 +172,12 @@ final class JsonFormatUtils {
 
     public static void sendLocalRequest(String url, String requestParam, String message) {
         try {
-            String key= UUID.randomUUID().toString();
+            String key = UUID.randomUUID().toString();
             Intent intent = new Intent(MOCK_SERVICE_NETWORK);
             intent.putExtra("url", url);
             intent.putExtra("requestParam", key);
-            MockDataReceiver.bigMessage.put(key,message);
-            MockDataReceiver.bigRequest.put(key,requestParam);
+            MockDataReceiver.bigMessage.put(key, message);
+            MockDataReceiver.bigRequest.put(key, requestParam);
             intent.putExtra("message", key);
             intent.setPackage(AppContext.INSTANCE.getPackageName());
             AppContext.INSTANCE.sendBroadcast(intent);

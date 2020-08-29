@@ -35,8 +35,7 @@ public class GridAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         TextView textView = holder.itemView.findViewById(R.id.name);
         TextView label = holder.itemView.findViewById(R.id.label);
-
-
+        textView.setVisibility(View.GONE);
         MockData data = datas.get(position);
 
         label.setText("请求接口:\r\n".concat(data.getUrl()));
@@ -44,22 +43,23 @@ public class GridAdapter extends RecyclerView.Adapter {
         if (FormatLogProcess.isJson(data.getData())) {
             try {
                 String string = new JSONObject(data.getData()).toString();
-                String message = "请求参数：\r\n".concat(
-                        Utils.formatParam(data.getRequestParam())).concat(
-                        "\r\n请求结果：\r\n").concat(
-                        FormatLogProcess.format(string));
+                String message =
+                        "请求Header参数：\n".concat(Utils.formatParam(data.getHeaderParam()))
+                                .concat("\n请求Post参数：\n").concat(Utils.formatParam(data.getRequestParam()))
+                                .concat("\n响应Header参数：\n").concat(Utils.formatParam(data.getResponseParam()))
+                                .concat("\n请求响应结果：\n").concat(FormatLogProcess.format(string));
                 textView.setText(message);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         } else {
-            String message = "请求参数：\r\n".concat(
-                    Utils.formatParam(data.getRequestParam())).concat(
-                    "\r\n请求结果：\r\n").concat(
-                    data.getData());
+            String message =
+                    "请求Header参数：\n".concat(Utils.formatParam(data.getHeaderParam())).
+                            concat("\n请求Post参数：\n").concat(Utils.formatParam(data.getRequestParam()))
+                            .concat("\n响应Header参数：\n").concat(Utils.formatParam(data.getResponseParam()))
+                            .concat("\n请求响应结果：\n").concat(data.getData());
             textView.setText(message);
         }
-
     }
 
     @Override
@@ -70,10 +70,14 @@ public class GridAdapter extends RecyclerView.Adapter {
     public ArrayList<MockData> datas = new ArrayList<>();
 
     public void putData(MockData data) {
-        if (data != null) {
-            datas.add(data);
-            notifyDataSetChanged();
-        }
-
+        datas.add(data);
+        notifyDataSetChanged();
     }
+
+    public void addHomeData(MockData data) {
+        datas.clear();
+        datas.add(data);
+        notifyDataSetChanged();
+    }
+
 }
