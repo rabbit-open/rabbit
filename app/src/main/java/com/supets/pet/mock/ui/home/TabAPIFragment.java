@@ -26,8 +26,6 @@ public class TabAPIFragment extends BaseFragment {
     private CommonHeader header;
 
 
-
-
     public static TabAPIFragment newInstance(String content) {
         Bundle arguments = new Bundle();
         arguments.putString("content", content);

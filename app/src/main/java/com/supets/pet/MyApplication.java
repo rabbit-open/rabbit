@@ -5,6 +5,7 @@ import android.content.IntentFilter;
 
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
+import com.supets.pet.mock.utils.LogUtil;
 import com.supets.pet.server.ServerApi;
 import com.supets.pet.service.CrashService;
 import com.supets.pet.service.MockDataReceiver;
@@ -22,6 +23,9 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        LogUtil.setAppName("兔子测试");
+        LogUtil.setLogLevel(LogUtil.LOG_LEVEL_VERBOSE);
+
         OkHttpUtils.initClient(new OkHttpClient());
         //启动服务
         ListenClipboardService.start(this);

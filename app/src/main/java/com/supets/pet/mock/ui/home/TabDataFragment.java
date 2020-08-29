@@ -16,6 +16,7 @@ import com.supets.pet.mock.base.SuspensionBarScrollListener;
 import com.supets.pet.mock.bean.MockData;
 import com.supets.pet.mock.dao.MockDataDB;
 import com.supets.pet.mock.base.BaseFragment;
+import com.supets.pet.mock.utils.LogUtil;
 import com.supets.pet.mockui.R;
 
 import java.util.List;
@@ -47,9 +48,6 @@ public class TabDataFragment extends BaseFragment {
 
     @Override
     public void findViews(View view) {
-
-        //mBottom = view.findViewById(R.id.fudong);
-
         mList = view.findViewById(R.id.list);
         mList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mList.setItemAnimator(null);
@@ -66,36 +64,11 @@ public class TabDataFragment extends BaseFragment {
         mList.addOnScrollListener(new SupetRecyclerViewScrollListener() {
             @Override
             public void onLoadNextPage(RecyclerView view) {
-
                 if (!mPull.isRefreshing()) {
                     update();
                 }
             }
         });
-        mPull.setOnChildScrollUpCallback(new SwipeRefreshLayout.OnChildScrollUpCallback() {
-            @Override
-            public boolean canChildScrollUp(SwipeRefreshLayout parent, @Nullable View child) {
-                if (mList == null) {
-                    return false;
-                }
-                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mList.getLayoutManager();
-                return linearLayoutManager.findFirstCompletelyVisibleItemPosition() != 0;
-            }
-        });
-
-//        mList.addOnScrollListener(new SuspensionBarScrollListener(mBottom) {
-//
-//            @Override
-//            protected int getItemViewType() {
-//                return 0;
-//            }
-//
-//            @Override
-//            public void updateSuspensionBar(int position) {
-//                mCurrentPosition = position;
-//                updateSuspensionBar2();
-//            }
-//        });
         header = view.findViewById(R.id.header);
         initView();
     }
@@ -117,11 +90,6 @@ public class TabDataFragment extends BaseFragment {
             }
         });
     }
-//
-//    private void updateSuspensionBar2() {
-//        mBottom.setText(adapter.data.get(mCurrentPosition).getUrl());
-//    }
-
 
     @Override
     public void setListeners() {
@@ -134,7 +102,6 @@ public class TabDataFragment extends BaseFragment {
         mList.setAdapter(adapter);
         offset = 0;
         update();
-        //updateSuspensionBar2();
     }
 
     private int offset = 0;

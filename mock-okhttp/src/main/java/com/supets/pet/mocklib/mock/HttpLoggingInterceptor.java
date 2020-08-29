@@ -103,7 +103,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
     public interface Logger {
         void log(String url, String message);
 
-        void log2(String url, String content, String postParam,String headerParam);
+        void log2(String url, String content, String postParam, String headerParam);
 
         void log3(String url, String messgae);
 
@@ -119,8 +119,8 @@ public final class HttpLoggingInterceptor implements Interceptor {
             }
 
             @Override
-            public void log2(String url, String message, String postParam,String headerParam) {
-                JsonFormatUtils.logSave(url, message, postParam,headerParam);
+            public void log2(String url, String message, String postParam, String headerParam) {
+                JsonFormatUtils.logSave(url, message, postParam, headerParam);
             }
 
             @Override
@@ -332,6 +332,9 @@ public final class HttpLoggingInterceptor implements Interceptor {
 
                     sb.append("").append("\n");
                     sb.append("<-- END HTTP (binary " + buffer.size() + "-byte body omitted)").append("\n");
+
+                    logger.log2(request.url().toString(), "(binary " + buffer.size() + "-byte body omitted)", postParam, headerParam);
+
                 } else {
                     if (contentLength != 0) {
                         logger.log(request.url().toString(), "");
