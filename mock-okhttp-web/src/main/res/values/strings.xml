@@ -1,0 +1,4 @@
+<resources>
+    <string name="sdcard_cache_name">兔子测试</string>
+    <string name="mock_url_query_sql">select * from LOCAL_MOCK_DATA  where url= ?</string>
+</resources>

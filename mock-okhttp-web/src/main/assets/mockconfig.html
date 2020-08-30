@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <script src="jquery-1.7.2.min.js" type="text/javascript"></script>
+
+    <title>兔子测试配置</title>
+
+    <script type="text/javascript">
+
+//查看所有配置接口
+function getapidata(api){
+
+         var  name= $("#firstname3").val();
+          var  debug=  $("#select").is(":checked");
+
+         var url = 'getmockuidata'+ '?apikey='+ name+ '&debug='+ debug;
+
+         $("#datalist").html('');
+
+         $("#datalist").append('<tr style="width:100%;"><td  style="width:20%;">接口名称</td><td  style="width:50%;">配置数据</td><td  style="width:20%;">测试状态</td><td  style="width:10%;">操作</td></tr>');
+
+         $.getJSON(url, function(data) {
+
+                  for (var i = 0; i < data.length; i++) {
+                    var $trs=$(
+                    '<tr style="width:100%;"><td onclick=viewdetail("'+ data[i].id+'","'+data[i].url+'") style="width:20%;">'+ data[i].url+'</td><td style="width:50%;"><textarea  id="mockdata'+ data[i].id+'" style="width:90%;" rows="10">'+data[i].data+'</textarea></td><td  style="width:20%;"><form><input type="checkbox" value="1" id="mockstatus'+ data[i].id+'"  ' + (data[i].selected?'checked="checked"':"")+'/>调试状态</form></td><td  style="width:10%;"><button type="button" style="width:100px;height:45px;margin:40px" onclick=savemock("'+ data[i].id+'","'+data[i].url+'")>保存</button></td></tr>');
+                    $("#datalist").append($trs);
+                  }
+
+         });
+
+}
+//查看详情
+  function viewdetail(id,url) {
+        var  $url= "apidetail2.html?id="+id;
+        window.open($url,'_blank')
+    }
+//保存要调试的接口
+function savemock(id,url){
+
+        var  mockdata=  $("#mockdata"+id).val();
+        var  mockchecked=  $("#mockstatus"+id).is(":checked");
+        //alert(mockdata);
+        //alert(mockdata);
+        var urlpath = 'savemockuidata'+ '?checked='+ mockchecked+'&data='+ mockdata+'&url='+ url;
+
+        //alert(urlpath);
+
+        $.getJSON(urlpath, function(data) {
+
+              if(data){
+                alert('保存成功');
+              }
+
+         });
+}
+
+//保存配置信息
+function saveconfig(data){
+
+      var  ToastSwitch=  $("input[name='alert']:checked").val();
+      var  Toastinstance=  $("input[name='showmode']:checked").val();
+      var  Toast=  $("input[name='dialog']:checked").val();
+      var  DebugMode=  $("#open1").is(":checked");
+      var  JsonSwitch=  $("#open2").is(":checked");
+      var  apikey= $("#firstname").val();
+
+      var urlpath = 'saveconfigdata'+ '?apikey='+ apikey+'&JsonSwitch='+ JsonSwitch+'&DebugMode='+ DebugMode+'&ToastSwitch='+ ToastSwitch+'&Toast='+ Toast+'&Toastinstance='+ Toastinstance;
+
+      $.getJSON(urlpath, function(data) {
+
+              if(data){
+                alert('保存成功');
+              }
+      });
+
+}
+
+//保存测试接口
+function saveconfig2(data){
+
+      var  name= $("#firstname1").val();
+      var  data= $("#firstname2").val();
+
+      var urlpath = 'addmockapi'+ '?apikey='+ name+'&data='+ data;
+
+      $.getJSON(urlpath, function(data) {
+
+              if(data){
+                alert('保存成功');
+              }
+      });
+
+}
+
+//初始化执行
+$(function(){
+
+    $.getJSON("getmockconfig", function(data) {
+
+                $("input[name='alert']").eq(1).attr("checked",data.ToastSwitch?true:false);
+                $("input[name='alert']").eq(0).attr("checked",data.ToastSwitch?false:true);
+
+                $("input[name='showmode']").eq(1).attr("checked",data.Toastinstance?true:false);
+                $("input[name='showmode']").eq(0).attr("checked",data.Toastinstance?false:true);
+
+                $("input[name='dialog']").eq(1).attr("checked",data.Toast?true:false);
+                $("input[name='dialog']").eq(0).attr("checked",data.Toast?false:true);
+
+                $("#open1").prop("checked",data.DebugMode?true:false);
+                $("#open2").prop("checked",data.JsonSwitch?true:false);
+
+                $("#firstname").val(data.apikey);
+
+         });
+
+});
+
+    </script>
+
+</head>
+
+<body>
+<div style="width:100%;overflow:hidden;background:#e5e5e5;height:100%;">
+    <!--<h1 style="width:100%;padding:10px 5px 15px 20px;">兔子测试配置</h1>-->
+    <!--<br>-->
+    <!--<hr>-->
+    <table border="1" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td style="width:50%;background-color:#eeffed;padding:10px 5px 15px 20px;">
+                <div>
+                    <form>
+                        <h2> 1 基本配置</h2>
+                        <h4>接口过滤规则</h4>
+                        <textarea style="width:50%;height:40px;" id="firstname" rows="2"></textarea>
+                        <br/>
+                        <h4>开关配置：</h4>
+                        <input type="checkbox" id="open1"/>打开测试模式，不会抓取数据，优先级高。
+                        <br/>
+                        <input type="checkbox" id="open2"/>抓取数据模式，不能打开调试模式。
+                        <br/>
+                        <h4>悬浮抓包助手：</h4>
+                        <input type="radio" name="alert" value="0"/>显示所有接口数据
+                        <br/>
+                        <input type="radio" name="alert" value="1"/>显示非json接口
+                        <br/>
+                        <h4>悬浮助手接口显示方式：</h4>
+                        <input type="radio" name="showmode" value="0"/>列表模式
+                        <br/>
+                        <input type="radio" name="showmode" value="1"/>单个模式
+                        <br/>
+                        <h4>悬浮助手显示兼容：</h4>
+                        <input type="radio" name="dialog" value="0"/>使用吐司对话框
+                        <br/>
+                        <input type="radio" name="dialog" value="1"/>使用悬浮窗对话框
+                        <br/>
+                        <br/>
+                        <button type="button" style="width:200px;height:45px;"
+                                onclick="javascript:saveconfig('aa')">
+                            保存配置数据
+                        </button>
+                    </form>
+                </div>
+            </td>
+            <!--<td style="width:50%;background-color:#FFC1C1;padding:10px 5px 15px 20px;">-->
+                <!--<div>-->
+                    <!--<form>-->
+                        <!--<h2>2 手动添加测试接口</h2>-->
+                        <!--<h4>API名称</h4>-->
+                        <!--<textarea style="width:80%;" id="firstname1"-->
+                                  <!--rows="2"></textarea>-->
+                        <!--<br/>-->
+                        <!--<h4>API数据</h4>-->
+                        <!--<textarea style="width:80%;" id="firstname2"-->
+                                  <!--rows="5"></textarea>-->
+                        <!--<br/>-->
+                        <!--<br/>-->
+                        <!--<button type="button" style="width:200px;height:45px;"-->
+                                <!--onclick="javascript:saveconfig2('aa')">-->
+                            <!--添加-->
+                        <!--</button>-->
+                    <!--</form>-->
+                <!--</div>-->
+            <!--</td>-->
+        </tr>
+        <!--<tr>-->
+        <!--<td style="width:50%;">-->
+        <!--<div style="background:#dddddd;">-->
+        <!--<h2> 2 配置具体MOCK UI数据</h2>-->
+        <!--<button type="button" style="width:100px;height:45px;"-->
+        <!--onclick="javascript:getapidata('aa')">-->
+        <!--查看所有接口-->
+        <!--</button>-->
+        <!--<br/>-->
+        <!--<br/>-->
+        <!--<table id="datalist"-->
+        <!--style="width:100%;word-break:break-all;border:none;"-->
+        <!--border="1">-->
+        <!--</table>-->
+        <!--</div>-->
+        <!--</td>-->
+        <!--</tr>-->
+    </table>
+
+    <!--<div style="background-color:#cccccc;padding:10px 5px 15px 20px;">-->
+        <!--<h2> 3 配置具体 MOCK UI数据</h2>-->
+        <!--<h4>输入配置接口名称</h4>-->
+        <!--<textarea style="width:25%;" id="firstname3"-->
+                  <!--rows="2"></textarea>-->
+        <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+        <!--<input type="checkbox" id="select"/>调试状态-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<button type="button" style="width:200px;height:60px;"-->
+                <!--onclick="javascript:getapidata('aa')">-->
+            <!--查看所有接口（默认）-->
+        <!--</button>-->
+        <!--<br/>-->
+        <!--<br/>-->
+        <!--<table id="datalist"-->
+               <!--style="width:100%;word-break:break-all;border:none;"-->
+               <!--border="1">-->
+        <!--</table>-->
+
+    <!--</div>-->
+
+</div>
+
+</body>
+
+</html>

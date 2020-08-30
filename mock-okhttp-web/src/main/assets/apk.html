@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="jquery-1.7.2.min.js" type="text/javascript"></script>
+
+    <title>手机图片查看</title>
+    <script type="text/javascript">
+        $(function() {
+            var now = new Date();
+            <!--var $video = $("#videoplayer");-->
+            var url = 'files' + '?format=apk&' + now.getTime();
+
+            $.getJSON(url, function(data) {
+                for (var i = 0; i < data.length; i++) {
+
+                    var p = "/files/" + data[i].path;
+                    var $li = $('<li><a href="'+p+'">' + data[i].name + '</a></li>');
+
+                    <!--var $li = $('<li>' + data[i].name + '</li>');-->
+                    <!--$li.attr("path", data[i].path);-->
+                    $("#filelist").append($li);
+                    <!--$li.click(function() {-->
+                        <!--var p = "/files/" + $(this).attr("path");-->
+                        <!--$video.attr("src", "/files/" + $(this).attr("path"));-->
+                    <!--});-->
+                }
+            });
+        });
+
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+<!--<h1>手机图片列表</a></h1>-->
+<!--<br>-->
+<!--<hr>-->
+<table style="width:100%;">
+    <tr>
+        <td>
+            <ul id="filelist"></ul>
+        </td>
+        <!--<td style="width:50%;"><img id="videoplayer" /></td>-->
+    </tr>
+</table>
+
+</body>
+
+</html>

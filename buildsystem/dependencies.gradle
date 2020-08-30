@@ -53,4 +53,22 @@ ext {
             ],
     ]
 
+    webDependencies = [
+            "implementation": [
+                    //ANDROID
+                    'appcompat-v7'              : "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}",
+                    'design'                    : "com.android.support:design:${rootProject.ext.supportLibVersion}",
+                    'recyclerview-v7'           : "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}",
+                    //三方依赖
+                    'gson'                  : 'com.google.code.gson:gson:2.8.2',
+                    'greendao'                  : 'org.greenrobot:greendao:3.2.2',
+                    //数据库加密时添加
+                    'android-database-sqlcipher': 'net.zetetic:android-database-sqlcipher:3.5.4',
+                    //使用数据库升级辅助GreenDaoUpgradleHepler时添加
+                    'GreenDaoUpgradeHelper'     : 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v1.2.0',
+                    // 搭建Android上的服务器 “实现隔空取物”
+                    'androidasync'              : 'com.koushikdutta.async:androidasync:2.2.1',
+            ],
+    ]
+
 }

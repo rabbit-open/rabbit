@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="jquery-1.7.2.min.js" type="text/javascript"></script>
+
+    <title>文件浏览器</title>
+    <script type="text/javascript">
+
+        $(function() {
+            getFilePath2('');
+        });
+
+        function getFilePath2(path){
+            $("#filelist").html('');
+            var url = 'getfilepath?path='+path;
+            $.getJSON(url, function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    if(data[i].isDir){
+                        var p = "'"+data[i].path+"'";
+                        var $li = $('<li><img width="20px" height="20px" style="margin:0 10 0 0" src="http://www.icosky.com/icon/png/Application/3D%20Cartoon%20Icons%20Pack%20III/Technorati.png"><button  onclick="getFilePath2('+p+')">'+data[i].name+'</button ></li>');
+                        $("#filelist").append($li);
+                    }else{
+                       var p = "/files/" + data[i].path;
+                       var $li = $('<ul><a href="'+p+'">' + data[i].name + '</a></ul>');
+                       $("#filelist").append($li);
+                    }
+                }
+            });
+        }
+
+    </script>
+</head>
+
+<body>
+
+<table style="width:100%;">
+    <tr>
+        <td>
+            <ul id="filelist"></ul>
+        </td>
+    </tr>
+</table>
+
+</body>
+
+</html>

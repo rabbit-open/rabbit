@@ -65,4 +65,7 @@ tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 
+tasks.getByPath(":mock-okhttp-web:releaseAndroidJavadocs").enabled = false
+
+
 

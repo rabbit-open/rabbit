@@ -1,0 +1,86 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <script src="jquery-1.7.2.min.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+    var c=false;
+    var t;
+    var $trs="最新接口实时数据显示";
+
+    function timedCount(){
+
+           if(!c){
+                c=true;
+                $("#filelist").val($trs);
+                getapidata();
+           }
+
+           t=setTimeout("timedCount()",1000);
+
+  }
+
+     function stopCount(){
+            clearTimeout(t);
+     }
+
+    function getapidata(){
+
+           $.getJSON('getmockrealdata', function(data) {
+              if(data.length>0){
+                $trs= "接口名称："+data[0].url+"\n时间："+ new Date(data[0].time).toLocaleString()+ "\n接口参数："+ data[0].requestParam+ "\n接口数据："+ data[0].data;
+                 c=false;
+               }
+           });
+
+     }
+
+
+
+
+
+
+
+
+    </script>
+    <head>
+<body background="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1520576071&di=69251842241518b8cb1a6c4ff3a1ebd3&src=http://tupian.enterdesk.com/2012/0608/gha/7/8.jpg">
+
+<div style="width:100%;overflow:hidden;">
+    <h1>兔子测试</h1>
+    <br>
+
+    <h2><img width="24px" height="24px" style="margin:0 10 0 0"
+             src="http://pic.90sjimg.com/design/00/47/65/93/59004b05c7b88.png"><a
+            href="readapidata.html" style="text-decoration:none;" target="showframe">查看测试数据</a></h2>
+
+
+    <h2><img width="24px" height="24px" style="margin:0 10 0 0"
+             src="http://www.icosky.com/icon/png/Folder/Document%20Folders/Folder%20green.png"><a
+            href="mockconfig.html" style="text-decoration:none;" target="showframe">测试（基本配置）</a>
+    </h2>
+    <h2><img width="24px" height="24px" style="margin:0 10 0 0"
+             src="http://www.icosky.com/icon/png/Folder/Document%20Folders/Folder%20green.png"><a
+            href="mockconfig2.html" style="text-decoration:none;" target="showframe">测试（添加测试接口）</a>
+    </h2>
+    <h2><img width="24px" height="24px" style="margin:0 10 0 0"
+             src="http://www.icosky.com/icon/png/Folder/Document%20Folders/Folder%20green.png"><a
+            href="mockconfig3.html" style="text-decoration:none;"
+            target="showframe">测试（配置MOCK数据）</a></h2>
+
+
+    <h2><img width="24px" height="24px" style="margin:0 10 0 0"
+             src="http://www.icosky.com/icon/png/Application/3D%20Cartoon%20Icons%20Pack%20III/Technorati.png"><a
+            href="tools" style="text-decoration:none;" target="showframe">工具箱</a></h2>
+    <h2><img width="24px" height="24px" style="margin:0 10 0 0"
+             src="http://www.icosky.com/icon/png/Application/3D%20Cartoon%20Icons%20Pack%20III/Technorati.png"><a
+            href="filedir" style="text-decoration:none;" target="showframe">文件浏览器</a></h2>
+    <h2><img width="24px" height="24px" style="margin:0 10 0 0"
+             src="http://www.icosky.com/icon/png/Application/3D%20Cartoon%20Icons%20Pack%20III/Technorati.png"><a
+            href="detail" style="text-decoration:none;" target="showframe">实时JSON</a></h2>
+</div>
+</body>
+</html>

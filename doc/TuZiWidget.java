@@ -1,4 +1,4 @@
-package com.supets.pet.service;
+package com.supets.pet.view;
 
 import android.content.Context;
 import android.content.Intent;
