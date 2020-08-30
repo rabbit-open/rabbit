@@ -8,7 +8,7 @@
     <string name="interface_filter_guice">接口过滤规则(支持空格分割,包含匹配)</string>
     <string name="jsonedit">JSON助手</string>
 
-    <string name="email_name_config">发送邮箱配置(只支持163邮箱)</string>
+    <string name="email_name_config">发送邮箱配置(只支持QQ邮箱)</string>
     <string name="email_name_label">邮箱名</string>
     <string name="email_pass_label">邮箱密码</string>
 

@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.supets.commons.widget.CommonHeader;
-import com.supets.lib.mail.MailUtil;
 import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.dao.EmailDataDB;
+import com.supets.pet.mock.utils.MailUtil;
 import com.supets.pet.mockui.R;
 
 public class MockCrashUiActivity extends AppCompatActivity {
@@ -59,12 +59,9 @@ public class MockCrashUiActivity extends AppCompatActivity {
                 .setItems(list, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        MailUtil.setPort(25);
-                        MailUtil.setServer("smtp.163.com");
-                        MailUtil.setFrom("疯狂桔子安卓团队");
                         MailUtil.setUser(Config.getEmailName());
                         MailUtil.setPassword(Config.getEmailPass());
-                        MailUtil.sendEmail(finalList[which],
+                        MailUtil.sendEmail(Config.getEmailName(),finalList[which],
                                 getString(R.string.crash_title),
                                 mCrashLog.getText().toString());
                     }

@@ -32,7 +32,7 @@ public class Config extends BasePref {
 
     public static String getEmailName() {
         SharedPreferences preferences = getPref(Name);
-        return preferences.getString(EmailName, "xxx@163.com");
+        return preferences.getString(EmailName, "xxx@qq.com");
     }
 
     public static void setEmailPass(String emailName) {
