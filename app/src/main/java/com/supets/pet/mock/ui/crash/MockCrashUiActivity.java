@@ -8,10 +8,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.supets.commons.widget.CommonHeader;
+import com.supets.pet.mock.bean.EmailData;
 import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.dao.EmailDataDB;
-import com.supets.pet.mock.utils.MailUtil;
+import com.supets.pet.mock.utils.QQMailUtil;
 import com.supets.pet.mockui.R;
+
+import java.util.List;
 
 public class MockCrashUiActivity extends AppCompatActivity {
 
@@ -51,17 +54,19 @@ public class MockCrashUiActivity extends AppCompatActivity {
     }
 
     private void doSendEmail() {
-        String[] list = EmailDataDB.getEmailList();
-
-        final String[] finalList = list;
+        List<EmailData> data = EmailDataDB.getEmailList();
+        final String[] list = new String[data.size()];
+        for ( int i = 0; i < data.size(); i++) {
+            list[i] = data.get(i).getName() + "<" + data.get(i).getEmail() + ">";
+        }
         new AlertDialog.Builder(this)
                 .setTitle(R.string.emaillist)
                 .setItems(list, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        MailUtil.setUser(Config.getEmailName());
-                        MailUtil.setPassword(Config.getEmailPass());
-                        MailUtil.sendEmail(Config.getEmailName(),finalList[which],
+                        QQMailUtil.setUser(Config.getEmailName());
+                        QQMailUtil.setPassword(Config.getEmailPass());
+                        QQMailUtil.sendEmail(Config.getEmailName(), data.get(which),
                                 getString(R.string.crash_title),
                                 mCrashLog.getText().toString());
                     }

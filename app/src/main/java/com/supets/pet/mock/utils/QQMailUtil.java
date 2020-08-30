@@ -5,6 +5,8 @@
 
 package com.supets.pet.mock.utils;
 
+import com.supets.pet.mock.bean.EmailData;
+
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -15,24 +17,24 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class MailUtil {
+public class QQMailUtil {
     static String user = "";
     static String password = "";
 
-    public MailUtil() {
+    public QQMailUtil() {
     }
 
 
     public static void setUser(String user) {
-        MailUtil.user = user;
+        QQMailUtil.user = user;
     }
 
     public static void setPassword(String password) {
-        MailUtil.password = password;
+        QQMailUtil.password = password;
     }
 
 
-    public static void sendEmail(final String from, final String to, final String subject, final String body) {
+    public static void sendEmail(final String from, final EmailData to, final String subject, final String body) {
         (new Thread(new Runnable() {
             public void run() {
                 try {
@@ -62,10 +64,11 @@ public class MailUtil {
                     MimeMessage message = new MimeMessage(session);
 
                     //指定邮件发件人
-                    message.setFrom(new InternetAddress(from));
+                    message.setFrom(new InternetAddress(from, "兔子测试团队", "UTF-8"));
 
                     //指定邮件收件人
-                    message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+                    InternetAddress toaddress = new InternetAddress(to.getEmail(), to.getName(), "UTF-8");
+                    message.setRecipient(Message.RecipientType.TO, toaddress);
 
                     //邮件标题
                     message.setSubject(subject);

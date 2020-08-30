@@ -7,6 +7,7 @@ import com.supets.pet.greendao.SessionFactory;
 import com.supets.pet.mock.bean.EmailData;
 import com.supets.pet.mock.config.Config;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmailDataDB extends SessionFactory {
@@ -44,17 +45,16 @@ public class EmailDataDB extends SessionFactory {
     }
 
     @NonNull
-    public static String[] getEmailList() {
-        String[] list;
+    public static List<EmailData> getEmailList() {
+        List<EmailData> list;
         List<EmailData> data = EmailDataDB.queryAll();
         if (data != null && data.size() > 0) {
-            list = new String[data.size()];
-            for (int i = 0; i < data.size(); i++) {
-                list[i] = data.get(i).getName() + "<" + data.get(i).getEmail() + ">";
-            }
+            return data;
         } else {
-            list = new String[1];
-            list[0] = "发件人<" + Config.getEmailName() + ">";
+            list = new ArrayList<>();
+            EmailData emailData = new EmailData();
+            emailData.setName("兔子测试团队");
+            emailData.setEmail(Config.getEmailName());
         }
         return list;
     }
