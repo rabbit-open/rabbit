@@ -53,7 +53,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
     private void setWifi() {
         String ip = WifiUtils.getWifiIp(mContext);
         if (WifiUtils.getWifiIp(mContext) != null) {
-            logoTitle.setText("兔子小助手（" + ip + ")");
+            logoTitle.setText("兔子小助手（http://" + ip + ":8088)");
         } else {
             logoTitle.setText("兔子小助手");
         }

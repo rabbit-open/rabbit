@@ -8,7 +8,7 @@ publish {
     userOrg = 'lihongjiang'//bintray.com用户名
     groupId = 'com.supets.pet.mocklib'//jcenter上的路径
     artifactId = 'mock-okhttp-web'//项目名称
-    publishVersion = "0.0.3"//版本号
+    publishVersion = "0.0.4"//版本号
     desc = 'mock test app'//描述，不重要
     website = 'https://github.com/lihongjiang'//网站，不重要；尽量模拟github上的地址
     bintrayKey = 'f50daeebc7196f39b695baa401c06dcc47efff0b'
