@@ -14,7 +14,6 @@ import com.supets.pet.AppContext;
 import com.supets.pet.config.Config;
 import com.supets.pet.greendao.MigrationSQLiteOpenHelper;
 import com.supets.pet.mocklib.MockConfig;
-import com.supets.pet.mocklib.crash.DefaultBugHandler;
 import com.supets.pet.mockui.R;
 import com.supets.pet.utils.LogUtil;
 import com.supets.pet.view.MockDataReceiver;
@@ -41,8 +40,6 @@ public class MockDataProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-
-        DefaultBugHandler.getInstance().init();
 
         LogUtil.setAppName("兔子测试");
         LogUtil.setLogLevel(LogUtil.LOG_LEVEL_VERBOSE);
