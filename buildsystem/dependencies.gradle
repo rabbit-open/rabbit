@@ -56,9 +56,9 @@ ext {
     webDependencies = [
             "implementation": [
                     //ANDROID
-                    'appcompat-v7'              : "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}",
-                    'design'                    : "com.android.support:design:${rootProject.ext.supportLibVersion}",
-                    'recyclerview-v7'           : "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}",
+                    'appcompat-v7'              : "com.android.support:appcompat-v7:27.1.1",
+                    'design'                    : "com.android.support:design:27.1.1",
+                    'recyclerview-v7'           : "com.android.support:recyclerview-v7:27.1.1",
                     //三方依赖
                     'gson'                  : 'com.google.code.gson:gson:2.8.2',
                     'greendao'                  : 'org.greenrobot:greendao:3.2.2',
