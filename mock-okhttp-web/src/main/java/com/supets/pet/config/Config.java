@@ -89,10 +89,10 @@ public class Config extends BasePref {
         return preferences.getBoolean(DebugMode, false);
     }
 
-    //抓取模式
+    //默认抓取模式
     public static boolean getDataMode() {
         SharedPreferences preferences = getPref(Name);
-        return preferences.getBoolean(JsonSwitch, false);
+        return preferences.getBoolean(JsonSwitch, true);
     }
 
     public static String getBaseAPI() {
