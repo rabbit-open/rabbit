@@ -18,12 +18,14 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/logoTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/icon_tab"
                 android:drawablePadding="10dp"
                 android:gravity="left"
+                android:autoLink="web"
                 android:includeFontPadding="false"
                 android:text="兔子小助手"
                 android:textColor="#333333"

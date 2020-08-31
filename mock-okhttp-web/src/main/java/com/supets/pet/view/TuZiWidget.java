@@ -12,10 +12,12 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.supets.pet.bean.MockData;
 import com.supets.pet.config.Config;
 import com.supets.pet.mockui.R;
+import com.supets.pet.utils.WifiUtils;
 
 public final class TuZiWidget implements View.OnClickListener, View.OnTouchListener, ViewContainer.KeyEventHandler {
 
@@ -24,6 +26,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
     private ViewContainer mWholeView;
     private RecyclerView mList;
     private GridAdapter adapter;
+    private TextView logoTitle;
 
     @SuppressLint("ClickableViewAccessibility")
     public TuZiWidget(Context application) {
@@ -32,15 +35,28 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         initView();
     }
 
+
     private void initView() {
         ViewContainer view = (ViewContainer) View.inflate(mContext, R.layout.tuzi_pop_view, null);
         mList = view.findViewById(R.id.list);
+        logoTitle = view.findViewById(R.id.logoTitle);
+        setWifi();
         mList.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
         adapter = new GridAdapter();
         mList.setAdapter(adapter);
         mWholeView = view;
         mWholeView.setOnTouchListener(this);
         mWholeView.setKeyEventHandler(this);
+
+    }
+
+    private void setWifi() {
+        String ip = WifiUtils.getWifiIp(mContext);
+        if (WifiUtils.getWifiIp(mContext) != null) {
+            logoTitle.setText("兔子小助手（" + ip + ")");
+        } else {
+            logoTitle.setText("兔子小助手");
+        }
     }
 
     public void updateContent(MockData content) {
@@ -53,6 +69,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
     }
 
     private void show() {
+        setWifi();
         int w = WindowManager.LayoutParams.MATCH_PARENT;
         int h = WindowManager.LayoutParams.MATCH_PARENT;
 
