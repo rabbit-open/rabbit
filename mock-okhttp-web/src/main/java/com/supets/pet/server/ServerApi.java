@@ -2,6 +2,7 @@ package com.supets.pet.server;
 
 import android.content.Context;
 import android.os.Environment;
+import android.os.Process;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -81,7 +82,7 @@ public class ServerApi {
         getmockconfig();
         getPhoneInfo();
         getFilePath();
-        this.server.listen(this.mAsyncServer, 8088);
+        this.server.listen(this.mAsyncServer, Process.myPid());
     }
 
     private void getFilePath() {
