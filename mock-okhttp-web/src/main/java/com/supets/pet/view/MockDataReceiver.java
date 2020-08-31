@@ -8,6 +8,7 @@ import android.content.Intent;
 import com.supets.pet.bean.MockData;
 import com.supets.pet.config.Config;
 import com.supets.pet.greendao.MockDataDB;
+import com.supets.pet.mocklib.MockConfig;
 import com.supets.pet.utils.FileUtils;
 import com.supets.pet.utils.FormatLogProcess;
 
@@ -15,13 +16,12 @@ import java.util.Date;
 
 public class MockDataReceiver extends BroadcastReceiver {
 
-    public static final String MOCK_SERVICE_NETWORK = "mock.crash.network";
     private static TuZiWidget mTipViewController;
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        if (MOCK_SERVICE_NETWORK.equals(intent.getAction())) {
+        if (MockConfig.MOCK_SERVICE_NETWORK.equals(intent.getAction())) {
             //满足过滤规则
             //抓取数据模式
             //调试模式不能打开
