@@ -10,7 +10,7 @@ ext {
     buildToolsVersion = "28.0.3"
     supportLibVersion = "28.0.0"
 
-    mockOkhttpVersion = "2.36.27"
+    mockOkhttpVersion = "2.37.27"
 
     androidDependencies = [
             "implementation": [

@@ -3,8 +3,8 @@ package com.supets.pet.mocklib.widget;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.PixelFormat;
-import android.graphics.Rect;
 import android.os.Build;
+import android.os.Process;
 import android.provider.Settings;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.supets.pet.mocklib.R;
 
@@ -21,9 +22,9 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
     private WindowManager mWindowManager;
     private Context mContext;
     private ViewContainer mWholeView;
-    private View mContentView;
     private RecyclerView mList;
     private GridAdapter adapter;
+    private TextView logoTitle;
 
     @SuppressLint("ClickableViewAccessibility")
     public TuZiWidget(Context application) {
@@ -32,6 +33,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         initView();
     }
 
+
     private void initView() {
         ViewContainer view = (ViewContainer) View.inflate(mContext, R.layout.tuzi_pop_view, null);
         mList = view.findViewById(R.id.list);
@@ -39,11 +41,9 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         adapter = new GridAdapter();
         mList.setAdapter(adapter);
         mWholeView = view;
-        mContentView = view.findViewById(R.id.pop_view_content_view);
-        // event listeners
-        mContentView.setOnClickListener(this);
         mWholeView.setOnTouchListener(this);
         mWholeView.setKeyEventHandler(this);
+
     }
 
     public void updateContent(MockData content) {
@@ -53,7 +53,6 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         } else {
             adapter.putData(content);
         }
-        mWholeView.requestLayout();
     }
 
     private void show() {
@@ -71,7 +70,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
                 }
             }
         } else {
-            type = WindowManager.LayoutParams.TYPE_PHONE;
+            type = WindowManager.LayoutParams.TYPE_TOAST;
         }
 
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(w, h, type, flags, PixelFormat.TRANSLUCENT);
@@ -96,13 +95,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
      */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        int x = (int) event.getX();
-        int y = (int) event.getY();
-        Rect rect = new Rect();
-        mContentView.getGlobalVisibleRect(rect);
-        if (!rect.contains(x, y)) {
-            removePoppedViewAndClear();
-        }
+        removePoppedViewAndClear();
         return false;
     }
 

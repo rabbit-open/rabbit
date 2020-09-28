@@ -58,7 +58,7 @@ public class GridAdapter extends RecyclerView.Adapter {
                 textView.setText(message);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
     }
 

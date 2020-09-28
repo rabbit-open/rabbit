@@ -20,7 +20,7 @@ public class Utils {
             }
             return sb.toString();
         } catch (Exception ex) {
-            ex.printStackTrace();
+
         }
         return request == null ? "" : request;
     }
