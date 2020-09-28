@@ -53,6 +53,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         } else {
             adapter.putData(content);
         }
+        mWholeView.requestLayout();
     }
 
     private void show() {

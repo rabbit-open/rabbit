@@ -52,7 +52,7 @@ public class Utils {
             }
             mTipViewController.updateContent(data);
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
     }
 
