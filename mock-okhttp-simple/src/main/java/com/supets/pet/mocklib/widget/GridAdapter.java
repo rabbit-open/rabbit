@@ -22,19 +22,21 @@ public class GridAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View textView = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent, false);
-        TextView name = textView.findViewById(R.id.name);
-        textView.setOnClickListener(view -> {
-            name.setVisibility(name.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
-        });
+
         return new RecyclerView.ViewHolder(textView) {
         };
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        TextView textView = holder.itemView.findViewById(R.id.name);
+        TextView name = holder.itemView.findViewById(R.id.name);
         TextView label = holder.itemView.findViewById(R.id.label);
-        textView.setVisibility(View.GONE);
+        holder.itemView.setOnClickListener(view -> {
+            name.setVisibility(name.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
+            if (name.getVisibility() == View.GONE) {
+                notifyItemChanged(position);
+            }
+        });
         MockData data = datas.get(position);
         try {
             label.setText("请求接口:\r\n".concat(data.getUrl()));
@@ -47,7 +49,7 @@ public class GridAdapter extends RecyclerView.Adapter {
                                 .concat("\n请求Post参数：\n").concat(Utils.formatParam(data.getRequestParam()))
                                 .concat("\n响应Header参数：\n").concat(Utils.formatParam(data.getResponseParam()))
                                 .concat("\n请求响应结果：\n").concat(FormatLogProcess.format(string));
-                textView.setText(message);
+                name.setText(message);
 
             } else {
                 String message =
@@ -55,7 +57,7 @@ public class GridAdapter extends RecyclerView.Adapter {
                                 concat("\n请求Post参数：\n").concat(Utils.formatParam(data.getRequestParam()))
                                 .concat("\n响应Header参数：\n").concat(Utils.formatParam(data.getResponseParam()))
                                 .concat("\n请求响应结果：\n").concat(data.getData());
-                textView.setText(message);
+                name.setText(message);
             }
         } catch (Exception e) {
 

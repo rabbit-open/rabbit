@@ -62,6 +62,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
 
     public void updateContent(MockData content) {
         if (mWholeView.getParent() == null) {
+            initView();
             adapter.addHomeData(content);
             show();
         } else {

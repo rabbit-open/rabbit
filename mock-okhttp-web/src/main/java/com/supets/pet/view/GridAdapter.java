@@ -8,11 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.supets.pet.bean.MockData;
+import com.supets.pet.mockui.R;
 import com.supets.pet.utils.FormatLogProcess;
 import com.supets.pet.utils.Utils;
-import com.supets.pet.mockui.R;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -34,32 +33,36 @@ public class GridAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        TextView textView = holder.itemView.findViewById(R.id.name);
         TextView label = holder.itemView.findViewById(R.id.label);
-        textView.setVisibility(View.GONE);
+        TextView name = holder.itemView.findViewById(R.id.name);
+        holder.itemView.setOnClickListener(view -> {
+            name.setVisibility(name.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
+            if (name.getVisibility() == View.GONE) {
+                notifyItemChanged(position);
+            }
+        });
         MockData data = datas.get(position);
-
         label.setText("请求接口:\r\n".concat(data.getUrl()));
+        try {
+            if (FormatLogProcess.isJson(data.getData())) {
 
-        if (FormatLogProcess.isJson(data.getData())) {
-            try {
                 String string = new JSONObject(data.getData()).toString();
                 String message =
                         "请求Header参数：\n".concat(Utils.formatParam(data.getHeaderParam()))
                                 .concat("\n请求Post参数：\n").concat(Utils.formatParam(data.getRequestParam()))
                                 .concat("\n响应Header参数：\n").concat(Utils.formatParam(data.getResponseParam()))
                                 .concat("\n请求响应结果：\n").concat(FormatLogProcess.format(string));
-                textView.setText(message);
-            } catch (JSONException e) {
-                e.printStackTrace();
+                name.setText(message);
+            } else {
+                String message =
+                        "请求Header参数：\n".concat(Utils.formatParam(data.getHeaderParam())).
+                                concat("\n请求Post参数：\n").concat(Utils.formatParam(data.getRequestParam()))
+                                .concat("\n响应Header参数：\n").concat(Utils.formatParam(data.getResponseParam()))
+                                .concat("\n请求响应结果：\n").concat(data.getData());
+                name.setText(message);
             }
-        } else {
-            String message =
-                    "请求Header参数：\n".concat(Utils.formatParam(data.getHeaderParam())).
-                            concat("\n请求Post参数：\n").concat(Utils.formatParam(data.getRequestParam()))
-                            .concat("\n响应Header参数：\n").concat(Utils.formatParam(data.getResponseParam()))
-                            .concat("\n请求响应结果：\n").concat(data.getData());
-            textView.setText(message);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
