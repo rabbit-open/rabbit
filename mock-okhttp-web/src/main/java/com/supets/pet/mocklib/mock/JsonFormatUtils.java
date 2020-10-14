@@ -1,12 +1,11 @@
 package com.supets.pet.mocklib.mock;
 
 import android.content.Intent;
-import android.os.Build;
-import android.util.Base64;
 import android.util.Log;
 
 import com.supets.pet.AppContext;
 import com.supets.pet.mocklib.MockConfig;
+import com.supets.pet.utils.MD5Util;
 
 import org.json.JSONObject;
 
@@ -62,13 +61,11 @@ final public class JsonFormatUtils {
 
 
     public static void logFile(String url, String message) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
-            CacheFileUtils.saveFile(MockConfig.RESPONSE_SUCCESS_PATH, Base64.encodeToString(url.getBytes(), Base64.NO_PADDING).concat(".txt"), message);
-        }
+        CacheFileUtils.saveFile(MockConfig.RESPONSE_SUCCESS_PATH, MD5Util.encode(url).concat(".txt"), message);
     }
 
     public static void logErrorFile(String url, String message) {
-        String uuid = Base64.encodeToString(url.getBytes(), Base64.NO_PADDING).concat(".txt");
+        String uuid = MD5Util.encode(url).concat(".txt");
         CacheFileUtils.saveFile(MockConfig.RESPONSE_ERROR_PATH, uuid, message);
         try {
             Intent intent = new Intent(MockConfig.MOCK_SERVICE_NETWORK);
