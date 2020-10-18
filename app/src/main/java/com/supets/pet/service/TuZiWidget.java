@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.os.Build;
+import android.os.Process;
 import android.provider.Settings;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -14,7 +15,9 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
+import com.baidusoso.wifitransfer.WifiUtils;
 import com.supets.pet.mock.bean.MockData;
 import com.supets.pet.mock.config.Config;
 import com.supets.pet.mock.ui.home.MockUiActivity;
@@ -27,6 +30,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
     private Context mContext;
     private ViewContainer mWholeView;
     private View mContentView;
+    private TextView logoTitle;
     private RecyclerView mList;
     private GridAdapter adapter;
 
@@ -36,7 +40,14 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         mWindowManager = (WindowManager) application.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         initView();
     }
-
+    private void setWifi() {
+        String ip = WifiUtils.getWifiIp(mContext);
+        if (WifiUtils.getWifiIp(mContext) != null) {
+            logoTitle.setText("兔子小助手（http://" + ip + ":" + Process.myPid() + ")");
+        } else {
+            logoTitle.setText("兔子小助手");
+        }
+    }
     private void initView() {
         ViewContainer view = (ViewContainer) View.inflate(mContext, R.layout.tuzi_pop_view, null);
         mList = view.findViewById(R.id.list);
@@ -45,6 +56,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         mList.setAdapter(adapter);
         mWholeView = view;
         mContentView = view.findViewById(R.id.pop_view_content_view);
+        logoTitle = view.findViewById(R.id.logoTitle);
         // event listeners
         mContentView.setOnClickListener(this);
         mWholeView.setOnTouchListener(this);
