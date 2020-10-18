@@ -2,7 +2,6 @@ package com.supets.pet.mock.ui.home;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -114,16 +113,7 @@ public class MockUiActivity extends TabLayoutBottomActivity {
                 return false;
             }
         } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                AppOpsManager appOpsMgr = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
-                if (appOpsMgr == null)
-                    return false;
-                int mode = appOpsMgr.checkOpNoThrow("android:system_alert_window", android.os.Process.myUid(), context
-                        .getPackageName());
-                return Settings.canDrawOverlays(context) || mode == AppOpsManager.MODE_ALLOWED || mode == AppOpsManager.MODE_IGNORED;
-            } else {
-                return Settings.canDrawOverlays(context);
-            }
+            return Settings.canDrawOverlays(context);
         }
     }
 
