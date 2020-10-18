@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.os.Build;
-import android.os.Process;
 import android.provider.Settings;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -40,14 +39,16 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         mWindowManager = (WindowManager) application.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         initView();
     }
+
     private void setWifi() {
         String ip = WifiUtils.getWifiIp(mContext);
         if (WifiUtils.getWifiIp(mContext) != null) {
-            logoTitle.setText("兔子小助手（http://" + ip + ":8088)");
+            logoTitle.setText("（http://" + ip + ":8088)");
         } else {
-            logoTitle.setText("兔子小助手");
+            logoTitle.setText("");
         }
     }
+
     private void initView() {
         ViewContainer view = (ViewContainer) View.inflate(mContext, R.layout.tuzi_pop_view, null);
         mList = view.findViewById(R.id.list);

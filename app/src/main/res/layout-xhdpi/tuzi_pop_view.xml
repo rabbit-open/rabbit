@@ -11,7 +11,17 @@
         android:background="#fff"
         android:orientation="vertical"
         android:padding="10dp">
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icon_tab"
+            android:drawablePadding="10dp"
+            android:gravity="left"
+            android:includeFontPadding="false"
+            android:text="兔子小助手"
+            android:autoLink="web"
+            android:textColor="#333333"
+            android:textSize="15sp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,12 +32,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableLeft="@drawable/icon_tab"
+                android:layout_marginLeft="20dp"
                 android:drawablePadding="10dp"
                 android:gravity="left"
-                android:includeFontPadding="false"
-                android:text="兔子小助手"
-                android:textColor="#333333"
+                android:text=""
+                android:textColor="@color/appcolor"
                 android:textSize="15sp" />
 
             <Button
@@ -35,7 +44,7 @@
                 android:layout_width="80dp"
                 android:layout_height="40dp"
                 android:background="@color/appcolor"
-                android:text="查看详情"
+                android:text="详情"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
         </LinearLayout>
