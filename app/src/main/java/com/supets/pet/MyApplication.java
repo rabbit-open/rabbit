@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.IntentFilter;
+import android.os.Build;
 
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
@@ -40,10 +41,16 @@ public class MyApplication extends Application {
         ListenClipboardService.start(this);
         new ServerApi(this, server, mAsyncServer);
         //注册广播
-        registerReceiver(new MockDataReceiver(), new IntentFilter("mock.crash.network"),
-                "com.supets.pet.permission.MOCK_CRASH_NETWORK", null);
-        registerReceiver(new CrashService(), new IntentFilter("mock.crash.service"),
-                "com.supets.pet.permission.MOCK_CRASH_SERVICE", null);
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N
+                || Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1) {
+            registerReceiver(new MockDataReceiver(), new IntentFilter("mock.crash.network"),
+                    "com.supets.pet.permission.MOCK_CRASH_NETWORK", null);
+            registerReceiver(new CrashService(), new IntentFilter("mock.crash.service"),
+                    "com.supets.pet.permission.MOCK_CRASH_SERVICE", null);
+        } else {
+            registerReceiver(new MockDataReceiver(), new IntentFilter("mock.crash.network"));
+            registerReceiver(new CrashService(), new IntentFilter("mock.crash.service"));
+        }
     }
 
     @Override
