@@ -43,7 +43,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
     private void setWifi() {
         String ip = WifiUtils.getWifiIp(mContext);
         if (WifiUtils.getWifiIp(mContext) != null) {
-            logoTitle.setText("兔子小助手（http://" + ip + ":" + Process.myPid() + ")");
+            logoTitle.setText("兔子小助手（http://" + ip + ":8088)");
         } else {
             logoTitle.setText("兔子小助手");
         }
@@ -58,6 +58,7 @@ public final class TuZiWidget implements View.OnClickListener, View.OnTouchListe
         mContentView = view.findViewById(R.id.pop_view_content_view);
         logoTitle = view.findViewById(R.id.logoTitle);
         // event listeners
+        setWifi();
         mContentView.setOnClickListener(this);
         mWholeView.setOnTouchListener(this);
         mWholeView.setKeyEventHandler(this);
