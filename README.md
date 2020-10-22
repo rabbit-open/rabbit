@@ -57,7 +57,7 @@
 
 * 3 打开悬浮窗权限，然后浏览器访问[http://ip:APP进程号]
 
-<img src="http://m.qpic.cn/psc?/V128bWpv0lPy2K/bqQfVz5yrrGYSXMvKr.cqcXnCdbtDxKKviAO.z0D2MjtLwdjYICoGFMFIpIIM4iJ9VDzjxQ9Ak21nlaxxJifD32ufrFvqQUUdUnFT6ig96Q!/b&bo=VQW7AgAAAAADB8s!&rf=viewer_4&t=5" width='1000'></img>
+![](http://m.qpic.cn/psc?/V128bWpv0lPy2K/bqQfVz5yrrGYSXMvKr.cqcXnCdbtDxKKviAO.z0D2MjtLwdjYICoGFMFIpIIM4iJ9VDzjxQ9Ak21nlaxxJifD32ufrFvqQUUdUnFT6ig96Q!/b&bo=VQW7AgAAAAADB8s!&rf=viewer_4&t=5)
 
 * 4 基础配置
 
