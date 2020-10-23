@@ -43,7 +43,7 @@
 
 * 1 更换依赖
 
-> debugImplementation "com.supets.pet.mocklib:mock-okhttp-web:2.46.27"
+> debugImplementation "com.supets.pet.mocklib:mock-okhttp-web:1.0.4"
 > releaseImplementation "com.supets.pet.mocklib:mock-okhttp-no-op:2.35.27" 
 
 * 2 okHttp接入拦截器
