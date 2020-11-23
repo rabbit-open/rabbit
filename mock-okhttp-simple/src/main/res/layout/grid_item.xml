@@ -27,10 +27,6 @@
         android:padding="5dp"
         android:textColor="#333333"
         android:textSize="15sp"
-        android:enabled="true"
-        android:textIsSelectable="true"
-        android:focusable="true"
-        android:longClickable="true"
         android:visibility="gone" />
 
 </LinearLayout>

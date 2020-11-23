@@ -25,13 +25,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="#ffffff"
-        android:enabled="true"
-        android:focusable="true"
-        android:longClickable="true"
         android:padding="5dp"
         android:text="@string/sdcard_cache_name"
         android:textColor="#333333"
-        android:textIsSelectable="true"
         android:textSize="15sp"
         android:visibility="gone" />
 
