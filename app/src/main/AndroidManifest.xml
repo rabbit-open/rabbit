@@ -33,7 +33,6 @@
     <permission
         android:name="com.supets.pet.permission.MOCK_CRASH_NETWORK"
         android:protectionLevel="normal" />
-
     <application
         android:name="com.supets.pet.MyApplication"
         android:allowBackup="true"
